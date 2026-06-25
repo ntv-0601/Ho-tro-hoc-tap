@@ -16,16 +16,23 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
+    <!-- Cấu hình TailwindCSS cho Dark/Light Mode -->
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
     <style>
       body {
         font-family: "Plus Jakarta Sans", sans-serif;
-        background: linear-gradient(
-          135deg,
-          #020617 0%,
-          #071e3d 40%,
-          #0d3460 75%,
-          #055075 100%
-        );
         min-height: 100vh;
         overflow-x: hidden;
         position: relative;
@@ -37,18 +44,29 @@
         height: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: rgba(15, 23, 42, 0.6);
+        background: transparent;
       }
       ::-webkit-scrollbar-thumb {
-        background: rgba(14, 165, 233, 0.5);
+        background: rgba(203, 213, 225, 0.8);
         border-radius: 999px;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: rgba(14, 165, 233, 0.5);
       }
       ::-webkit-scrollbar-thumb:hover {
         background: rgba(14, 165, 233, 0.8);
       }
 
-      /* Glassmorphism styling */
+      /* Glassmorphism styling thích ứng Sáng/Tối */
       .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+      }
+
+      .dark .glass-card {
         background: rgba(15, 23, 42, 0.45);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
@@ -57,13 +75,26 @@
       }
 
       .glass-input {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        color: #f8fafc;
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        color: #1e293b;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
+      .dark .glass-input {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #f8fafc;
+      }
+
       .glass-input:focus {
+        background: rgba(255, 255, 255, 0.8);
+        border-color: #0ea5e9;
+        box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
+        outline: none;
+      }
+
+      .dark .glass-input:focus {
         background: rgba(255, 255, 255, 0.1);
         border-color: #38bdf8;
         box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
@@ -87,24 +118,25 @@
         position: relative;
         width: 100%;
         height: 120px;
-        margin-bottom: -7px; /* Fix for safari gap */
+        margin-bottom: -7px;
         min-height: 100px;
         max-height: 150px;
       }
 
-      /* Parallax Wave Animation */
+      /* Parallax Wave Animation Colors */
       .parallax > use {
         animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
       }
+
       .parallax > use:nth-child(1) {
         animation-delay: -2s;
         animation-duration: 7s;
-        fill: rgba(14, 116, 144, 0.3);
+        fill: rgba(14, 165, 233, 0.3);
       }
       .parallax > use:nth-child(2) {
         animation-delay: -3s;
         animation-duration: 10s;
-        fill: rgba(6, 182, 212, 0.2);
+        fill: rgba(14, 165, 233, 0.2);
       }
       .parallax > use:nth-child(3) {
         animation-delay: -4s;
@@ -114,8 +146,21 @@
       .parallax > use:nth-child(4) {
         animation-delay: -5s;
         animation-duration: 20s;
-        fill: rgba(3, 105, 161, 0.4);
+        fill: rgba(240, 249, 255, 1); /* sky-50 cho chế độ sáng */
       }
+
+      .dark .parallax > use:nth-child(1) {
+        fill: rgba(14, 116, 144, 0.3);
+      }
+      .dark .parallax > use:nth-child(2) {
+        fill: rgba(6, 182, 212, 0.2);
+      }
+      .dark .parallax > use:nth-child(3) {
+        fill: rgba(14, 165, 233, 0.15);
+      }
+      .dark .parallax > use:nth-child(4) {
+        fill: rgba(15, 23, 42, 1);
+      } /* slate-900 cho chế độ tối */
 
       @keyframes move-forever {
         0% {
@@ -130,10 +175,15 @@
       .bubble {
         position: absolute;
         bottom: -20px;
-        background: rgba(56, 189, 248, 0.15);
+        background: rgba(14, 165, 233, 0.15);
+        border: 1px solid rgba(14, 165, 233, 0.25);
         border-radius: 50%;
         animation: rise 15s infinite ease-in;
         pointer-events: none;
+      }
+      .dark .bubble {
+        background: rgba(56, 189, 248, 0.1);
+        border: 1px solid rgba(56, 189, 248, 0.15);
       }
 
       @keyframes rise {
@@ -143,10 +193,10 @@
           opacity: 0;
         }
         10% {
-          opacity: 0.6;
+          opacity: 0.8;
         }
         90% {
-          opacity: 0.6;
+          opacity: 0.8;
         }
         100% {
           bottom: 110vh;
@@ -221,7 +271,9 @@
       }
     </style>
   </head>
-  <body class="text-slate-100 flex flex-col justify-between min-height-screen">
+  <body
+    class="bg-sky-50/40 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans flex flex-col justify-between min-height-screen transition-colors duration-300"
+  >
     <!-- Bubble Background Elements -->
     <div
       class="bubble-container absolute inset-0 overflow-hidden pointer-events-none z-0"
@@ -284,23 +336,36 @@
     >
       <!-- HEADER PANEL -->
       <header class="text-center mb-8 pt-4">
-        <div
-          class="inline-flex items-center gap-3 bg-cyan-950/40 border border-cyan-500/30 px-6 py-2 rounded-full mb-4"
-        >
-          <i
-            class="fa-solid fa-compass-drafting text-cyan-400 animate-pulse text-xl"
-          ></i>
-          <span
-            class="text-cyan-300 font-semibold tracking-wider text-sm uppercase"
-            >Hệ Thống Trực Quan Hóa Hướng Nghiệp</span
+        <!-- Khung chứa nút Quay về trang chủ và Nút Dark Mode -->
+        <div class="flex justify-between items-center mb-6">
+          <div
+            class="inline-flex items-center gap-3 bg-white/50 dark:bg-cyan-950/40 border border-slate-200 dark:border-cyan-500/30 px-6 py-2 rounded-full mb-4 shadow-sm transition-colors"
           >
+            <a
+              href="/"
+              class="flex items-center gap-2 text-sky-600 dark:text-cyan-300 hover:text-sky-800 dark:hover:text-cyan-100 transition text-sm font-medium"
+            >
+              <i class="fa-solid fa-house"></i> Quay về trang chủ
+            </a>
+          </div>
+
+          <button
+            onclick="toggleDarkMode()"
+            class="w-10 h-10 flex items-center justify-center bg-white/50 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/20 text-slate-700 dark:text-white rounded-full transition border border-slate-200 dark:border-white/20 shadow-sm ml-auto"
+            title="Đổi chế độ Sáng/Tối"
+          >
+            <i id="theme-icon" class="fa-solid fa-moon"></i>
+          </button>
         </div>
+
         <h1
-          class="text-3xl md:text-5xl font-extrabold tracking-normal leading-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-200 to-indigo-300 drop-shadow-lg py-3"
+          class="text-3xl md:text-5xl font-extrabold tracking-normal leading-normal text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 dark:from-cyan-300 dark:via-blue-200 dark:to-indigo-300 drop-shadow-lg py-3"
         >
           TƯ VẤN CHỌN TỔ HỢP MÔN
         </h1>
-        <p class="text-slate-400 mt-2 max-w-2xl mx-auto text-sm md:text-base">
+        <p
+          class="text-slate-600 dark:text-slate-400 mt-2 max-w-2xl mx-auto text-sm md:text-base"
+        >
           Phân tích năng lực học tập THCS thông minh để đề xuất tổ hợp môn Trung
           học phổ thông tối ưu nhất cho học sinh.
         </p>
@@ -309,28 +374,30 @@
       <!-- MAIN CONTENT GRID -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <!-- COLUMN 1: INTERACTIVE GRADES INPUT (lg:span-7) -->
-        <div
-          class="lg:col-span-7 glass-card p-5 md:p-6 rounded-2xl border border-slate-700/50"
-        >
+        <div class="lg:col-span-7 glass-card p-5 md:p-6 rounded-2xl">
           <div
-            class="flex items-center justify-between mb-5 border-b border-slate-700/60 pb-3"
+            class="flex items-center justify-between mb-5 border-b border-slate-200 dark:border-slate-700/60 pb-3"
           >
-            <h2 class="text-lg font-bold text-cyan-300 flex items-center gap-2">
-              <i class="fa-solid fa-graduation-cap text-cyan-400"></i> Bảng Điểm
-              Trung Học Cơ Sở
+            <h2
+              class="text-lg font-bold text-sky-600 dark:text-cyan-300 flex items-center gap-2"
+            >
+              <i
+                class="fa-solid fa-graduation-cap text-sky-500 dark:text-cyan-400"
+              ></i>
+              Bảng Điểm Trung Học Cơ Sở
             </h2>
-            <span class="text-xs text-slate-400 italic"
+            <span class="text-xs text-slate-500 dark:text-slate-400 italic"
               >Nhập điểm từ 0.0 - 10.0</span
             >
           </div>
 
           <div
-            class="overflow-x-auto rounded-xl border border-slate-700/40 bg-slate-900/30"
+            class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700/40 bg-white/50 dark:bg-slate-900/30"
           >
             <table class="w-full text-left border-collapse">
               <thead>
                 <tr
-                  class="bg-gradient-to-r from-slate-800 to-slate-900 text-cyan-200 font-semibold text-sm border-b border-slate-700/80"
+                  class="bg-gradient-to-r from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 text-sky-700 dark:text-cyan-200 font-semibold text-sm border-b border-slate-300 dark:border-slate-700/80"
                 >
                   <th class="p-3">Môn học</th>
                   <th class="p-3 text-center">Lớp 6</th>
@@ -339,10 +406,16 @@
                   <th class="p-3 text-center">Lớp 9</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-slate-800/60 text-sm">
+              <tbody
+                class="divide-y divide-slate-200 dark:divide-slate-800/60 text-sm"
+              >
                 <!-- Subject Rows -->
-                <tr class="hover:bg-cyan-950/20 transition-colors">
-                  <td class="p-3 font-medium text-slate-200">
+                <tr
+                  class="hover:bg-sky-50 dark:hover:bg-cyan-950/20 transition-colors"
+                >
+                  <td
+                    class="p-3 font-medium text-slate-700 dark:text-slate-200"
+                  >
                     <i class="fa-solid fa-book-open text-orange-400 mr-2"></i
                     >Ngữ văn
                   </td>
@@ -391,8 +464,12 @@
                     />
                   </td>
                 </tr>
-                <tr class="hover:bg-cyan-950/20 transition-colors">
-                  <td class="p-3 font-medium text-slate-200">
+                <tr
+                  class="hover:bg-sky-50 dark:hover:bg-cyan-950/20 transition-colors"
+                >
+                  <td
+                    class="p-3 font-medium text-slate-700 dark:text-slate-200"
+                  >
                     <i class="fa-solid fa-calculator text-blue-400 mr-2"></i
                     >Toán
                   </td>
@@ -441,8 +518,12 @@
                     />
                   </td>
                 </tr>
-                <tr class="hover:bg-cyan-950/20 transition-colors">
-                  <td class="p-3 font-medium text-slate-200">
+                <tr
+                  class="hover:bg-sky-50 dark:hover:bg-cyan-950/20 transition-colors"
+                >
+                  <td
+                    class="p-3 font-medium text-slate-700 dark:text-slate-200"
+                  >
                     <i class="fa-solid fa-language text-emerald-400 mr-2"></i
                     >Ngoại ngữ 1
                   </td>
@@ -491,8 +572,12 @@
                     />
                   </td>
                 </tr>
-                <tr class="hover:bg-cyan-950/20 transition-colors">
-                  <td class="p-3 font-medium text-slate-200">
+                <tr
+                  class="hover:bg-sky-50 dark:hover:bg-cyan-950/20 transition-colors"
+                >
+                  <td
+                    class="p-3 font-medium text-slate-700 dark:text-slate-200"
+                  >
                     <i
                       class="fa-solid fa-scale-balanced text-purple-400 mr-2"
                     ></i
@@ -543,8 +628,12 @@
                     />
                   </td>
                 </tr>
-                <tr class="hover:bg-cyan-950/20 transition-colors">
-                  <td class="p-3 font-medium text-slate-200">
+                <tr
+                  class="hover:bg-sky-50 dark:hover:bg-cyan-950/20 transition-colors"
+                >
+                  <td
+                    class="p-3 font-medium text-slate-700 dark:text-slate-200"
+                  >
                     <i class="fa-solid fa-earth-americas text-teal-400 mr-2"></i
                     >Lịch sử - Địa lý
                   </td>
@@ -593,8 +682,12 @@
                     />
                   </td>
                 </tr>
-                <tr class="hover:bg-cyan-950/20 transition-colors">
-                  <td class="p-3 font-medium text-slate-200">
+                <tr
+                  class="hover:bg-sky-50 dark:hover:bg-cyan-950/20 transition-colors"
+                >
+                  <td
+                    class="p-3 font-medium text-slate-700 dark:text-slate-200"
+                  >
                     <i class="fa-solid fa-atom text-rose-400 mr-2"></i>Khoa học
                     tự nhiên
                   </td>
@@ -643,8 +736,12 @@
                     />
                   </td>
                 </tr>
-                <tr class="hover:bg-cyan-950/20 transition-colors">
-                  <td class="p-3 font-medium text-slate-200">
+                <tr
+                  class="hover:bg-sky-50 dark:hover:bg-cyan-950/20 transition-colors"
+                >
+                  <td
+                    class="p-3 font-medium text-slate-700 dark:text-slate-200"
+                  >
                     <i class="fa-solid fa-gears text-yellow-500 mr-2"></i>Công
                     nghệ
                   </td>
@@ -693,9 +790,15 @@
                     />
                   </td>
                 </tr>
-                <tr class="hover:bg-cyan-950/20 transition-colors">
-                  <td class="p-3 font-medium text-slate-200">
-                    <i class="fa-solid fa-laptop-code text-cyan-400 mr-2"></i
+                <tr
+                  class="hover:bg-sky-50 dark:hover:bg-cyan-950/20 transition-colors"
+                >
+                  <td
+                    class="p-3 font-medium text-slate-700 dark:text-slate-200"
+                  >
+                    <i
+                      class="fa-solid fa-laptop-code text-sky-400 dark:text-cyan-400 mr-2"
+                    ></i
                     >Tin học
                   </td>
                   <td class="p-2">
@@ -743,8 +846,12 @@
                     />
                   </td>
                 </tr>
-                <tr class="hover:bg-cyan-950/20 transition-colors">
-                  <td class="p-3 font-medium text-slate-200">
+                <tr
+                  class="hover:bg-sky-50 dark:hover:bg-cyan-950/20 transition-colors"
+                >
+                  <td
+                    class="p-3 font-medium text-slate-700 dark:text-slate-200"
+                  >
                     <i class="fa-solid fa-palette text-pink-400 mr-2"></i>Nghệ
                     thuật
                   </td>
@@ -793,8 +900,12 @@
                     />
                   </td>
                 </tr>
-                <tr class="hover:bg-cyan-950/20 transition-colors">
-                  <td class="p-3 font-medium text-slate-200">
+                <tr
+                  class="hover:bg-sky-50 dark:hover:bg-cyan-950/20 transition-colors"
+                >
+                  <td
+                    class="p-3 font-medium text-slate-700 dark:text-slate-200"
+                  >
                     <i class="fa-solid fa-compass text-pink-300 mr-2"></i>HĐ
                     trải nghiệm
                   </td>
@@ -851,38 +962,38 @@
         <!-- COLUMN 2: TOOLS, EXCEL ACTIONS & ANALYSIS RESULTS (lg:span-5) -->
         <div class="lg:col-span-5 flex flex-col gap-6">
           <!-- Tool/File Controller Glassmorphic Panel -->
-          <div
-            class="glass-card p-5 md:p-6 rounded-2xl border border-slate-700/50"
-          >
+          <div class="glass-card p-5 md:p-6 rounded-2xl">
             <h2
-              class="text-lg font-bold text-cyan-300 flex items-center gap-2 mb-4"
+              class="text-lg font-bold text-sky-600 dark:text-cyan-300 flex items-center gap-2 mb-4"
             >
-              <i class="fa-solid fa-sliders text-cyan-400"></i> Điều Khiển &
-              Nhập Liệu
+              <i
+                class="fa-solid fa-sliders text-sky-500 dark:text-cyan-400"
+              ></i>
+              Điều Khiển & Nhập Liệu
             </h2>
 
             <div class="space-y-4">
               <!-- Upload Excel Section -->
               <div
-                class="flex flex-col gap-2 p-4 bg-slate-900/40 rounded-xl border border-slate-800"
+                class="flex flex-col gap-2 p-4 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200 dark:border-slate-800"
               >
                 <span
-                  class="text-xs text-slate-400 uppercase tracking-wider font-semibold"
+                  class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold"
                   >Tải lên bảng điểm từ file</span
                 >
                 <div class="flex items-center gap-2 w-full">
                   <label
                     for="excelFile"
-                    class="flex-shrink-0 cursor-pointer bg-slate-800 hover:bg-slate-700 text-slate-100 hover:text-cyan-300 border border-slate-700 hover:border-cyan-500/50 py-2.5 px-4 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all"
+                    class="flex-shrink-0 cursor-pointer bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-100 hover:text-sky-600 dark:hover:text-cyan-300 border border-slate-300 dark:border-slate-700 hover:border-sky-400 dark:hover:border-cyan-500/50 py-2.5 px-4 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all"
                   >
                     <i
-                      class="fa-solid fa-file-excel text-emerald-400 text-sm"
+                      class="fa-solid fa-file-excel text-emerald-500 dark:text-emerald-400 text-sm"
                     ></i>
                     Chọn file điểm
                   </label>
                   <span
                     id="fileName"
-                    class="text-xs text-slate-400 truncate italic"
+                    class="text-xs text-slate-500 dark:text-slate-400 truncate italic"
                     >Chưa chọn file nào</span
                   >
                 </div>
@@ -927,25 +1038,26 @@
 
           <!-- Analysis Output Panel -->
           <div
-            class="glass-card p-5 md:p-6 rounded-2xl border border-slate-700/50 flex-grow flex flex-col min-h-[350px]"
+            class="glass-card p-5 md:p-6 rounded-2xl flex-grow flex flex-col min-h-[350px]"
           >
             <h2
-              class="text-lg font-bold text-cyan-300 flex items-center gap-2 mb-4"
+              class="text-lg font-bold text-sky-600 dark:text-cyan-300 flex items-center gap-2 mb-4"
             >
-              <i class="fa-solid fa-brain text-cyan-400"></i> Báo Cáo Tư Vấn
+              <i class="fa-solid fa-brain text-sky-500 dark:text-cyan-400"></i>
+              Báo Cáo Tư Vấn
             </h2>
             <div
-              class="result-container flex-grow relative bg-slate-950/60 border border-slate-800 rounded-xl overflow-hidden flex flex-col p-4"
+              class="result-container flex-grow relative bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden flex flex-col p-4"
             >
               <div
                 id="kqtuvan"
-                class="result-box text-slate-200 text-sm leading-relaxed overflow-y-auto max-h-[320px] whitespace-pre-wrap font-sans"
+                class="result-box text-slate-700 dark:text-slate-200 text-sm leading-relaxed overflow-y-auto max-h-[320px] whitespace-pre-wrap font-sans"
               >
                 <div
                   class="flex flex-col items-center justify-center text-center h-full text-slate-500 py-10"
                 >
                   <i
-                    class="fa-solid fa-info-circle text-3xl text-cyan-500/20 mb-3 animate-bounce"
+                    class="fa-solid fa-info-circle text-3xl text-sky-500/30 dark:text-cyan-500/20 mb-3 animate-bounce"
                   ></i>
                   <p class="font-medium">
                     Vui lòng nhập điểm hoặc tải file điểm Excel, sau đó ấn nút
@@ -959,13 +1071,17 @@
       </div>
 
       <!-- RADAR CHART CONTAINER -->
-      <div class="mt-8 glass-card p-6 rounded-2xl border border-slate-700/50">
+      <div class="mt-8 glass-card p-6 rounded-2xl">
         <div
-          class="flex items-center gap-2 mb-4 border-b border-slate-700/60 pb-3"
+          class="flex items-center gap-2 mb-4 border-b border-slate-200 dark:border-slate-700/60 pb-3"
         >
-          <h2 class="text-lg font-bold text-cyan-300 flex items-center gap-2">
-            <i class="fa-solid fa-chart-pie text-cyan-400"></i> Biểu Đồ Radar
-            Đánh Giá Năng Lực Học Tập
+          <h2
+            class="text-lg font-bold text-sky-600 dark:text-cyan-300 flex items-center gap-2"
+          >
+            <i
+              class="fa-solid fa-chart-pie text-sky-500 dark:text-cyan-400"
+            ></i>
+            Biểu Đồ Radar Đánh Giá Năng Lực Học Tập
           </h2>
         </div>
         <div class="chart-wrapper w-full h-[380px] relative">
@@ -1001,7 +1117,7 @@
 
     <!-- FOOTER COPYRIGHTS -->
     <footer
-      class="relative z-20 bg-slate-950/70 border-t border-slate-800 text-center py-4 text-xs text-slate-400 font-medium"
+      class="relative z-20 bg-slate-100 dark:bg-slate-950/70 border-t border-slate-200 dark:border-slate-800 text-center py-4 text-xs text-slate-500 dark:text-slate-400 font-medium"
     >
       <div class="container mx-auto px-4">
         © 2026 Hệ Thống Tư Vấn Chọn Tổ Hợp Môn THPT. Giao diện thiết kế đại
@@ -1023,33 +1139,74 @@
       let selectedFile;
       let abilityChart = null;
 
-      // Custom Floating Toast Notification System (Sleek replacing basic system alert)
+      // Dark / Light Mode Toggle logic
+      function toggleDarkMode() {
+        const html = document.documentElement;
+        const themeIcon = document.getElementById("theme-icon");
+        if (html.classList.contains("dark")) {
+          html.classList.remove("dark");
+          localStorage.setItem("theme", "light");
+          themeIcon.className = "fa-solid fa-moon";
+        } else {
+          html.classList.add("dark");
+          localStorage.setItem("theme", "dark");
+          themeIcon.className = "fa-solid fa-sun";
+        }
+
+        // Redraw chart with active theme styling
+        if (abilityChart) {
+          const scores = abilityChart.data.datasets[0].data;
+          const subjects = abilityChart.data.labels;
+          updateAbilityChart(subjects, scores);
+        }
+      }
+
+      // Khởi tạo theme ban đầu
+      if (
+        localStorage.getItem("theme") === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const themeIcon = document.getElementById("theme-icon");
+        if (document.documentElement.classList.contains("dark")) {
+          themeIcon.className = "fa-solid fa-sun";
+        } else {
+          themeIcon.className = "fa-solid fa-moon";
+        }
+      });
+
+      // Custom Floating Toast Notification System
       function showToast(message, type = "info") {
         const container = document.getElementById("toast-container");
         const toast = document.createElement("div");
         toast.className = `pointer-events-auto flex items-center gap-3 px-5 py-4 rounded-xl shadow-2xl border transition-all duration-300 translate-x-12 opacity-0 max-w-sm`;
 
-        // Dynamic classes based on type
         if (type === "success") {
           toast.className +=
-            " bg-emerald-950/95 border-emerald-500/50 text-emerald-200";
-          toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 text-xl"></i> <div>${message}</div>`;
+            " bg-emerald-100 dark:bg-emerald-950/95 border-emerald-300 dark:border-emerald-500/50 text-emerald-800 dark:text-emerald-200";
+          toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-500 dark:text-emerald-400 text-xl"></i> <div>${message}</div>`;
         } else if (type === "error") {
-          toast.className += " bg-rose-950/95 border-rose-500/50 text-rose-200";
-          toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-rose-400 text-xl"></i> <div>${message}</div>`;
+          toast.className +=
+            " bg-rose-100 dark:bg-rose-950/95 border-rose-300 dark:border-rose-500/50 text-rose-800 dark:text-rose-200";
+          toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-rose-500 dark:text-rose-400 text-xl"></i> <div>${message}</div>`;
         } else {
-          toast.className += " bg-cyan-950/95 border-cyan-500/50 text-cyan-200";
-          toast.innerHTML = `<i class="fa-solid fa-circle-info text-cyan-400 text-xl"></i> <div>${message}</div>`;
+          toast.className +=
+            " bg-sky-100 dark:bg-cyan-950/95 border-sky-300 dark:border-cyan-500/50 text-sky-800 dark:text-cyan-200";
+          toast.innerHTML = `<i class="fa-solid fa-circle-info text-sky-500 dark:text-cyan-400 text-xl"></i> <div>${message}</div>`;
         }
 
         container.appendChild(toast);
 
-        // Trigger animation transition
         setTimeout(() => {
           toast.classList.remove("translate-x-12", "opacity-0");
         }, 10);
 
-        // Auto remove toast
         setTimeout(() => {
           toast.classList.add("translate-x-12", "opacity-0");
           setTimeout(() => {
@@ -1058,7 +1215,6 @@
         }, 4000);
       }
 
-      // Handle custom file upload display
       document
         .getElementById("excelFile")
         .addEventListener("change", function (e) {
@@ -1100,8 +1256,6 @@
             }
 
             const row = jsonData[0];
-
-            // Mapping Excel keys to DOM input IDs
             const fields = [
               { id: "van6", key: "Van6" },
               { id: "van7", key: "Van7" },
@@ -1158,8 +1312,6 @@
               `Đọc file thành công! Đã điền ${filledFields} trường điểm học tập.`,
               "success",
             );
-
-            // Auto trigger consultation view after reading
             document.getElementById("tuvan").click();
           } catch (error) {
             console.error("Lỗi khi đọc file:", error);
@@ -1177,9 +1329,9 @@
         reader.readAsArrayBuffer(selectedFile);
       });
 
-      // Render and style custom radar capability chart
       function updateAbilityChart(subjects, scores) {
         const ctx = document.getElementById("abilityChart").getContext("2d");
+        const isDark = document.documentElement.classList.contains("dark");
 
         if (abilityChart) {
           abilityChart.destroy();
@@ -1193,8 +1345,8 @@
               {
                 label: "Năng lực học tập bình quân",
                 data: scores,
-                backgroundColor: "rgba(6, 182, 212, 0.25)", // Transparent Cyan
-                borderColor: "rgba(6, 182, 212, 1)", // Solid Cyan
+                backgroundColor: "rgba(6, 182, 212, 0.25)",
+                borderColor: "rgba(6, 182, 212, 1)",
                 borderWidth: 2.5,
                 pointBackgroundColor: "rgba(56, 189, 248, 1)",
                 pointBorderColor: "#ffffff",
@@ -1210,13 +1362,17 @@
             scales: {
               r: {
                 grid: {
-                  color: "rgba(255, 255, 255, 0.1)",
+                  color: isDark
+                    ? "rgba(255, 255, 255, 0.1)"
+                    : "rgba(0, 0, 0, 0.1)",
                 },
                 angleLines: {
-                  color: "rgba(255, 255, 255, 0.15)",
+                  color: isDark
+                    ? "rgba(255, 255, 255, 0.15)"
+                    : "rgba(0, 0, 0, 0.1)",
                 },
                 pointLabels: {
-                  color: "#e2e8f0",
+                  color: isDark ? "#e2e8f0" : "#475569",
                   font: {
                     family: "'Plus Jakarta Sans'",
                     size: 11,
@@ -1228,14 +1384,16 @@
                 ticks: {
                   stepSize: 2,
                   backdropColor: "transparent",
-                  color: "rgba(255, 255, 255, 0.5)",
+                  color: isDark
+                    ? "rgba(255, 255, 255, 0.5)"
+                    : "rgba(0, 0, 0, 0.5)",
                 },
               },
             },
             plugins: {
               legend: {
                 labels: {
-                  color: "#f1f5f9",
+                  color: isDark ? "#f1f5f9" : "#334155",
                   font: {
                     family: "'Plus Jakarta Sans'",
                     size: 12,
@@ -1248,8 +1406,9 @@
         });
       }
 
+      // Cập nhật kết quả tư vấn dựa trên điểm số
       document.getElementById("tuvan").onclick = function () {
-        // Retrieve grade inputs
+        // Retrieve inputs (same logic preserved)
         let van6 = parseFloat(document.getElementById("van6").value) || 0;
         let van7 = parseFloat(document.getElementById("van7").value) || 0;
         let van8 = parseFloat(document.getElementById("van8").value) || 0;
@@ -1315,7 +1474,6 @@
         let tbCN = calculateAverage([cn6, cn7, cn8, cn9]);
         let tbTH = calculateAverage([th6, th7, th8, th9]);
 
-        // Cập nhật biểu đồ năng lực học tập
         const subjects = [
           "Ngữ văn",
           "Toán",
@@ -1326,10 +1484,8 @@
           "Tin học",
         ];
         const scores = [tbVan, tbToan, tbAnh, tbKHTN, tbLSDL, tbCN, tbTH];
-
         updateAbilityChart(subjects, scores);
 
-        // Core Consultation Decision Engine
         let allSubjects = [
           van6,
           van7,
@@ -1372,8 +1528,8 @@
           hoatdong8,
           hoatdong9,
         ];
-
         let tbAll = calculateAverage(allSubjects);
+
         let subjectsScores = [
           { name: "Ngữ văn", score: tbVan },
           { name: "Toán", score: tbToan },
@@ -1388,18 +1544,16 @@
         let highScoringSubjects = subjectsScores.filter(
           (subject) => subject.score >= 6.5,
         );
-
         let resultBox = document.getElementById("kqtuvan");
-        resultBox.innerHTML = ""; // Clear loader/previous data
+        resultBox.innerHTML = "";
 
-        // Check if no grades entered
         if (tbAll === 0) {
           showToast("Vui lòng nhập điểm số trước khi bấm Tư vấn.", "error");
           resultBox.innerHTML = `
-            <div class="flex flex-col items-center justify-center text-center h-full text-rose-300/80 py-10">
+            <div class="flex flex-col items-center justify-center text-center h-full text-rose-500/80 dark:text-rose-300/80 py-10">
               <i class="fa-solid fa-triangle-exclamation text-3xl mb-3 text-rose-500"></i>
               <p class="font-bold text-base">CHƯA CÓ DỮ LIỆU ĐIỂM SỐ</p>
-              <p class="text-xs text-slate-400 mt-1">Hệ thống không thể thực hiện phân tích khi tất cả điểm đều bằng 0.</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Hệ thống không thể thực hiện phân tích khi tất cả điểm đều bằng 0.</p>
             </div>`;
           return;
         }
@@ -1428,9 +1582,8 @@
                 if (
                   secondSubject.name === "Công nghệ" &&
                   secondSubject.score >= 6.0
-                ) {
+                )
                   recommendedVocations.push("May công nghiệp");
-                }
                 break;
               case "Công nghệ":
                 recommendedVocations.push(
@@ -1471,49 +1624,48 @@
             }
           }
 
-          // Build Vocational HTML Output
           outputHTML += `
             <div class="space-y-4">
-              <div class="bg-cyan-900/30 border-l-4 border-cyan-400 p-3 rounded-r-lg">
-                <h3 class="text-base font-bold text-cyan-300 uppercase tracking-wide flex items-center gap-2">
-                  <i class="fa-solid fa-graduation-cap text-cyan-400"></i> Hướng Nghiệp Thực Hành Nghề
+              <div class="bg-sky-100 dark:bg-cyan-900/30 border-l-4 border-sky-500 dark:border-cyan-400 p-3 rounded-r-lg">
+                <h3 class="text-base font-bold text-sky-700 dark:text-cyan-300 uppercase tracking-wide flex items-center gap-2">
+                  <i class="fa-solid fa-graduation-cap text-sky-500 dark:text-cyan-400"></i> Hướng Nghiệp Thực Hành Nghề
                 </h3>
-                <p class="text-xs text-slate-300 mt-1">Đạt điểm trung bình chung học tập: <span class="text-cyan-300 font-bold">${tbAll.toFixed(2)}</span></p>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Đạt điểm trung bình chung học tập: <span class="text-sky-600 dark:text-cyan-300 font-bold">${tbAll.toFixed(2)}</span></p>
               </div>
 
-              <div class="bg-amber-950/30 border border-amber-500/20 p-4 rounded-xl">
-                <h4 class="text-xs font-bold text-amber-400 uppercase tracking-widest mb-2 flex items-center gap-2">
+              <div class="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-500/20 p-4 rounded-xl">
+                <h4 class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest mb-2 flex items-center gap-2">
                   <i class="fa-solid fa-briefcase"></i> Gợi Ý Ngành Nghề Đào Tạo:
                 </h4>
-                <ul class="space-y-1.5 text-xs text-slate-300">
+                <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
           `;
           recommendedVocations.forEach((vocation) => {
             outputHTML += `<li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-amber-500 text-[10px]"></i> ${vocation}</li>`;
           });
+
           outputHTML += `
                 </ul>
               </div>
 
-              <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
-                <h4 class="text-xs font-bold text-slate-300 uppercase tracking-widest mb-3">Phân tích điểm số trung bình các môn:</h4>
+              <div class="bg-white/80 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+                <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-widest mb-3">Phân tích điểm số trung bình các môn:</h4>
                 <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
-                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Ngữ văn:</span> <span class="font-bold text-slate-200">${tbVan.toFixed(2)}</span></div>
-                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Toán:</span> <span class="font-bold text-slate-200">${tbToan.toFixed(2)}</span></div>
-                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Ngoại ngữ:</span> <span class="font-bold text-slate-200">${tbAnh.toFixed(2)}</span></div>
-                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>KHTN:</span> <span class="font-bold text-slate-200">${tbKHTN.toFixed(2)}</span></div>
-                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>LSDL:</span> <span class="font-bold text-slate-200">${tbLSDL.toFixed(2)}</span></div>
-                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Công nghệ:</span> <span class="font-bold text-slate-200">${tbCN.toFixed(2)}</span></div>
-                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Tin học:</span> <span class="font-bold text-slate-200">${tbTH.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-200 dark:border-slate-800 pb-1"><span class="text-slate-600 dark:text-slate-400">Ngữ văn:</span> <span class="font-bold text-slate-800 dark:text-slate-200">${tbVan.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-200 dark:border-slate-800 pb-1"><span class="text-slate-600 dark:text-slate-400">Toán:</span> <span class="font-bold text-slate-800 dark:text-slate-200">${tbToan.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-200 dark:border-slate-800 pb-1"><span class="text-slate-600 dark:text-slate-400">Ngoại ngữ:</span> <span class="font-bold text-slate-800 dark:text-slate-200">${tbAnh.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-200 dark:border-slate-800 pb-1"><span class="text-slate-600 dark:text-slate-400">KHTN:</span> <span class="font-bold text-slate-800 dark:text-slate-200">${tbKHTN.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-200 dark:border-slate-800 pb-1"><span class="text-slate-600 dark:text-slate-400">LSDL:</span> <span class="font-bold text-slate-800 dark:text-slate-200">${tbLSDL.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-200 dark:border-slate-800 pb-1"><span class="text-slate-600 dark:text-slate-400">Công nghệ:</span> <span class="font-bold text-slate-800 dark:text-slate-200">${tbCN.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-200 dark:border-slate-800 pb-1"><span class="text-slate-600 dark:text-slate-400">Tin học:</span> <span class="font-bold text-slate-800 dark:text-slate-200">${tbTH.toFixed(2)}</span></div>
                 </div>
               </div>
 
-              <div class="text-xs text-slate-400 bg-slate-950/40 p-3 rounded-lg border border-slate-900 leading-relaxed italic">
+              <div class="text-xs text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-950/40 p-3 rounded-lg border border-slate-200 dark:border-slate-900 leading-relaxed italic">
                 💡 <strong>Lời khuyên:</strong> Điểm số hiện tại của bạn cho thấy bạn phù hợp với các chương trình đào tạo nghề cơ bản. Hãy chọn ngành nghề dựa trên sở thích kết hợp với thực tế và tiếp tục cố gắng cải thiện kết quả học tập.
               </div>
             </div>
           `;
         } else {
-          // Combined subject consultation algorithm
           const toHop = [
             {
               name: "A00 (Toán, Vật lý, Hóa học)",
@@ -1581,64 +1733,59 @@
               });
               return { name: comb.name, diem: diem };
             });
-
           diemToHop.sort((a, b) => b.diem - a.diem);
 
           outputHTML += `
             <div class="space-y-4">
-              <div class="bg-gradient-to-r from-blue-950/50 to-cyan-950/30 border-l-4 border-cyan-400 p-3 rounded-r-lg">
-                <h3 class="text-base font-bold text-cyan-300 uppercase tracking-wide flex items-center gap-2">
-                  <i class="fa-solid fa-star text-yellow-400"></i> Tư Vấn Khối Tổ Hợp Môn
+              <div class="bg-gradient-to-r from-blue-50 to-sky-100 dark:from-blue-950/50 dark:to-cyan-950/30 border-l-4 border-sky-500 dark:border-cyan-400 p-3 rounded-r-lg">
+                <h3 class="text-base font-bold text-sky-700 dark:text-cyan-300 uppercase tracking-wide flex items-center gap-2">
+                  <i class="fa-solid fa-star text-yellow-500 dark:text-yellow-400"></i> Tư Vấn Khối Tổ Hợp Môn
                 </h3>
-                <p class="text-xs text-slate-300 mt-1">Đạt điểm trung bình chung học tập: <span class="text-cyan-300 font-bold">${tbAll.toFixed(2)}</span></p>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Đạt điểm trung bình chung học tập: <span class="text-sky-600 dark:text-cyan-300 font-bold">${tbAll.toFixed(2)}</span></p>
               </div>
           `;
 
           if (diemToHop.length === 0) {
             outputHTML += `
-              <div class="bg-rose-950/20 border border-rose-500/20 p-4 rounded-xl text-center">
-                <p class="text-xs text-rose-300 font-semibold">⚠️ Không tìm thấy tổ hợp xét tuyển phù hợp do không có đủ môn trên 6.5 điểm.</p>
-                <p class="text-[11px] text-slate-400 mt-2">Khuyên bạn nên tích cực cải thiện điểm trung bình các bộ môn chính để đạt chuẩn.</p>
+              <div class="bg-rose-50 dark:bg-rose-950/20 border border-rose-200 dark:border-rose-500/20 p-4 rounded-xl text-center">
+                <p class="text-xs text-rose-600 dark:text-rose-300 font-semibold">⚠️ Không tìm thấy tổ hợp xét tuyển phù hợp do không có đủ môn trên 6.5 điểm.</p>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-2">Khuyên bạn nên tích cực cải thiện điểm trung bình các bộ môn chính để đạt chuẩn.</p>
               </div>
             `;
           } else {
             outputHTML += `
-              <!-- Top Recommended Combination Option -->
-              <div class="bg-cyan-950/40 border border-cyan-500/30 p-4 rounded-xl">
-                <span class="text-[10px] font-bold text-cyan-400 uppercase tracking-widest block mb-1">⭐ ĐỀ XUẤT PHÙ HỢP NHẤT</span>
-                <h4 class="text-base font-extrabold text-white">${diemToHop[0].name}</h4>
-                <p class="text-xs text-slate-300 mt-1">Điểm chỉ số năng lực tích hợp: <span class="text-cyan-300 font-extrabold">${diemToHop[0].diem.toFixed(2)}</span></p>
+              <div class="bg-sky-50 dark:bg-cyan-950/40 border border-sky-200 dark:border-cyan-500/30 p-4 rounded-xl">
+                <span class="text-[10px] font-bold text-sky-600 dark:text-cyan-400 uppercase tracking-widest block mb-1">⭐ ĐỀ XUẤT PHÙ HỢP NHẤT</span>
+                <h4 class="text-base font-extrabold text-slate-800 dark:text-white">${diemToHop[0].name}</h4>
+                <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Điểm chỉ số năng lực tích hợp: <span class="text-sky-600 dark:text-cyan-300 font-extrabold">${diemToHop[0].diem.toFixed(2)}</span></p>
               </div>
             `;
-
             if (diemToHop.length > 1) {
               outputHTML += `
-                <!-- Second Recommended Combination Option -->
-                <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl">
-                  <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">🥈 ĐỀ XUẤT LỰA CHỌN 2</span>
-                  <h4 class="text-sm font-bold text-slate-200">${diemToHop[1].name}</h4>
-                  <p class="text-xs text-slate-400 mt-1">Điểm chỉ số năng lực tích hợp: <span class="text-slate-300 font-bold">${diemToHop[1].diem.toFixed(2)}</span></p>
+                <div class="bg-white/60 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 p-4 rounded-xl">
+                  <span class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest block mb-1">🥈 ĐỀ XUẤT LỰA CHỌN 2</span>
+                  <h4 class="text-sm font-bold text-slate-700 dark:text-slate-200">${diemToHop[1].name}</h4>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Điểm chỉ số năng lực tích hợp: <span class="text-slate-600 dark:text-slate-300 font-bold">${diemToHop[1].diem.toFixed(2)}</span></p>
                 </div>
               `;
             }
           }
 
           outputHTML += `
-              <!-- Grades breakdown list -->
-              <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800/80">
-                <h4 class="text-xs font-bold text-slate-300 uppercase tracking-widest mb-3">Điểm số trung bình tích lũy:</h4>
+              <div class="bg-white/80 dark:bg-slate-900/40 p-4 rounded-xl border border-slate-200 dark:border-slate-800/80">
+                <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-widest mb-3">Điểm số trung bình tích lũy:</h4>
                 <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
-                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Ngữ văn:</span> <span class="font-bold text-slate-200">${tbVan.toFixed(2)}</span></div>
-                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Toán:</span> <span class="font-bold text-slate-200">${tbToan.toFixed(2)}</span></div>
-                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Ngoại ngữ:</span> <span class="font-bold text-slate-200">${tbAnh.toFixed(2)}</span></div>
-                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>KHTN:</span> <span class="font-bold text-slate-200">${tbKHTN.toFixed(2)}</span></div>
-                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>LSDL:</span> <span class="font-bold text-slate-200">${tbLSDL.toFixed(2)}</span></div>
-                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Công nghệ:</span> <span class="font-bold text-slate-200">${tbCN.toFixed(2)}</span></div>
-                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Tin học:</span> <span class="font-bold text-slate-200">${tbTH.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-200 dark:border-slate-800 pb-1"><span class="text-slate-600 dark:text-slate-400">Ngữ văn:</span> <span class="font-bold text-slate-800 dark:text-slate-200">${tbVan.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-200 dark:border-slate-800 pb-1"><span class="text-slate-600 dark:text-slate-400">Toán:</span> <span class="font-bold text-slate-800 dark:text-slate-200">${tbToan.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-200 dark:border-slate-800 pb-1"><span class="text-slate-600 dark:text-slate-400">Ngoại ngữ:</span> <span class="font-bold text-slate-800 dark:text-slate-200">${tbAnh.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-200 dark:border-slate-800 pb-1"><span class="text-slate-600 dark:text-slate-400">KHTN:</span> <span class="font-bold text-slate-800 dark:text-slate-200">${tbKHTN.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-200 dark:border-slate-800 pb-1"><span class="text-slate-600 dark:text-slate-400">LSDL:</span> <span class="font-bold text-slate-800 dark:text-slate-200">${tbLSDL.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-200 dark:border-slate-800 pb-1"><span class="text-slate-600 dark:text-slate-400">Công nghệ:</span> <span class="font-bold text-slate-800 dark:text-slate-200">${tbCN.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-200 dark:border-slate-800 pb-1"><span class="text-slate-600 dark:text-slate-400">Tin học:</span> <span class="font-bold text-slate-800 dark:text-slate-200">${tbTH.toFixed(2)}</span></div>
                 </div>
               </div>
 
-              <div class="text-[11px] text-cyan-300 bg-cyan-950/20 p-3 rounded-lg border border-cyan-800/30 leading-relaxed italic">
+              <div class="text-[11px] text-sky-700 dark:text-cyan-300 bg-sky-50 dark:bg-cyan-950/20 p-3 rounded-lg border border-sky-200 dark:border-cyan-800/30 leading-relaxed italic">
                 💡 <strong>Gợi ý hướng đi:</strong> Học sinh nên tập trung cao độ vào nhóm môn thi trọng điểm ở khối thi tốt nhất phía trên. Trao đổi thêm với chuyên viên hướng nghiệp của nhà trường để chọn mã ngành nghề đại học thích hợp.
               </div>
             </div>
@@ -1658,10 +1805,9 @@
           input.value = "";
         });
 
-        // Reset results box
         document.getElementById("kqtuvan").innerHTML = `
           <div class="flex flex-col items-center justify-center text-center h-full text-slate-500 py-10">
-            <i class="fa-solid fa-info-circle text-3xl text-cyan-500/20 mb-3"></i>
+            <i class="fa-solid fa-info-circle text-3xl text-sky-500/30 dark:text-cyan-500/20 mb-3"></i>
             <p class="font-medium">Vui lòng nhập điểm hoặc tải file điểm Excel, sau đó ấn nút "Tư Vấn Ngay" để xem phân tích hướng nghiệp.</p>
           </div>`;
 
@@ -1669,7 +1815,6 @@
         document.getElementById("excelFile").value = "";
         selectedFile = null;
 
-        // Reset chart data
         if (abilityChart) {
           abilityChart.destroy();
           abilityChart = null;
@@ -1678,7 +1823,6 @@
         showToast("Đã xóa toàn bộ điểm số hiện có.", "info");
       };
 
-      // Auto Render Initial Empty Chart on Page Load
       window.onload = function () {
         const initialSubjects = [
           "Ngữ văn",
