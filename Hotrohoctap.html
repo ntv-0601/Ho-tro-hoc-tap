@@ -1,1358 +1,1811 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hệ Thống Tìm Trường THPT Thông Minh 2026</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        ocean: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              ocean: {
+                50: "#f0f9ff",
+                100: "#e0f2fe",
+                200: "#bae6fd",
+                300: "#7dd3fc",
+                400: "#38bdf8",
+                500: "#0ea5e9",
+                600: "#0284c7",
+                700: "#0369a1",
+                800: "#075985",
+                900: "#0c4a6e",
+              },
+            },
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', "sans-serif"],
+            },
+          },
+        },
+      };
     </script>
+
     <style>
-        /* CSS Wave Animation */
-        .waves {
-            position: relative;
-            width: 100%;
-            height: 10vh;
-            min-height: 60px;
-            max-height: 100px;
-            margin-bottom: -1px;
-        }
+      /* CSS Wave Animation */
+      .waves {
+        position: relative;
+        width: 100%;
+        height: 10vh;
+        min-height: 60px;
+        max-height: 100px;
+        margin-bottom: -1px;
+      }
 
-        .parallax > use {
-            animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
-        }
+      .parallax > use {
+        animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+      }
 
-        .parallax > use:nth-child(1) {
-            animation-delay: -2s;
-            animation-duration: 7s;
-        }
+      .parallax > use:nth-child(1) {
+        animation-delay: -2s;
+        animation-duration: 7s;
+      }
 
-        .parallax > use:nth-child(2) {
-            animation-delay: -3s;
-            animation-duration: 10s;
-        }
+      .parallax > use:nth-child(2) {
+        animation-delay: -3s;
+        animation-duration: 10s;
+      }
 
-        .parallax > use:nth-child(3) {
-            animation-delay: -4s;
-            animation-duration: 13s;
-        }
+      .parallax > use:nth-child(3) {
+        animation-delay: -4s;
+        animation-duration: 13s;
+      }
 
-        .parallax > use:nth-child(4) {
-            animation-delay: -5s;
-            animation-duration: 20s;
-        }
+      .parallax > use:nth-child(4) {
+        animation-delay: -5s;
+        animation-duration: 20s;
+      }
 
-        @keyframes move-forever {
-            0% { transform: translate3d(-90px, 0, 0); }
-            100% { transform: translate3d(85px, 0, 0); }
+      @keyframes move-forever {
+        0% {
+          transform: translate3d(-90px, 0, 0);
         }
+        100% {
+          transform: translate3d(85px, 0, 0);
+        }
+      }
 
-        /* Glassmorphism */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-        
-        .dark .glass-card {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
+      /* Glassmorphism */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
 
-        /* Bong bóng nước */
-        .bubble {
-            position: absolute;
-            bottom: -20px;
-            background: rgba(14, 165, 233, 0.15);
-            border: 1px solid rgba(14, 165, 233, 0.25);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: rise 5s ease-in infinite;
-        }
-        
-        .dark .bubble {
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.15);
-        }
+      .dark .glass-card {
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
 
-        @keyframes rise {
-            0% {
-                bottom: -20px;
-                transform: translateX(0) scale(1);
-                opacity: 0.8;
-            }
-            50% {
-                transform: translateX(25px) scale(1.1);
-            }
-            100% {
-                bottom: 105%;
-                transform: translateX(-20px) scale(0.9);
-                opacity: 0;
-            }
-        }
+      /* Bong bóng nước */
+      .bubble {
+        position: absolute;
+        bottom: -20px;
+        background: rgba(14, 165, 233, 0.15);
+        border: 1px solid rgba(14, 165, 233, 0.25);
+        border-radius: 50%;
+        pointer-events: none;
+        animation: rise 5s ease-in infinite;
+      }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
+      .dark .bubble {
+        background: rgba(56, 189, 248, 0.1);
+        border: 1px solid rgba(56, 189, 248, 0.15);
+      }
+
+      @keyframes rise {
+        0% {
+          bottom: -20px;
+          transform: translateX(0) scale(1);
+          opacity: 0.8;
         }
-        ::-webkit-scrollbar-track {
-            background: transparent;
+        50% {
+          transform: translateX(25px) scale(1.1);
         }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 9999px;
+        100% {
+          bottom: 105%;
+          transform: translateX(-20px) scale(0.9);
+          opacity: 0;
         }
-        .dark ::-webkit-scrollbar-thumb {
-            background: #475569;
-        }
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 9999px;
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: #475569;
+      }
     </style>
-</head>
-<body class="bg-sky-50/40 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans min-h-screen flex flex-col relative transition-colors duration-300 overflow-x-hidden">
-
+  </head>
+  <body
+    class="bg-sky-50/40 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans min-h-screen flex flex-col relative transition-colors duration-300 overflow-x-hidden"
+  >
     <!-- Container hiệu ứng bong bóng nước -->
-    <div id="bubble-container" class="absolute inset-0 pointer-events-none z-0 overflow-hidden"></div>
+    <div
+      id="bubble-container"
+      class="absolute inset-0 pointer-events-none z-0 overflow-hidden"
+    ></div>
 
-    <header class="relative bg-gradient-to-r from-sky-400 via-cyan-500 to-blue-600 dark:from-slate-800 dark:via-sky-900 dark:to-slate-950 text-white z-10 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-6">
-            <div class="flex justify-between items-center mb-6">
-                <a href="index.html" class="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition text-sm font-semibold border border-white/20 shadow-sm">
-                    <i class="fa-solid fa-arrow-left"></i> Trang chủ
-                </a>
-                
-                <!-- Toggle Dark Mode -->
-                <div class="flex items-center gap-3">
-                    <button onclick="toggleDarkMode()" class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 text-white rounded-full transition border border-white/20" title="Đổi chế độ Sáng/Tối">
-                        <i id="theme-icon" class="fa-solid fa-moon"></i>
-                    </button>
-                </div>
-            </div>
+    <header
+      class="relative bg-gradient-to-r from-sky-400 via-cyan-500 to-blue-600 dark:from-slate-800 dark:via-sky-900 dark:to-slate-950 text-white z-10 transition-all duration-300"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+  <div class="flex justify-between items-center mb-6">
+    <div class="flex items-center gap-3">
+      <a 
+        href="/" 
+        class="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition border border-white/20 text-sm font-medium"
+      >
+        <i class="fa-solid fa-house"></i>
+        Quay về trang chủ
+      </a>
+      
+      <div class="max-w-6xl mx-auto px-6 pt-16 pb-8 text-center relative"></div>
+    </div>
 
-            <!-- Tiêu đề chính -->
-            <div class="text-center py-4">
-                <div class="inline-flex items-center justify-center p-4 bg-white/15 backdrop-blur-md rounded-full mb-4 shadow-lg border border-white/20">
-                    <i class="fa-solid fa-school text-3xl text-sky-200"></i>
-                </div>
-                <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-3 uppercase">
-                    Hệ Thống Tìm Trường THPT Thông Minh
-                </h1>
-                <p class="text-sky-100 max-w-2xl mx-auto text-base md:text-lg font-medium">
-                    Tra cứu và so sánh thông tin các trường THPT Chuyên, THPT Công lập & Tư thục trọng điểm uy tín nhất tại 3 Miền năm 2026.
-                </p>
-            </div>
+    <div class="flex items-center gap-3">
+      <button
+        onclick="toggleDarkMode()"
+        class="w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-white/20 text-white rounded-full transition border border-white/20"
+        title="Đổi chế độ Sáng/Tối"
+      >
+        <i id="theme-icon" class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+        <!-- Tiêu đề chính -->
+        <div class="text-center py-4">
+          <div
+            class="inline-flex items-center justify-center p-4 bg-white/15 backdrop-blur-md rounded-full mb-4 shadow-lg border border-white/20"
+          >
+            <i
+              class="fa-solid fa-graduation-cap text-3xl text-sky-100 animate-bounce"
+            ></i>
+          </div>
+          <h1
+            class="text-3xl md:text-5xl font-extrabold tracking-tight mb-3 uppercase drop-shadow-md"
+          >
+            Bản Đồ Tìm Trường THPT Thông Minh
+          </h1>
+          <p
+            class="text-sky-100 max-w-2xl mx-auto text-sm md:text-base font-medium"
+          >
+            Hệ thống dữ liệu số hóa trực quan giúp tra cứu, định vị và xem thông
+            tin chi tiết tuyển sinh lớp 10 của hơn 550+ trường THPT Miền Bắc,
+            Miền Trung & Miền Nam.
+          </p>
         </div>
+      </div>
 
-        <!-- SVG Gợn sóng chuyển động đẹp mắt -->
-        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-            <defs>
-                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-            </defs>
-            <g class="parallax">
-                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(240, 249, 255, 0.4)" />
-                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(240, 249, 255, 0.25)" />
-                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(240, 249, 255, 0.15)" />
-                <use xlink:href="#gentle-wave" x="48" y="7" class="fill-sky-50/40 dark:fill-slate-900" />
-            </g>
-        </svg>
+      <!-- SVG Gợn sóng chuyển động đẹp mắt -->
+      <svg
+        class="waves"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28"
+        preserveAspectRatio="none"
+        shape-rendering="auto"
+      >
+        <defs>
+          <path
+            id="gentle-wave"
+            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+          />
+        </defs>
+        <g class="parallax">
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="0"
+            fill="rgba(240, 249, 255, 0.4)"
+          />
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="3"
+            fill="rgba(240, 249, 255, 0.25)"
+          />
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="5"
+            fill="rgba(240, 249, 255, 0.15)"
+          />
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="7"
+            class="fill-sky-50/40 dark:fill-slate-900"
+          />
+        </g>
+      </svg>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            
-            <!-- Cột bên trái: Bộ lọc Tìm kiếm -->
-            <aside class="lg:col-span-1 space-y-6">
-                <!-- Bộ lọc Miền (Bắc / Trung / Nam) -->
-                <div class="glass-card rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800">
-                    <h3 class="text-sm font-extrabold text-sky-600 dark:text-sky-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-map"></i> Chọn Khu Vực
-                    </h3>
-                    <div class="grid grid-cols-3 gap-1.5">
-                        <button onclick="setRegion('Bac')" id="btn-reg-bac" class="py-2 px-1.5 rounded-xl text-xs font-bold transition-all border flex flex-col items-center justify-center gap-0.5 bg-sky-500 text-white border-transparent shadow-sm">
-                            <span>Miền Bắc</span>
-                            <span class="text-[9px] opacity-80 font-normal">Hà Nội & Lân cận</span>
-                        </button>
-                        <button onclick="setRegion('Trung')" id="btn-reg-trung" class="py-2 px-1.5 rounded-xl text-xs font-bold transition-all border flex flex-col items-center justify-center gap-0.5 bg-white hover:bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 dark:hover:bg-slate-700">
-                            <span>Miền Trung</span>
-                            <span class="text-[9px] opacity-80 font-normal">Đà Nẵng & Huế</span>
-                        </button>
-                        <button onclick="setRegion('Nam')" id="btn-reg-nam" class="py-2 px-1.5 rounded-xl text-xs font-bold transition-all border flex flex-col items-center justify-center gap-0.5 bg-white hover:bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 dark:hover:bg-slate-700">
-                            <span>Miền Nam</span>
-                            <span class="text-[9px] opacity-80 font-normal">TP.HCM & Nam Bộ</span>
-                        </button>
-                    </div>
-                </div>
+    <main
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full z-10"
+    >
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <!-- Cột bên trái: Bộ lọc Tìm kiếm -->
+        <aside class="lg:col-span-1 space-y-6">
+          <!-- Bộ lọc Miền (Bắc / Trung / Nam) -->
+          <div
+            class="glass-card rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800"
+          >
+            <h3
+              class="text-sm font-extrabold text-sky-600 dark:text-sky-400 uppercase tracking-wider mb-4 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-map"></i> Chọn Khu Vực
+            </h3>
+            <div class="grid grid-cols-3 gap-1.5">
+              <button
+                onclick="setRegion('Bac')"
+                id="btn-reg-bac"
+                class="py-2 px-1 rounded-xl text-xs font-bold transition-all border flex flex-col items-center justify-center gap-0.5 bg-sky-500 text-white border-transparent shadow-sm"
+              >
+                <span>Miền Bắc</span>
+                <span
+                  id="badge-count-bac"
+                  class="text-[9px] opacity-80 font-normal"
+                  >556 trường</span
+                >
+              </button>
+              <button
+                onclick="setRegion('Trung')"
+                id="btn-reg-trung"
+                class="py-2 px-1 rounded-xl text-xs font-bold transition-all border flex flex-col items-center justify-center gap-0.5 bg-white hover:bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 dark:hover:bg-slate-700"
+              >
+                <span>Miền Trung</span>
+                <span
+                  id="badge-count-trung"
+                  class="text-[9px] opacity-80 font-normal"
+                  >0 trường</span
+                >
+              </button>
+              <button
+                onclick="setRegion('Nam')"
+                id="btn-reg-nam"
+                class="py-2 px-1 rounded-xl text-xs font-bold transition-all border flex flex-col items-center justify-center gap-0.5 bg-white hover:bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 dark:hover:bg-slate-700"
+              >
+                <span>Miền Nam</span>
+                <span
+                  id="badge-count-nam"
+                  class="text-[9px] opacity-80 font-normal"
+                  >0 trường</span
+                >
+              </button>
+            </div>
+          </div>
 
-                <!-- Bộ lọc Tỉnh thành theo khu vực đã chọn -->
-                <div class="glass-card rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800">
-                    <h3 class="text-sm font-extrabold text-sky-600 dark:text-sky-400 uppercase tracking-wider mb-3 flex items-center justify-between">
-                        <span><i class="fa-solid fa-location-dot mr-1"></i> Tỉnh / Thành</span>
-                        <button onclick="selectAllProvinces()" class="text-xs font-bold text-sky-500 hover:underline">Tất cả</button>
-                    </h3>
-                    <div class="relative mb-3">
-                        <input type="text" id="prov-search" oninput="filterProvinceList()" placeholder="Tìm nhanh tỉnh thành..." class="w-full px-3 py-1.5 pl-8 rounded-lg text-xs border border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-800 focus:outline-none focus:ring-1 focus:ring-sky-400 transition">
-                        <i class="fa-solid fa-search absolute left-3 top-2.5 text-slate-400 text-[10px]"></i>
-                    </div>
-                    <!-- Danh sách checkbox tỉnh thành cuộn dọc -->
-                    <div id="province-list-container" class="max-h-60 overflow-y-auto space-y-2 pr-1">
-                        <!-- Sẽ sinh tự động từ JS dựa trên miền đã chọn -->
-                    </div>
-                </div>
+          <!-- Bộ lọc Tỉnh thành theo khu vực đã chọn -->
+          <div
+            class="glass-card rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800"
+          >
+            <h3
+              class="text-sm font-extrabold text-sky-600 dark:text-sky-400 uppercase tracking-wider mb-3 flex items-center justify-between"
+            >
+              <span
+                ><i class="fa-solid fa-location-dot mr-1"></i> Tỉnh / Thành
+                phố</span
+              >
+              <div class="flex gap-2">
+                <button
+                  onclick="selectAllProvinces()"
+                  class="text-[10px] font-bold text-sky-500 hover:underline"
+                >
+                  Tất cả
+                </button>
+                <span class="text-slate-300">|</span>
+                <button
+                  onclick="clearAllProvinces()"
+                  class="text-[10px] font-bold text-slate-400 hover:underline"
+                >
+                  Bỏ chọn
+                </button>
+              </div>
+            </h3>
+            <div class="relative mb-3">
+              <input
+                type="text"
+                id="prov-search"
+                oninput="filterProvinceList()"
+                placeholder="Tìm nhanh tỉnh thành..."
+                class="w-full px-3 py-1.5 pl-8 rounded-lg text-xs border border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-800 focus:outline-none focus:ring-1 focus:ring-sky-400 transition"
+              />
+              <i
+                class="fa-solid fa-search absolute left-3 top-2.5 text-slate-400 text-[10px]"
+              ></i>
+            </div>
+            <!-- Danh sách checkbox tỉnh thành cuộn dọc -->
+            <div
+              id="province-list-container"
+              class="max-h-64 overflow-y-auto space-y-1.5 pr-1"
+            >
+              <!-- Sẽ sinh tự động từ JS dựa trên miền đã chọn -->
+            </div>
+          </div>
 
-                <!-- Bộ lọc Loại hình trường học -->
-                <div class="glass-card rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800">
-                    <h3 class="text-sm font-extrabold text-sky-600 dark:text-sky-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-                        <i class="fa-solid fa-graduation-cap"></i> Loại hình trường
-                    </h3>
-                    <div class="space-y-2">
-                        <label class="flex items-center gap-3 p-2 rounded-xl hover:bg-sky-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition">
-                            <input type="checkbox" id="type-specialized" checked onchange="filterSchools()" class="w-4.5 h-4.5 text-sky-500 rounded focus:ring-sky-400">
-                            <div>
-                                <div class="text-sm font-bold">THPT Chuyên / Năng khiếu</div>
-                                <div class="text-[11px] text-slate-400">Các trường chuyên lớp chọn điểm</div>
-                            </div>
-                        </label>
-                        <label class="flex items-center gap-3 p-2 rounded-xl hover:bg-sky-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition">
-                            <input type="checkbox" id="type-public" checked onchange="filterSchools()" class="w-4.5 h-4.5 text-sky-500 rounded focus:ring-sky-400">
-                            <div>
-                                <div class="text-sm font-bold">THPT Công lập điểm</div>
-                                <div class="text-[11px] text-slate-400">Trường công lập chất lượng hàng đầu</div>
-                            </div>
-                        </label>
-                        <label class="flex items-center gap-3 p-2 rounded-xl hover:bg-sky-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition">
-                            <input type="checkbox" id="type-private" checked onchange="filterSchools()" class="w-4.5 h-4.5 text-sky-500 rounded focus:ring-sky-400">
-                            <div>
-                                <div class="text-sm font-bold">THPT Tư thục / Quốc tế</div>
-                                <div class="text-[11px] text-slate-400">Đào tạo song ngữ & quốc tế chất lượng</div>
-                            </div>
-                        </label>
-                    </div>
+          <!-- Bộ lọc Loại hình trường học -->
+          <div
+            class="glass-card rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800"
+          >
+            <h3
+              class="text-sm font-extrabold text-sky-600 dark:text-sky-400 uppercase tracking-wider mb-3 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-graduation-cap"></i> Loại hình trường
+            </h3>
+            <div class="space-y-2">
+              <label
+                class="flex items-center gap-3 p-2 rounded-xl hover:bg-sky-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition"
+              >
+                <input
+                  type="checkbox"
+                  id="type-specialized"
+                  checked
+                  onchange="filterSchools()"
+                  class="w-4.5 h-4.5 text-sky-500 rounded focus:ring-sky-400"
+                />
+                <div>
+                  <div class="text-sm font-bold">THPT Chuyên / Năng khiếu</div>
+                  <div class="text-[11px] text-slate-400 dark:text-slate-500">
+                    Các khối chuyên bồi dưỡng nhân tài
+                  </div>
                 </div>
-            </aside>
+              </label>
+              <label
+                class="flex items-center gap-3 p-2 rounded-xl hover:bg-sky-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition"
+              >
+                <input
+                  type="checkbox"
+                  id="type-public"
+                  checked
+                  onchange="filterSchools()"
+                  class="w-4.5 h-4.5 text-sky-500 rounded focus:ring-sky-400"
+                />
+                <div>
+                  <div class="text-sm font-bold">THPT Công lập / Nội trú</div>
+                  <div class="text-[11px] text-slate-400 dark:text-slate-500">
+                    Trường phổ thông công lập uy tín
+                  </div>
+                </div>
+              </label>
+              <label
+                class="flex items-center gap-3 p-2 rounded-xl hover:bg-sky-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition"
+              >
+                <input
+                  type="checkbox"
+                  id="type-private"
+                  checked
+                  onchange="filterSchools()"
+                  class="w-4.5 h-4.5 text-sky-500 rounded focus:ring-sky-400"
+                />
+                <div>
+                  <div class="text-sm font-bold">THPT Tư thục / Quốc tế</div>
+                  <div class="text-[11px] text-slate-400 dark:text-slate-500">
+                    Môi trường đào tạo năng động hiện đại
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </aside>
 
-            <section class="lg:col-span-3 space-y-6">
-                <!-- Thanh công cụ tìm kiếm và thông tin bộ lọc -->
-                <div class="glass-card rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row gap-4 items-center justify-between">
-                    <div class="relative w-full md:flex-1">
-                        <input type="text" id="search-school" oninput="filterSchools()" placeholder="Tìm theo tên trường THPT, lớp chuyên nổi bật, tổ hợp môn tự chọn lớp 10..." class="w-full px-4 py-3 pl-11 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-300 dark:focus:ring-sky-800 transition shadow-inner">
-                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400"></i>
-                    </div>
-                    <!-- Trình sắp xếp -->
-                    <div class="flex items-center gap-2 w-full md:w-auto shrink-0 justify-end">
-                        <span class="text-xs text-slate-400 font-semibold whitespace-nowrap"><i class="fa-solid fa-arrow-down-wide-short"></i> Sắp xếp:</span>
-                        <select id="sort-order" onchange="filterSchools()" class="px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800 text-sm font-bold focus:outline-none">
-                            <option value="default">Mặc định</option>
-                            <option value="tuition-low">Học phí: Thấp - Cao</option>
-                            <option value="tuition-high">Học phí: Cao - Thấp</option>
-                            <option value="score-high">Điểm chuẩn lớp 10: Cao - Thấp</option>
-                        </select>
-                    </div>
-                </div>
+        <section class="lg:col-span-3 space-y-6">
+          <!-- Thanh công cụ tìm kiếm và thông tin bộ lọc -->
+          <div
+            class="glass-card rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row gap-4 items-center justify-between"
+          >
+            <div class="relative w-full md:flex-1">
+              <input
+                type="text"
+                id="search-school"
+                oninput="filterSchools()"
+                placeholder="Nhập tên trường học, lớp chuyên hoặc tỉnh thành cần tìm..."
+                class="w-full px-4 py-3 pl-11 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-300 dark:focus:ring-sky-800 transition shadow-inner text-slate-800 dark:text-white"
+              />
+              <i
+                class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-slate-400"
+              ></i>
+            </div>
+            <!-- Trình sắp xếp -->
+            <div
+              class="flex items-center gap-2 w-full md:w-auto shrink-0 justify-end"
+            >
+              <span
+                class="text-xs text-slate-400 font-semibold whitespace-nowrap"
+                ><i class="fa-solid fa-arrow-down-wide-short"></i> Sắp
+                xếp:</span
+              >
+              <select
+                id="sort-order"
+                onchange="filterSchools()"
+                class="px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800 text-sm font-bold focus:outline-none text-slate-700 dark:text-slate-200 cursor-pointer"
+              >
+                <option value="default">Mặc định</option>
+                <option value="tuition-low">Học phí: Thấp đến Cao</option>
+                <option value="tuition-high">Học phí: Cao đến Thấp</option>
+                <option value="score-high">Điểm chuẩn: Cao nhất</option>
+              </select>
+            </div>
+          </div>
 
-                <!-- Thống kê kết quả -->
-                <div class="flex justify-between items-center px-2">
-                    <p id="results-count" class="text-sm font-semibold text-slate-500 dark:text-slate-400">
-                        Đang hiển thị 0 trường học phù hợp
-                    </p>
-                    <div class="flex gap-2">
-                        <button onclick="clearAllFilters()" class="text-xs text-sky-500 dark:text-sky-400 hover:underline font-bold">
-                            <i class="fa-solid fa-arrow-rotate-left mr-1"></i> Đặt lại tất cả bộ lọc
-                        </button>
-                    </div>
-                </div>
+          <!-- Thống kê kết quả -->
+          <div class="flex justify-between items-center px-2">
+            <p
+              id="results-count"
+              class="text-sm font-semibold text-slate-500 dark:text-slate-400"
+            >
+              Đang hiển thị 0 trường học phù hợp
+            </p>
+            <div class="flex gap-2">
+              <button
+                onclick="clearAllFilters()"
+                class="text-xs text-sky-500 dark:text-sky-400 hover:underline font-bold flex items-center gap-1"
+              >
+                <i class="fa-solid fa-arrow-rotate-left"></i> Đặt lại tất cả bộ
+                lọc
+              </button>
+            </div>
+          </div>
 
-                <!-- Grid hiển thị trường học -->
-                <div id="schools-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Sẽ nạp động bằng JS -->
-                </div>
+          <!-- Grid hiển thị trường học -->
+          <div id="schools-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Sẽ nạp động bằng JS -->
+          </div>
 
-                <!-- Trạng thái trống (Không tìm thấy) -->
-                <div id="empty-state" class="hidden flex flex-col items-center justify-center py-20 text-center glass-card rounded-3xl border border-slate-200 dark:border-slate-800">
-                    <div class="w-16 h-16 bg-sky-100 dark:bg-slate-800 rounded-full flex items-center justify-center text-sky-500 mb-4 animate-bounce">
-                        <i class="fa-solid fa-graduation-cap text-2xl"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-700 dark:text-slate-200 mb-1">Không tìm thấy trường học nào</h3>
-                    <p class="text-slate-500 dark:text-slate-400 text-sm max-w-sm">
-                        Hãy thử điều chỉnh lại khu vực, các tỉnh thành đã chọn hoặc thay đổi từ khóa tìm kiếm để khám phá nhiều trường hơn.
-                    </p>
-                </div>
-            </section>
-        </div>
+          <!-- Trạng thái trống (Không tìm thấy) -->
+          <div
+            id="empty-state"
+            class="hidden flex flex-col items-center justify-center py-20 text-center glass-card rounded-3xl border border-slate-200 dark:border-slate-800"
+          >
+            <div
+              class="w-16 h-16 bg-sky-100 dark:bg-slate-800 rounded-full flex items-center justify-center text-sky-500 mb-4 animate-bounce"
+            >
+              <i class="fa-solid fa-graduation-cap text-2xl"></i>
+            </div>
+            <h3
+              class="text-lg font-bold text-slate-700 dark:text-slate-200 mb-1"
+            >
+              Không tìm thấy trường học nào
+            </h3>
+            <p class="text-slate-500 dark:text-slate-400 text-sm max-w-sm px-4">
+              Hãy thử điều chỉnh lại khu vực, các tỉnh thành đã chọn hoặc thay
+              đổi từ khóa tìm kiếm để khám phá nhiều trường hơn.
+            </p>
+          </div>
+        </section>
+      </div>
     </main>
 
-    <!-- Comparison Dock (Thanh neo so sánh) -->
-    <div id="comparison-dock" class="fixed bottom-0 left-0 right-0 z-40 bg-white/90 dark:bg-slate-900/90 border-t border-sky-100 dark:border-slate-800 shadow-2xl backdrop-blur-md transform translate-y-full transition-transform duration-300">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-sky-100 dark:bg-slate-800 rounded-xl flex items-center justify-center text-sky-500">
-                    <i class="fa-solid fa-columns text-lg"></i>
-                </div>
-                <div>
-                    <h4 class="text-sm font-bold">So sánh trường THPT</h4>
-                    <p class="text-xs text-slate-400">Chọn tối đa 3 trường THPT để phân tích sự tương quan toàn diện</p>
-                </div>
-            </div>
-            
-            <!-- Danh sách trường đang chờ so sánh -->
-            <div id="dock-schools-list" class="flex flex-wrap gap-3 items-center justify-center">
-                <!-- Thẻ trường so sánh hiển thị tại đây -->
-            </div>
-
-            <!-- Nút hành động -->
-            <div class="flex items-center gap-2">
-                <button onclick="clearComparison()" class="px-4 py-2 border border-slate-200 dark:border-slate-700 text-slate-500 hover:text-rose-500 rounded-xl text-xs font-bold transition">
-                    Xóa hết
-                </button>
-                <button onclick="openComparisonModal()" id="btn-compare-now" disabled class="px-5 py-2.5 bg-gradient-to-r from-sky-400 to-cyan-400 disabled:from-slate-200 disabled:to-slate-300 dark:disabled:from-slate-800 dark:disabled:to-slate-800 text-white font-bold rounded-xl text-xs shadow-md transition disabled:cursor-not-allowed">
-                    So sánh ngay
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal xem chi tiết trường học -->
-    <div id="school-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-opacity duration-300">
-        <div class="glass-card rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl border border-white/50 animate-in fade-in zoom-in-95 duration-200">
-            <!-- Modal Header -->
-            <div class="bg-gradient-to-r from-sky-400 via-cyan-500 to-blue-500 p-6 text-white relative">
-                <div class="flex items-center gap-3">
-                    <div id="modal-icon-container" class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center shadow-inner">
-                        <i class="fa-solid fa-school text-xl"></i>
-                    </div>
-                    <div>
-                        <span id="modal-type-badge" class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-white/20 text-white uppercase">Hệ đào tạo</span>
-                        <h3 class="text-lg md:text-2xl font-extrabold" id="modal-title">Tên trường học</h3>
-                    </div>
-                </div>
-                <button onclick="toggleSchoolModal(false)" class="absolute top-6 right-6 text-white/80 hover:text-white transition">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-
-            <!-- Modal Content -->
-            <div class="p-6 space-y-6 max-h-[70vh] overflow-y-auto">
-                <!-- Mô tả và thế mạnh -->
-                <div>
-                    <h4 class="text-xs font-extrabold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">Giới thiệu tổng quan</h4>
-                    <p id="modal-desc" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed"></p>
-                </div>
-
-                <!-- Thông số tuyển sinh nhanh -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-sky-50/50 dark:bg-slate-800/40 p-4 rounded-2xl border border-sky-100/30 dark:border-slate-700/30">
-                    <div>
-                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1">
-                            <i class="fa-solid fa-wallet text-emerald-500"></i> Học phí / Kỳ
-                        </h4>
-                        <p id="modal-tuition" class="text-sm font-black text-slate-700 dark:text-slate-200"></p>
-                    </div>
-                    <div>
-                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1">
-                            <i class="fa-solid fa-star text-amber-500"></i> Điểm chuẩn lớp 10
-                        </h4>
-                        <p id="modal-score" class="text-sm font-black text-slate-700 dark:text-slate-200"></p>
-                    </div>
-                    <div>
-                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1">
-                            <i class="fa-solid fa-map-pin text-sky-500"></i> Tỉnh thành
-                        </h4>
-                        <p id="modal-location" class="text-sm font-bold text-slate-700 dark:text-slate-200"></p>
-                    </div>
-                </div>
-
-                <!-- Chuyên ngành & Phương thức tuyển sinh -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <h4 class="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1">
-                            <i class="fa-solid fa-book-open text-sky-500"></i> Hệ lớp Chuyên / Điểm nổi bật
-                        </h4>
-                        <div id="modal-majors-container" class="flex flex-wrap gap-1.5">
-                            <!-- JS sinh tag -->
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1">
-                            <i class="fa-solid fa-clipboard-check text-indigo-500"></i> Phương thức xét tuyển lớp 10
-                        </h4>
-                        <ul id="modal-methods-list" class="text-sm text-slate-600 dark:text-slate-300 list-disc pl-4 space-y-1">
-                            <!-- JS nạp list -->
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Cơ sở vật chất & Thông tin liên lạc -->
-                <div class="border-t border-slate-100 dark:border-slate-800 pt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <h4 class="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1">
-                            <i class="fa-solid fa-building text-amber-500"></i> Cơ sở vật chất
-                        </h4>
-                        <p id="modal-facilities" class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed"></p>
-                    </div>
-                    <div>
-                        <h4 class="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1">
-                            <i class="fa-solid fa-phone text-emerald-500"></i> Thông tin liên hệ
-                        </h4>
-                        <p id="modal-contact" class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed"></p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="p-4 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800/80 flex justify-end">
-                <button onclick="toggleSchoolModal(false)" class="px-6 py-2.5 bg-gradient-to-r from-sky-400 to-cyan-500 text-white font-bold rounded-full shadow-md hover:shadow-lg transition">
-                    Đóng lại
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal so sánh chi tiết -->
-    <div id="compare-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-opacity duration-300">
-        <div class="glass-card rounded-3xl w-full max-w-4xl overflow-hidden shadow-2xl border border-white/50 animate-in fade-in zoom-in-95 duration-200">
-            <!-- Header -->
-            <div class="bg-gradient-to-r from-sky-500 to-blue-600 p-6 text-white relative">
-                <h3 class="text-xl font-extrabold flex items-center gap-2">
-                    <i class="fa-solid fa-columns"></i> Bảng So Sánh Các Trường THPT Đã Chọn
-                </h3>
-                <button onclick="toggleCompareModal(false)" class="absolute top-6 right-6 text-white/80 hover:text-white transition">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-
-            <!-- Bảng so sánh -->
-            <div class="p-6 overflow-x-auto max-h-[70vh]">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="border-b border-slate-200 dark:border-slate-700">
-                            <th class="py-3 px-4 text-xs font-extrabold text-slate-400 uppercase w-1/4">Tiêu chí</th>
-                            <!-- Cột các trường so sánh sinh động -->
-                            <tr id="compare-table-headers" class="border-b border-slate-100 dark:border-slate-800"></tr>
-                        </tr>
-                    </thead>
-                    <tbody id="compare-table-body" class="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
-                        <!-- Sinh tự động bằng JS -->
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="p-4 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800/80 flex justify-end">
-                <button onclick="toggleCompareModal(false)" class="px-6 py-2.5 bg-gradient-to-r from-sky-400 to-cyan-500 text-white font-bold rounded-full shadow-md transition">
-                    Đồng ý
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- Hệ thống Toast thông báo (Thay thế alert) -->
-    <div id="toast-container" class="fixed top-5 right-5 z-50 space-y-3 pointer-events-none"></div>
+    <div
+      id="toast-container"
+      class="fixed top-5 right-5 z-50 space-y-3 pointer-events-none"
+    ></div>
 
-    <footer class="mt-auto bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-6 text-center text-slate-500 dark:text-slate-400 text-sm z-10 transition-colors">
-        <p class="flex items-center justify-center gap-1 font-semibold">
-            Bản đồ Trường THPT Thông Minh © 2026. Thiết kế lấy cảm hứng từ biển cả.
-        </p>
+    <footer
+      class="mt-auto bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-6 text-center text-slate-500 dark:text-slate-400 text-sm z-10 transition-colors"
+    >
+      <p class="flex items-center justify-center gap-1 font-semibold">
+        Bản đồ Trường THPT Thông Minh © 2026.
+      </p>
     </footer>
 
     <script>
-        // Danh sách tỉnh thành phân chia theo 3 miền cập nhật năm 2026
-        const provinces = {
-            Bac: [
-                { id: "hanoi", name: "Hà Nội", count: 0 },
-                { id: "haiphong", name: "Hải Phòng", count: 0 },
-                { id: "quangninh", name: "Quảng Ninh", count: 0 },
-                { id: "bacninh", name: "Bắc Ninh", count: 0 },
-                { id: "vinhphuc", name: "Vĩnh Phúc", count: 0 },
-                { id: "namdinh", name: "Nam Định", count: 0 },
-                { id: "haiduong", name: "Hải Dương", count: 0 },
-                { id: "thainguyen", name: "Thái Nguyên", count: 0 },
-                { id: "phutho", name: "Phú Thọ", count: 0 }
-            ],
-            Trung: [
-                { id: "danang", name: "Đà Nẵng", count: 0 },
-                { id: "hue", name: "Thừa Thiên Huế", count: 0 },
-                { id: "khanhhoa", name: "Khánh Hòa", count: 0 },
-                { id: "nghean", name: "Nghệ An", count: 0 },
-                { id: "quangnam", name: "Quảng Nam", count: 0 },
-                { id: "binhdinh", name: "Bình Định", count: 0 },
-                { id: "thanhhoa", name: "Thanh Hóa", count: 0 },
-                { id: "hatinh", name: "Hà Tĩnh", count: 0 }
-            ],
-            Nam: [
-                { id: "tphcm", name: "TP. Hồ Chí Minh", count: 0 },
-                { id: "binhduong", name: "Bình Dương", count: 0 },
-                { id: "dongnai", name: "Đồng Nai", count: 0 },
-                { id: "vungtau", name: "Bà Rịa - Vũng Tàu", count: 0 },
-                { id: "cantho", name: "Cần Thơ", count: 0 },
-                { id: "longan", name: "Long An", count: 0 },
-                { id: "tiengiang", name: "Tiền Giang", count: 0 },
-                { id: "kiengiang", name: "Kiên Giang", count: 0 }
-            ]
+      // Danh sách toàn bộ 15 Tỉnh/Thành Miền Bắc với dữ liệu đếm từ file Excel gốc
+      const rawSchoolData = {
+        "Bắc Ninh": [
+          "DTNT THCS và THPT Nguyễn Tất Thành",
+          "PTDTNT Sơn Động",
+          "PTDTNT tỉnh Bắc Ninh",
+          "THPT Bố Hạ",
+          "THPT Chu Văn An",
+          "THPT Chuyên Bắc Giang",
+          "THPT Chuyên Bắc Ninh",
+          "THPT Cẩm Lý",
+          "THPT Giáp Hải",
+          "THPT Hiệp Hòa số 1",
+          "THPT Hiệp Hòa số 2",
+          "THPT Hiệp Hòa số 3",
+          "THPT Hiệp Hòa số 4",
+          "THPT Hoàng Hoa Thám",
+          "THPT Lý Thái Tổ",
+          "THPT Lý Thường Kiệt số 1",
+          "THPT Lý Thường Kiệt số 2",
+          "THPT Lương Thế Vinh",
+          "THPT Lương Tài số 1",
+          "THPT Lương Tài số 2",
+          "THPT Lạng Giang số 1",
+          "THPT Lạng Giang số 2",
+          "THPT Lạng Giang số 3",
+          "THPT Lục Nam",
+          "THPT Lục Ngạn số 1",
+          "THPT Lục Ngạn số 2",
+          "THPT Mỏ Trạng",
+          "THPT Nguyễn Trãi",
+          "THPT Nguyễn Văn Cừ",
+          "THPT Nguyễn Đăng Đạo",
+          "THPT Ngô Gia Tự",
+          "THPT Ngô Sĩ Liên",
+          "THPT Quế Võ số 1",
+          "THPT Quế Võ số 2",
+          "THPT Quế Võ số 3",
+          "THPT Sơn Động số 1",
+          "THPT Sơn Động số 2",
+          "THPT Thuận Thành số 1",
+          "THPT Thuận Thành số 2",
+          "THPT Thuận Thành số 3",
+          "THPT Thái Thuận",
+          "THPT Tân Yên số 1",
+          "THPT Tân Yên số 2",
+          "THPT Tân Yên số 3",
+          "THPT Việt Yên số 1",
+          "THPT Việt Yên số 2",
+          "THPT Yên Dũng số 1",
+          "THPT Yên Dũng số 2",
+          "THPT Yên Phong số 1",
+          "THPT Yên Phong số 2",
+          "THPT Hàn Thuyên",
+        ],
+        "Cao Bằng": [
+          "PTDTNT THPT tỉnh Cao Bằng",
+          "THPT Bảo Lâm",
+          "THPT Bảo Lạc",
+          "THPT Bằng Ca",
+          "THPT Bế Văn Đàn",
+          "THPT Canh Tân",
+          "THPT Cao Bình",
+          "THPT Chuyên Cao Bằng",
+          "THPT Hòa An",
+          "THPT Hạ Lang",
+          "THPT Lý Bôn",
+          "THPT Lục Khu",
+          "THPT Nguyên Bình",
+          "THPT Nà Bao",
+          "THPT Nà Giàng",
+          "THPT Pò Tấu",
+          "THPT Quảng Hòa (Quảng Uyên cũ)",
+          "THPT Thành phố Cao Bằng",
+          "THPT Thông Huề",
+          "THPT Thạch An",
+          "THPT Trùng Khánh",
+          "THPT Tĩnh Túc",
+          "THPT Đàm Quang Trung",
+          "Trung tâm GDNN-GDTX Bảo Lạc",
+          "Trung tâm GDNN-GDTX Hòa An",
+          "Trung tâm GDNN-GDTX Hạ Lang",
+          "Trung tâm GDNN-GDTX Nguyên Bình",
+          "Trung tâm GDNN-GDTX Thạch An",
+          "Trung tâm GDTX tỉnh Cao Bằng",
+        ],
+        "Hà Nội": [
+          "THPT Ba Vì",
+          "THPT Bắc Thăng Long",
+          "THPT Chuyên Chu Văn An",
+          "THPT Chuyên Hà Nội – Amsterdam",
+          "THPT Chuyên Khoa học Tự nhiên (ĐH KHTN – ĐHQG Hà Nội)",
+          "THPT Chuyên Khoa học Xã hội & Nhân văn (ĐHQG Hà Nội)",
+          "THPT Chuyên Nguyễn Huệ",
+          "THPT Chuyên Sơn Tây",
+          "THPT Chương Mỹ A",
+          "THPT Chương Mỹ B",
+          "THPT Cầu Giấy",
+          "THPT Dương Xá",
+          "THPT Gia Lâm",
+          "THPT Hai Bà Trưng – Thạch Bàn",
+          "THPT Hoài Đức A",
+          "THPT Hoài Đức B",
+          "THPT Hoàng Cầu",
+          "THPT Hoàng Long",
+          "THPT Hoàng Văn Thụ",
+          "THPT Huỳnh Thúc Kháng",
+          "THPT Hà Đông",
+          "THPT Hồng Hà",
+          "THPT Hồng Thái",
+          "THPT Hợp Thanh",
+          "THPT Khương Hạ (liên cấp)",
+          "THPT Khương Đình",
+          "THPT Kim Liên",
+          "THPT Lê Quý Đôn – Đống Đa",
+          "THPT Lý Thường Kiệt",
+          "THPT Lương Thế Vinh",
+          "THPT Marie Curie",
+          "THPT Mê Linh",
+          "THPT Mỹ Đức A",
+          "THPT Mỹ Đức B",
+          "THPT Nguyễn Gia Thiều",
+          "THPT Nguyễn Siêu",
+          "THPT Nguyễn Thị Minh Khai",
+          "THPT Nguyễn Trãi – Ba Đình",
+          "THPT Nhân Chính",
+          "THPT Phan Chu Trinh",
+          "THPT Phan Đình Phùng",
+          "THPT Phùng Khắc Khoan – Đống Đa",
+          "THPT Phúc Thọ",
+          "THPT Phạm Hồng Thái",
+          "THPT Quang Minh",
+          "THPT Quang Trung – Hà Đông",
+          "THPT Quảng Oai",
+          "THPT Sóc Sơn",
+          "THPT Sơn Tây",
+          "THPT Thanh Oai A",
+          "THPT Thanh Oai B",
+          "THPT Thanh Xuân",
+          "THPT Thường Tín",
+          "THPT Thạch Thất",
+          "THPT Trung Giã",
+          "THPT Trương Định",
+          "THPT Trần Hưng Đạo – Thanh Xuân",
+          "THPT Trần Phú – Hoàn Kiếm",
+          "THPT Trần Phú – Hà Đông",
+          "THPT Tây Hồ",
+          "THPT Tô Hiệu",
+          "THPT Vinschool",
+          "THPT Việt Đức",
+          "THPT Vân Tảo",
+          "THPT Văn Hiến",
+          "THPT Văn Lang",
+          "THPT Vĩnh Ninh",
+          "THPT Vạn Xuân",
+          "THPT Xuân Mai",
+          "THPT Yên Hòa",
+          "THPT Yên Lãng",
+          "THPT Đa Phúc",
+          "THPT Đan Phượng",
+          "THPT Đoàn Kết – Hai Bà Trưng",
+          "THPT Đoàn Thị Điểm",
+          "THPT Đào Duy Từ",
+          "THPT Đông Anh",
+          "THPT Đại Mỗ",
+          "THPT Đống Đa",
+          "THPT FPT",
+        ],
+        "Hưng Yên": [
+          "THPT Bình Hưng (một số hệ mới/đổi tên cơ sở cũ)",
+          "THPT Chuyên Hưng Yên",
+          "THPT Dương Quảng Hàm",
+          "THPT Hưng Yên (TP Hưng Yên)",
+          "THPT Hồng Bàng",
+          "THPT Hồng Đức",
+          "THPT Khoái Châu",
+          "THPT Kim Động",
+          "THPT Lê Quý Đôn",
+          "THPT Minh Châu",
+          "THPT Mỹ Hào",
+          "THPT Nam Khoái Châu",
+          "THPT Nam Phù Cừ",
+          "THPT Nghĩa Dân",
+          "THPT Nguyễn Du",
+          "THPT Nguyễn Siêu",
+          "THPT Nguyễn Thiện Thuật",
+          "THPT Nguyễn Trung Ngạn",
+          "THPT Nguyễn Trãi",
+          "THPT Phù Cừ",
+          "THPT Phạm Ngũ Lão",
+          "THPT Quang Trung",
+          "THPT Triệu Quang Phục",
+          "THPT Trưng Vương",
+          "THPT Trần Hưng Đạo",
+          "THPT Trần Quang Khải",
+          "THPT Vân Tảo (cơ sở/điểm trường mới ở một số khu vực)",
+          "THPT Văn Giang",
+          "THPT Văn Lâm",
+          "THPT Yên Mỹ",
+          "THPT Ân Thi",
+          "THPT Đức Hợp",
+        ],
+        "Hải Phòng": [
+          "PTDTNT THPT Hải Phòng (ít nhưng có cơ sở nội trú vùng ven)",
+          "THPT An Dương",
+          "THPT An Lão",
+          "THPT Bạch Đằng",
+          "THPT Chuyên Trần Phú",
+          "THPT Cát Bà",
+          "THPT Cát Bà (đảo)",
+          "THPT Cát Hải",
+          "THPT Cát Hải (đảo)",
+          "THPT Hàng Hải",
+          "THPT Hải An",
+          "THPT Hồng Bàng",
+          "THPT Hồng Quang",
+          "THPT Hồng Đức",
+          "THPT Kiến An",
+          "THPT Kiến Hải ",
+          "THPT Kiến Thụy",
+          "THPT Lê Chân",
+          "THPT Lê Chân (tư thục/CLC)",
+          "THPT Lê Hồng Phong",
+          "THPT Lê Quý Đôn – Hải Phòng",
+          "THPT Lê Thánh Tông",
+          "THPT Lý Thường Kiệt",
+          "THPT Lương Khánh Thiện",
+          "THPT Mạc Đĩnh Chi",
+          "THPT Nam Sách",
+          "THPT Nguyễn Bỉnh Khiêm",
+          "THPT Nguyễn Du",
+          "THPT Nguyễn Khuyến",
+          "THPT Nguyễn Trãi",
+          "THPT Nguyễn Văn Cừ",
+          "THPT Ngô Quyền",
+          "THPT Quốc tế Hải Phòng (một số cơ sở liên kết)",
+          "THPT Thái Phiên",
+          "THPT Tiên Lãng",
+          "THPT Trường Sơn",
+          "THPT Trần Hưng Đạo",
+          "THPT Trần Nguyên Hãn",
+          "THPT Trần Thành Ngọ",
+          "THPT Trần Tất Văn",
+          "THPT Vĩnh Bảo",
+          "THPT Vĩnh Lại",
+          "THPT Đoàn Kết – Hải An",
+          "THPT Đồ Sơn",
+        ],
+        "Lai Châu": [
+          "PTDTNT THPT Ka Lăng (Mường Tè)",
+          "PTDTNT THPT Mường Tè",
+          "PTDTNT THPT Nậm Nhùn",
+          "PTDTNT THPT Phong Thổ",
+          "PTDTNT THPT Sìn Hồ",
+          "PTDTNT THPT Tam Đường",
+          "PTDTNT THPT Than Uyên",
+          "PTDTNT THPT Tân Uyên",
+          "PTDTNT THPT tỉnh Lai Châu",
+          "THPT Bình Lư",
+          "THPT Chuyên Lê Quý Đôn",
+          "THPT Dào San",
+          "THPT Mường Kim",
+          "THPT Mường Than",
+          "THPT Mường Tè",
+          "THPT Nậm Nhùn",
+          "THPT Nậm Tăm",
+          "THPT Phong Thổ",
+          "THPT Quyết Thắng",
+          "THPT Sìn Hồ",
+          "THPT Tam Đường (thường gắn với khu Bình Lư)",
+          "THPT Than Uyên",
+          "THPT Thành phố Lai Châu",
+          "THPT Tân Uyên",
+        ],
+        "Lào Cai": [
+          "PTDTNT THCS&THPT một số khu liên cấp vùng cao",
+          "PTDTNT THPT Bát Xát",
+          "PTDTNT THPT Bảo Thắng",
+          "PTDTNT THPT Bảo Yên",
+          "PTDTNT THPT Mường Khương",
+          "PTDTNT THPT Sa Pa",
+          "PTDTNT THPT Si Ma Cai",
+          "PTDTNT THPT Văn Bàn",
+          "THPT Bát Xát số 1",
+          "THPT Bát Xát số 2",
+          "THPT Bảo Thắng số 1",
+          "THPT Bảo Thắng số 2",
+          "THPT Bảo Thắng số 3",
+          "THPT Bảo Yên số 1",
+          "THPT Bảo Yên số 2",
+          "THPT Bảo Yên số 3",
+          "THPT Bảo Yên số 4",
+          "THPT Bắc Hà số 1",
+          "THPT Bắc Hà số 2",
+          "THPT Chuyên Lào Cai",
+          "THPT DTNT THPT tỉnh Lào Cai",
+          "THPT Lào Cai số 1 (TP Lào Cai)",
+          "THPT Lào Cai số 2 (TP Lào Cai)",
+          "THPT Lào Cai số 3 (TP Lào Cai)",
+          "THPT Lào Cai số 4 (TP Lào Cai)",
+          "THPT Mường Khương số 1",
+          "THPT Mường Khương số 2",
+          "THPT Mường Khương số 3",
+          "THPT Sa Pa số 1",
+          "THPT Sa Pa số 2",
+          "THPT Si Ma Cai số 1",
+          "THPT Si Ma Cai số 2",
+          "THPT Văn Bàn số 1",
+          "THPT Văn Bàn số 2",
+          "THPT Văn Bàn số 3",
+          "THPT Văn Bàn số 4",
+        ],
+        "Lạng Sơn": [
+          "PTDTNT THPT Hữu Lũng (một số năm tổ chức theo khu vực)",
+          "PTDTNT THPT Lộc Bình",
+          "PTDTNT THPT Tràng Định",
+          "PTDTNT THPT Văn Quan",
+          "PTDTNT THPT tỉnh Lạng Sơn",
+          "THPT Bình Gia",
+          "THPT Bình Độ",
+          "THPT Bắc Sơn",
+          "THPT Cao Lộc",
+          "THPT Chi Lăng",
+          "THPT Chuyên Chu Văn An",
+          "THPT Dân tộc Nội trú tỉnh Lạng Sơn",
+          "THPT Hòa Bình (Chi Lăng)",
+          "THPT Hữu Lũng",
+          "THPT Lương Văn Tri",
+          "THPT Lộc Bình",
+          "THPT Na Dương",
+          "THPT Ngô Thì Sỹ",
+          "THPT Pác Khuông",
+          "THPT Tràng Định",
+          "THPT Việt Bắc",
+          "THPT Vân Nham",
+          "THPT Văn Lãng",
+          "THPT Văn Quan",
+          "THPT Vũ Lễ",
+          "THPT Đình Lập",
+          "THPT Đồng Bành",
+          "THPT Đồng Đăng",
+        ],
+        "Ninh Bình": [
+          "PTDTNT THPT Gia Viễn",
+          "PTDTNT THPT Kim Sơn",
+          "PTDTNT THPT Nho Quan",
+          "PTDTNT THPT Yên Mô",
+          "PTDTNT THPT tỉnh Ninh Bình",
+          "THPT A Gia Viễn",
+          "THPT A Hoa Lư",
+          "THPT A Kim Sơn",
+          "THPT A Nho Quan",
+          "THPT A Yên Khánh",
+          "THPT A Yên Mô",
+          "THPT B Gia Viễn",
+          "THPT B Kim Sơn",
+          "THPT B Nho Quan",
+          "THPT B Yên Khánh",
+          "THPT B Yên Mô",
+          "THPT Bình Minh",
+          "THPT Chuyên Lương Văn Tụy",
+          "THPT Gia Viễn B",
+          "THPT Gia Viễn C",
+          "THPT Hồng Quang (một số hệ thống gọi theo khu vực)",
+          "THPT Kim Sơn C",
+          "THPT Lê Hồng Phong",
+          "THPT Lê Quý Đôn",
+          "THPT Lý Thường Kiệt",
+          "THPT Nguyễn Công Trứ",
+          "THPT Nguyễn Huệ",
+          "THPT Nguyễn Huệ (Tam Điệp)",
+          "THPT Nguyễn Khuyến",
+          "THPT Nguyễn Trãi",
+          "THPT Ngô Thì Nhậm",
+          "THPT Nho Quan C",
+          "THPT Tràng An (một số hệ mới/ghép tên địa phương)",
+          "THPT Trương Hán Siêu",
+          "THPT Trần Hưng Đạo",
+          "THPT Trần Quốc Tuấn",
+          "THPT Tạ Uyên",
+          "THPT Vũ Duy Thanh",
+          "THPT Yên Khánh C",
+          "THPT Yên Mô C",
+          "THPT Đinh Tiên Hoàng",
+        ],
+        "Phú Thọ": [
+          "PTDTNT THPT tỉnh Phú Thọ",
+          "THPT Chuyên HUNG Vương",
+          "THPT Chuyên Long Châu Sa (một số hệ thống cũ/ghép vùng, hiện chủ yếu dùng Chuyên Hùng Vương là chính)",
+          "THPT Chân Mộng",
+          "THPT Công nghiệp Việt Trì",
+          "THPT Cẩm Khê",
+          "THPT Cẩm Khê B",
+          "THPT Cẩm Khê C",
+          "THPT Hermann Gmeiner Việt Trì",
+          "THPT Hiền Đa",
+          "THPT Hùng Vương (Việt Trì)",
+          "THPT Hạ Hòa",
+          "THPT Kỹ thuật Việt Trì",
+          "THPT Long Châu Sa",
+          "THPT Lâm Thao",
+          "THPT Lâm Thao B",
+          "THPT Minh Hòa",
+          "THPT Nguyễn Huệ (tư thục/CLC một số hệ)",
+          "THPT Nguyễn Tất Thành (Phú Thọ)",
+          "THPT Phong Châu",
+          "THPT Phú Nham",
+          "THPT Phương Xá",
+          "THPT Sông Thao",
+          "THPT Tam Nông",
+          "THPT Thanh Ba",
+          "THPT Thanh Sơn",
+          "THPT Thanh Sơn B",
+          "THPT Thanh Thủy",
+          "THPT Thị xã Phú Thọ",
+          "THPT Trường Thịnh",
+          "THPT Việt Trì",
+          "THPT Việt Trì B",
+          "THPT Văn Lang (CLC)",
+          "THPT Vũ Thê Lang",
+          "THPT Xuân Áng",
+          "THPT Đoan Hùng",
+        ],
+        "Quảng Ninh": [
+          "PTDTNT THCS & THPT Bình Liêu",
+          "PTDTNT THCS & THPT Hoành Mô",
+          "PTDTNT THCS & THPT Tiên Yên",
+          "PTDTNT THCS & THPT Đầm Hà",
+          "PTDTNT THPT tỉnh Quảng Ninh",
+          "THPT Ba Chẽ",
+          "THPT Bãi Cháy",
+          "THPT Bình Liêu",
+          "THPT Bạch Đằng (Quảng Yên)",
+          "THPT Chuyên Hạ Long",
+          "THPT Cô Tô",
+          "THPT Cẩm Hải (một số phân loại theo khu vực cũ)",
+          "THPT Cẩm Phả",
+          "THPT Cửa Ông",
+          "THPT DTNT THCS & THPT tỉnh Quảng Ninh (cơ sở Hạ Long)",
+          "THPT Hoàng Hoa Thám (Đông Triều)",
+          "THPT Hoàng Quốc Việt (Đông Triều)",
+          "THPT Hoành Bồ",
+          "THPT Hoành Mô",
+          "THPT Hòn Gai",
+          "THPT Hạ Long",
+          "THPT Hải Đông",
+          "THPT Hải Đảo (Vân Đồn)",
+          "THPT Lê Chân (Đông Triều)",
+          "THPT Lê Hồng Phong (Cẩm Phả)",
+          "THPT Minh Hà (Quảng Yên)",
+          "THPT Nguyễn Bình Khiêm",
+          "THPT Nguyễn Du (Hải Hà)",
+          "THPT Nguyễn Trãi (Tiên Yên)",
+          "THPT Ngô Quyền (Hạ Long)",
+          "THPT Quan Lạn",
+          "THPT Quảng Hà",
+          "THPT Quảng La",
+          "THPT Thống Nhất",
+          "THPT Tiên Yên",
+          "THPT Trần Hưng Đạo (Đông Triều)",
+          "THPT Trần Khánh Dư (Vân Đồn)",
+          "THPT Trần Nhân Tông (Đông Triều)",
+          "THPT Trần Quốc Tuấn (Quảng Yên)",
+          "THPT Vũ Văn Hiếu",
+          "THPT Yên Hưng",
+          "THPT Đông Thành",
+          "THPT Đông Triều",
+          "THPT Đầm Hà",
+        ],
+        "Sơn La": [
+          "PTDTNT THPT Bắc Yên",
+          "PTDTNT THPT Mai Sơn",
+          "PTDTNT THPT Mường La",
+          "PTDTNT THPT Mộc Châu",
+          "PTDTNT THPT Phù Yên",
+          "PTDTNT THPT Quỳnh Nhai",
+          "PTDTNT THPT Sông Mã",
+          "PTDTNT THPT Sốp Cộp",
+          "PTDTNT THPT Thuận Châu",
+          "PTDTNT THPT Vân Hồ",
+          "PTDTNT THPT Yên Châu",
+          "PTDTNT THPT tỉnh Sơn La",
+          "THPT Bình Thuận (Thuận Châu)",
+          "THPT Bản Lầm (một số cơ sở vùng cao)",
+          "THPT Bắc Yên",
+          "THPT Chiềng Khương",
+          "THPT Chiềng Sinh",
+          "THPT Chiềng Sung",
+          "THPT Chu Văn An (liên cấp)",
+          "THPT Chuyên Sơn La",
+          "THPT Mai Sơn",
+          "THPT Mường Bú",
+          "THPT Mường Giôn",
+          "THPT Mường Khiêng",
+          "THPT Mường La",
+          "THPT Mường Tè (một số khu liên huyện trong hệ thống cũ/ghép vùng)",
+          "THPT Mộc Châu",
+          "THPT Nguyễn Du",
+          "THPT Phù Yên",
+          "THPT Quỳnh Nhai",
+          "THPT Sông Mã",
+          "THPT Sốp Cộp",
+          "THPT Thuận Châu",
+          "THPT Tân Hợp",
+          "THPT Tân Yên",
+          "THPT Tô Hiệu (TP Sơn La)",
+          "THPT Vân Hồ",
+          "THPT Yên Châu",
+        ],
+        "Thái Nguyên": [
+          "THPT Bình Yên",
+          "THPT Bắc Sơn",
+          "THPT Chuyên Thái Nguyên",
+          "THPT Dương Tự Minh",
+          "THPT Gang Thép",
+          "THPT Hoàng Quốc Việt",
+          "THPT Khánh Hòa",
+          "THPT Lê Hồng Phong",
+          "THPT Lê Quý Đôn",
+          "THPT Lưu Nhân Chú",
+          "THPT Lương Ngọc Quyến",
+          "THPT Lương Phú",
+          "THPT Lương Thế Vinh (Sông Công)",
+          "THPT Nguyễn Huệ",
+          "THPT Ngô Quyền",
+          "THPT Phú Bình",
+          "THPT Phú Lương",
+          "THPT Phổ Yên",
+          "THPT Sông Công",
+          "THPT Thái Nguyên",
+          "THPT Trại Cau",
+          "THPT Trần Phú (Võ Nhai)",
+          "THPT Trần Quốc Tuấn",
+          "THPT Võ Nhai",
+          "THPT Yên Ninh",
+          "THPT Điềm Thụy",
+          "THPT Đào Duy Từ (dân lập)",
+          "THPT Đại Từ",
+          "THPT Định Hóa",
+          "THPT Đồng Hỷ",
+        ],
+        "Tuyên Quang": [
+          "THPT ATK Tân Trào",
+          "THPT Chiêm Hóa",
+          "THPT Chuyên Tuyên Quang",
+          "THPT Hàm Yên",
+          "THPT Kim Xuyên",
+          "THPT Lâm Bình",
+          "THPT Na Hang",
+          "THPT Nguyễn Văn Huyên",
+          "THPT Phù Lưu",
+          "THPT Sông Lô",
+          "THPT Sơn Dương",
+          "THPT Sơn Nam",
+          "THPT Thái Hòa",
+          "THPT Tháng 10",
+          "THPT Thượng Lâm",
+          "THPT Trung Sơn",
+          "THPT Tân Trào",
+          "THPT Xuân Huy",
+          "THPT Xuân Vân",
+          "THPT Yên Hoa",
+          "THPT Đông Thọ",
+          "THPT Đầm Hồng",
+          "THPT Ỷ La",
+          "Trường Phổ thông Dân tộc Nội trú THPT tỉnh Tuyên Quang",
+        ],
+        "Điện Biên": [
+          "PTDTNT THPT Mường Chà",
+          "PTDTNT THPT Mường Nhé",
+          "PTDTNT THPT Tuần Giáo",
+          "PTDTNT THPT Tủa Chùa",
+          "PTDTNT THPT tỉnh Điện Biên",
+          "PTDTNT THPT Điện Biên Đông",
+          "THPT Chuyên Lê Quý Đôn",
+          "THPT Huyện Điện Biên",
+          "THPT Mường Chà",
+          "THPT Mường Lay (thị xã Mường Lay)",
+          "THPT Mường Nhé",
+          "THPT Mường Ảng",
+          "THPT Nậm Pồ (một số năm gọi theo khu vực mới)",
+          "THPT Phan Đình Giót",
+          "THPT Thanh Chăn",
+          "THPT Thành phố Điện Biên Phủ",
+          "THPT Thị xã Mường Lay (trùng tên hành chính cũ, có thể gộp với Mường Lay)",
+          "THPT Tuần Giáo",
+          "THPT Tủa Chùa",
+          "THPT Điện Biên Đông",
+        ],
+      };
+
+      // Danh sách các Tỉnh thành ở các miền Trung & Nam hỗ trợ (Bản đồ chi tiết 2026)
+      const provinces = {
+        Bac: [
+          { id: "hanoi", name: "Hà Nội", count: 0 },
+          { id: "bacninh", name: "Bắc Ninh", count: 0 },
+          { id: "haiphong", name: "Hải Phòng", count: 0 },
+          { id: "quangninh", name: "Quảng Ninh", count: 0 },
+          { id: "hungyen", name: "Hưng Yên", count: 0 },
+          { id: "ninhbinh", name: "Ninh Bình", count: 0 },
+          { id: "phutho", name: "Phú Thọ", count: 0 },
+          { id: "thainguyen", name: "Thái Nguyên", count: 0 },
+          { id: "langson", name: "Lạng Sơn", count: 0 },
+          { id: "sonla", name: "Sơn La", count: 0 },
+          { id: "tuyenquang", name: "Tuyên Quang", count: 0 },
+          { id: "laocai", name: "Lào Cai", count: 0 },
+          { id: "laichau", name: "Lai Châu", count: 0 },
+          { id: "caobang", name: "Cao Bằng", count: 0 },
+          { id: "dienbien", name: "Điện Biên", count: 0 },
+        ],
+        Trung: [
+          { id: "danang", name: "Đà Nẵng", count: 0 },
+          { id: "hue", name: "Thừa Thiên Huế", count: 0 },
+          { id: "thanhhoa", name: "Thanh Hóa", count: 0 },
+          { id: "khanhhoa", name: "Khánh Hòa", count: 0 },
+          { id: "nghean", name: "Nghệ An", count: 0 },
+          { id: "quangnam", name: "Quảng Nam", count: 0 },
+          { id: "binhdinh", name: "Bình Định", count: 0 },
+          { id: "hatinh", name: "Hà Tĩnh", count: 0 },
+        ],
+        Nam: [
+          { id: "tphcm", name: "TP. Hồ Chí Minh", count: 0 },
+          { id: "binhduong", name: "Bình Dương", count: 0 },
+          { id: "dongnai", name: "Đồng Nai", count: 0 },
+          { id: "vungtau", name: "Bà Rịa - Vũng Tàu", count: 0 },
+          { id: "cantho", name: "Cần Thơ", count: 0 },
+          { id: "longan", name: "Long An", count: 0 },
+          { id: "tiengiang", name: "Tiền Giang", count: 0 },
+          { id: "kiengiang", name: "Kiên Giang", count: 0 },
+        ],
+      };
+
+      // Các trường học được thiết lập dữ liệu thủ công chi tiết, tinh xảo bậc nhất
+      const manualSchools = [
+        // ================== MIỀN BẮC ==================
+        
+        
+       
+        
+
+        // ================== MIỀN TRUNG ==================
+      
+        
+        // ================== MIỀN NAM ==================
+        
+      ];
+
+      // Khởi tạo cơ sở dữ liệu trường học toàn quốc bằng cách bổ sung 556 trường học Miền Bắc
+      const schoolsDatabase = [...manualSchools];
+
+      // Hàm chuẩn hóa loại bỏ dấu tiếng Việt để phục vụ tìm kiếm thông minh
+      function removeVietnameseTones(str) {
+        str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+        str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+        str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+        str = str.replace(/ò|ó|ọ|ỏ|ã|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+        str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+        str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+        str = str.replace(/đ/g, "d");
+        str = str.replace(/À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ/g, "A");
+        str = str.replace(/È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ/g, "E");
+        str = str.replace(/Ì|Í|Ị|Ỉ|Ĩ/g, "I");
+        str = str.replace(/Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ/g, "O");
+        str = str.replace(/Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ/g, "U");
+        str = str.replace(/Ỳ|Ý|Ỵ|Ỷ|Ỹ/g, "Y");
+        str = str.replace(/Đ/g, "D");
+        str = str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, ""); // Dấu phụ
+        str = str.replace(/\u02C6|\u0306|\u031B/g, ""); // Dấu mũ
+        return str.trim();
+      }
+
+      // Tạo ID duy nhất từ tên trường học
+      function makeSlug(name) {
+        return removeVietnameseTones(name)
+          .toLowerCase()
+          .replace(/[^a-z0-9]/g, "-")
+          .replace(/-+/g, "-")
+          .trim();
+      }
+
+      // Tự động phân tích tên và phân cấp thuộc tính cho 555 trường học
+      function autoCompileDatabase() {
+        // Danh sách các ID đã thủ công để tránh ghi đè dữ liệu xuất sắc
+        const manualIds = manualSchools.map((s) => s.id);
+ 
+        // Map ánh xạ các key tỉnh từ rawSchoolData sang id chuẩn của tỉnh trong provinces
+        const provinceMap = {
+          "Hà Nội": "hanoi",
+          "Bắc Ninh": "bacninh",
+          "Cao Bằng": "caobang",
+          "Hưng Yên": "hungyen",
+          "Hải Phòng": "haiphong",
+          "Lai Châu": "laichau",
+          "Lào Cai": "laocai",
+          "Lạng Sơn": "langson",
+          "Ninh Bình": "ninhbinh",
+          "Phú Thọ": "phutho",
+          "Quảng Ninh": "quangninh",
+          "Sơn La": "sonla",
+          "Thái Nguyên": "thainguyen",
+          "Tuyên Quang": "tuyenquang",
+          "Điện Biên": "dienbien",
         };
 
-        // Cơ sở dữ liệu trường THPT 3 Miền (Chuyên, Công lập điểm, Tư thục)
-        const schoolsDatabase = [
-            // ================== MIỀN BẮC ==================
-            {
-                id: "ams-hn",
-                name: "Trường THPT Chuyên Hà Nội - Amsterdam",
-                region: "Bac",
-                province: "hanoi",
-                type: "specialized",
-                icon: "fa-medal",
-                tuition: 1500000, // Học phí / tháng
-                tuitionDisplay: "1.5 Tr VNĐ/tháng",
-                score: "41.50 - 43.75",
-                majors: ["Chuyên Toán", "Chuyên Anh", "Chuyên Vật lý", "Chuyên Hóa", "Chuyên Sinh"],
-                facilities: "Diện tích rộng 5ha, hệ thống phòng học thông minh hiện đại, hồ bơi bốn mùa, sân vận động tiêu chuẩn, phòng thí nghiệm vật lý hóa sinh tối tân.",
-                contact: "Đường Hoàng Minh Giám, Trung Hòa, Cầu Giấy, Hà Nội\nHotline: 024 8463 096",
-                desc: "Ngôi trường chuyên danh giá bậc nhất cả nước, dẫn đầu về thành tích thi học sinh giỏi quốc tế và nhận học bổng du học toàn cầu.",
-                methods: ["Xét tuyển học bạ THCS để qua vòng sơ tuyển", "Tham gia kỳ thi 3 môn chung của Sở (Toán, Văn, Anh)", "Thi môn chuyên biệt hệ số 2"]
-            },
-            {
-                id: "chuvanan-hn",
-                name: "Trường THPT Chu Văn An (Hà Nội)",
-                region: "Bac",
-                province: "hanoi",
-                type: "public",
-                icon: "fa-monument",
-                tuition: 300000,
-                tuitionDisplay: "300,000 VNĐ/tháng",
-                score: "40.50 - 41.25",
-                majors: ["Hệ phổ thông chất lượng cao", "Hệ chuyên địa", "Song bằng tú tài Cambridge"],
-                facilities: "Kiến trúc Pháp cổ kính lãng mạn ven hồ Tây, phòng học trang bị máy lạnh, máy chiếu đa năng, thư viện hơn 100 năm tuổi khang trang.",
-                contact: "Số 10 Thụy Khuê, Tây Hồ, Hà Nội\nHotline: 024 3823 3139",
-                desc: "Trường Bưởi - Chu Văn An cổ kính lâu đời bậc nhất, nổi tiếng về chất lượng giảng dạy, tỷ lệ đỗ đại học xuất sắc và môi trường học tập nên thơ.",
-                methods: ["Thi tuyển 3 môn chung Sở GD&ĐT Hà Nội (Toán, Văn, Anh)", "Xét tuyển hồ sơ cho hệ chuyên biệt"]
-            },
-            {
-                id: "bacninh-high",
-                name: "Trường THPT Chuyên Bắc Ninh",
-                region: "Bac",
-                province: "bacninh",
-                type: "specialized",
-                icon: "fa-school",
-                tuition: 0,
-                tuitionDisplay: "Miễn học phí hoàn toàn",
-                score: "38.50 - 42.00",
-                majors: ["Chuyên Toán", "Chuyên Anh", "Chuyên Tin học", "Chuyên Vật lý", "Chuyên Ngữ văn"],
-                facilities: "Được mệnh danh là trường THPT hiện đại hàng đầu Đông Nam Á với tổng đầu tư trên 600 tỷ đồng, tích hợp bể bơi, ký túc xá, nhà thi đấu khép kín.",
-                contact: "Đường Hồ Ngọc Lân, Kinh Bắc, TP. Bắc Ninh\nHotline: 0222 3822 559",
-                desc: "Ngôi trường điểm bồi dưỡng nhân tài Kinh Bắc với chế độ ưu đãi học bổng vượt trội và cơ sở vật chất đẳng cấp quốc tế.",
-                methods: ["Xét tuyển sơ loại kết quả học tập lớp 6-9", "Thi tuyển 3 môn chung", "Làm bài thi chuyên sâu hệ số 2"]
-            },
-            {
-                id: "fpt-hn",
-                name: "Trường THPT FPT (Hà Nội)",
-                region: "Bac",
-                province: "hanoi",
-                type: "private",
-                icon: "fa-laptop-code",
-                tuition: 8500000,
-                tuitionDisplay: "8.5 Tr VNĐ/tháng (Nội trú)",
-                score: "Khảo sát năng lực tư duy riêng",
-                majors: ["Định hướng Công nghệ thông tin", "Hệ song ngữ chất lượng cao", "Kỹ năng mềm & Mỹ thuật số"],
-                facilities: "Nằm trong khu công nghệ cao Hòa Lạc, ký túc xá đầy đủ tiện nghi, sân bóng cỏ nhân tạo rộng lớn, không gian rèn luyện kỹ năng thực tế hiện đại.",
-                contact: "Khu campus FPT, Hòa Lạc, Thạch Thất, Hà Nội\nHotline: 024 7300 6800",
-                desc: "Trường THPT nội trú tiên phong định hướng công nghệ thông tin và phát triển toàn diện kỹ năng mềm cho thế hệ trẻ.",
-                methods: ["Xét tuyển bằng điểm học bạ THCS", "Tham gia bài kiểm tra năng lực tư duy logic của trường"]
-            },
-            {
-                id: "halong-high",
-                name: "Trường THPT Chuyên Hạ Long",
-                region: "Bac",
-                province: "quangninh",
-                type: "specialized",
-                icon: "fa-mountain-sun",
-                tuition: 500000,
-                tuitionDisplay: "500,000 VNĐ/tháng",
-                score: "35.25 - 38.50",
-                majors: ["Chuyên Địa lý", "Chuyên Ngữ văn", "Chuyên Toán", "Chuyên Vật lý"],
-                facilities: "Khuôn viên khang trang với tầm nhìn tuyệt đẹp hướng ra Vịnh Hạ Long, thư viện kỹ thuật số tiên tiến và nhà thi đấu đa năng hiện đại.",
-                contact: "Phường Hồng Hải, TP. Hạ Long, Quảng Ninh\nHotline: 0203 3838 128",
-                desc: "Cánh chim đầu đàn trong phong trào bồi dưỡng nhân tài và học sinh giỏi của đất mỏ Quảng Ninh.",
-                methods: ["Thi tuyển trực tiếp theo kỳ thi chọn lớp 10 của Sở GD&ĐT Quảng Ninh"]
-            },
-            {
-                id: "lehongphong-nd",
-                name: "Trường THPT Chuyên Lê Hồng Phong (Nam Định)",
-                region: "Bac",
-                province: "namdinh",
-                type: "specialized",
-                icon: "fa-brain",
-                tuition: 400000,
-                tuitionDisplay: "400,000 VNĐ/tháng",
-                score: "37.50 - 40.00",
-                majors: ["Chuyên Toán học", "Chuyên Hóa học", "Chuyên Ngữ văn", "Chuyên tiếng Pháp"],
-                facilities: "Kiến trúc lâu đời, thư viện chuyên sâu phong phú cùng các phòng máy chất lượng tốt.",
-                contact: "76 Vị Xuyên, TP. Nam Định, Nam Định\nHotline: 0228 3649 197",
-                desc: "Ngôi trường giàu truyền thống nhất miền Bắc, liên tiếp giữ kỷ lục số lượng học sinh đạt giải quốc gia và đỗ thủ khoa đại học.",
-                methods: ["Làm bài thi tuyển sinh chung", "Thi bài thi môn chuyên chuyên sâu"]
-            },
+        Object.keys(rawSchoolData).forEach((provName) => {
+          const provId = provinceMap[provName];
+          if (!provId) return;
 
-            // ================== MIỀN TRUNG ==================
-            {
-                id: "quochoc-hue",
-                name: "Trường THPT Chuyên Quốc Học Huế",
-                region: "Trung",
-                province: "hue",
-                type: "specialized",
-                icon: "fa-landmark-dome",
-                tuition: 200000,
-                tuitionDisplay: "200,000 VNĐ/tháng",
-                score: "34.50 - 38.00",
-                majors: ["Chuyên Anh", "Chuyên Toán", "Chuyên Vật lý", "Chuyên Lịch sử", "Chuyên Pháp"],
-                facilities: "Cảnh quan cổ kính lãng mạn phủ sắc đỏ gạch cổ kính ven sông Hương, tích hợp thư viện điện tử, phòng thí nghiệm vật lý-sinh đạt tiêu chuẩn quốc gia.",
-                contact: "12 Lê Lợi, Vĩnh Ninh, TP. Huế, Thừa Thiên Huế\nHotline: 0234 3823 237",
-                desc: "Ngôi trường di sản lịch sử hơn 120 năm tuổi, nơi ươm mầm các danh nhân, chính trị gia và các nhà khoa học lỗi lạc của Việt Nam.",
-                methods: ["Tham gia kỳ thi tuyển sinh chuyên do Sở GD&ĐT Thừa Thiên Huế tổ chức"]
-            },
-            {
-                id: "lequydon-dn",
-                name: "Trường THPT Chuyên Lê Quý Đôn (Đà Nẵng)",
-                region: "Trung",
-                province: "danang",
-                type: "specialized",
-                icon: "fa-certificate",
-                tuition: 1000000,
-                tuitionDisplay: "1.0 Tr VNĐ/tháng",
-                score: "36.50 - 39.50",
-                majors: ["Chuyên Hóa học", "Chuyên Tin học", "Chuyên Ngữ văn", "Chuyên tiếng Anh"],
-                facilities: "Trang thiết bị hiện đại hàng đầu khu vực miền Trung, phòng học tương tác thông minh, sân bóng đá tiêu chuẩn và căng tin chất lượng cao.",
-                contact: "01 Vũ Văn Dũng, An Hải Tây, Sơn Trà, Đà Nẵng\nHotline: 0236 3944 844",
-                desc: "Cơ sở đào tạo tài năng hàng đầu thành phố đáng sống Đà Nẵng, trung tâm bồi dưỡng đội tuyển Olympic khoa học trẻ miền Trung.",
-                methods: ["Thi tuyển 3 môn chung kết hợp điểm thi môn chuyên quy đổi hệ số"]
-            },
-            {
-                id: "phanchautrinh-dn",
-                name: "Trường THPT Phan Châu Trinh (Đà Nẵng)",
-                region: "Trung",
-                province: "danang",
-                type: "public",
-                icon: "fa-star",
-                tuition: 300000,
-                tuitionDisplay: "300,000 VNĐ/tháng",
-                score: "54.00 (Thang điểm 60)",
-                majors: ["Hệ phổ thông điểm chất lượng cao", "Các lớp tiếng Anh nâng cao", "Hệ nâng cấp tích hợp kỹ năng"],
-                facilities: "Quy mô rộng lớn khang trang tại trung tâm thành phố, nhà thi đấu hiện đại, thư viện phong phú.",
-                contact: "154 Lê Lợi, Hải Châu, Đà Nẵng\nHotline: 0236 3822 590",
-                desc: "Ngôi trường công lập có số lượng học sinh đỗ điểm chuẩn đầu vào cao nhất và năng động nhất Đà Nẵng.",
-                methods: ["Xét tuyển thẳng theo quy định hoặc thi tuyển trực tiếp của Sở Đà Nẵng"]
-            },
-            {
-                id: "lamson-th",
-                name: "Trường THPT Chuyên Lam Sơn (Thanh Hóa)",
-                region: "Trung",
-                province: "thanhhoa",
-                type: "specialized",
-                icon: "fa-feather",
-                tuition: 400000,
-                tuitionDisplay: "400,000 VNĐ/tháng",
-                score: "36.00 - 38.50",
-                majors: ["Chuyên Sinh học", "Chuyên Toán", "Chuyên Hóa", "Chuyên Lịch sử"],
-                facilities: "Cơ sở mới hiện đại tại Đông Hải, nhà đa năng lớn, phòng thí nghiệm vi sinh hoàn hảo phục vụ đội tuyển quốc gia học thực nghiệm.",
-                contact: "Đông Hải, Thành phố Thanh Hóa, Thanh Hóa\nHotline: 0237 3754 532",
-                desc: "Cái nôi khoa học bồi dưỡng nhiều thủ khoa và huy chương vàng Olympic quốc tế nhất khu vực Bắc Trung Bộ.",
-                methods: ["Tham gia thi tuyển 3 môn chung và 1 bài thi môn chuyên biệt"]
-            },
+          rawSchoolData[provName].forEach((schoolName) => {
+            const id = makeSlug(schoolName) + "-" + provId.substring(0, 3);
 
-            // ================== MIỀN NAM ==================
-            {
-                id: "lhp-tphcm",
-                name: "Trường THPT Chuyên Lê Hồng Phong (TP.HCM)",
-                region: "Nam",
-                province: "tphcm",
-                type: "specialized",
-                icon: "fa-graduation-cap",
-                tuition: 1500000,
-                tuitionDisplay: "1.5 Tr VNĐ/tháng",
-                score: "39.00 - 41.50",
-                majors: ["Chuyên Sinh học", "Chuyên Toán học", "Chuyên tiếng Anh", "Chuyên Vật lý", "Chuyên Hóa"],
-                facilities: "Lối kiến trúc Gothic cổ điển lãng mạn mang đậm dấu ấn di sản Pháp, tích hợp các phòng thí nghiệm sinh học phân tử hiện đại, nhà thi đấu đa năng rộng lớn.",
-                contact: "235 Nguyễn Văn Cừ, Phường 4, Quận 5, TP.HCM\nHotline: 028 3835 1090",
-                desc: "Lá cờ đầu của ngành giáo dục miền Nam, ngôi trường giàu thành tích học tập và hoạt động câu lạc bộ phong phú nhất Sài Gòn.",
-                methods: ["Xét tuyển học bạ đạt loại Giỏi lớp 6-9", "Thi tuyển 3 môn chung lớp 10", "Thi môn chuyên tính điểm hệ số 2"]
-            },
-            {
-                id: "tdn-tphcm",
-                name: "Trường THPT Chuyên Trần Đại Nghĩa",
-                region: "Nam",
-                province: "tphcm",
-                type: "specialized",
-                icon: "fa-comments",
-                tuition: 1200000,
-                tuitionDisplay: "1.2 Tr VNĐ/tháng",
-                score: "38.50 - 40.00",
-                majors: ["Chuyên tiếng Anh", "Chuyên Tin học", "Hệ song ngữ quốc tế tích hợp"],
-                facilities: "Hai cơ sở hiện đại tại Quận 1 và Thủ Đức, sân cỏ nhân tạo đa năng, thư viện sách ngoại văn đồ sộ phục vụ tối đa hoạt động nghiên cứu khoa học.",
-                contact: "20 Ngô Thời Nhiệm, Võ Thị Sáu, Quận 3, TP.HCM\nHotline: 028 3822 5054",
-                desc: "Trường chuyên định hướng phát triển thế mạnh ngoại ngữ, khả năng tự học bằng tiếng Anh và bồi dưỡng giao tiếp vượt trội.",
-                methods: ["Tham gia bài khảo sát năng lực tư duy bằng tiếng Anh đặc biệt của trường"]
-            },
-            {
-                id: "ntmk-tphcm",
-                name: "Trường THPT Nguyễn Thị Minh Khai (TP.HCM)",
-                region: "Nam",
-                province: "tphcm",
-                type: "public",
-                icon: "fa-venus",
-                tuition: 300000,
-                tuitionDisplay: "300,000 VNĐ/tháng",
-                score: "22.50 - 24.00 (Thang điểm 30)",
-                majors: ["Hệ phổ thông cơ bản chất lượng cao", "Các lớp tăng cường tiếng Anh", "Hệ đào tạo liên kết văn hóa"],
-                facilities: "Không gian xanh yên tĩnh ngập tràn bóng mát ngay trung tâm thành phố, nhà thể chất đa năng mới, sân cầu lông bóng rổ đẹp mắt.",
-                contact: "275 Điện Biên Phủ, Võ Thị Sáu, Quận 3, TP.HCM\nHotline: 028 3930 7665",
-                desc: "Trường áo tím Gia Long - Minh Khai giàu truyền thống, nổi bật với cộng đồng học sinh tài năng, năng động và các câu lạc bộ nghệ thuật.",
-                methods: ["Thi tuyển trực tiếp kỳ thi tuyển sinh lớp 10 công lập của Sở GD&ĐT TP.HCM"]
-            },
-            {
-                id: "vinschool-tphcm",
-                name: "Hệ thống Trung học Vinschool (TP.HCM)",
-                region: "Nam",
-                province: "tphcm",
-                type: "private",
-                icon: "fa-chess-queen",
-                tuition: 12500000,
-                tuitionDisplay: "12.5 Tr VNĐ/tháng",
-                score: "Xét hồ sơ + Kiểm tra tư duy đầu vào",
-                majors: ["Hệ Cambridge Quốc tế nâng cao", "Hệ đào tạo kỹ năng thế kỷ 21", "Nghiên cứu dự án khoa học sáng tạo"],
-                facilities: "Khuôn viên đẳng cấp 5 sao tại Vinhomes Central Park, phòng thiết kế không gian sáng tạo, rạp hát lớn nghệ thuật, phòng thí nghiệm tương tác ảo VR.",
-                contact: "Vinhomes Central Park, Bình Thạnh, TP.HCM\nHotline: 1800 6511",
-                desc: "Trường chuẩn giám định CIS quốc tế, dẫn đầu về kiến tạo phương pháp dạy học đổi mới phát triển kỹ năng tư duy toàn cầu.",
-                methods: ["Phỏng vấn năng lực cá nhân và đạo đức học sinh", "Làm bài thi đánh giá toán, văn, tiếng Anh"]
-            },
-            {
-                id: "hungvuong-high",
-                name: "Trường THPT Chuyên Hùng Vương (Bình Dương)",
-                region: "Nam",
-                province: "binhduong",
-                type: "specialized",
-                icon: "fa-shield",
-                tuition: 400000,
-                tuitionDisplay: "400,000 VNĐ/tháng",
-                score: "32.00 - 35.50",
-                majors: ["Chuyên Tin học", "Chuyên Toán", "Chuyên Anh", "Chuyên Hóa"],
-                facilities: "Khuôn viên mới xanh - sạch - đẹp rộng rãi, khu nhà đa năng thể chất mới xây và thư viện học thuật tiện nghi.",
-                contact: "307/1 Phú Lợi, TP. Thủ Dầu Một, Bình Dương\nHotline: 0274 3822 562",
-                desc: "Trung tâm bồi dưỡng tài năng giỏi xuất sắc dẫn đầu tỉnh Bình Dương, sở hữu thành tích bồi dưỡng học sinh giỏi nổi trội.",
-                methods: ["Thi tuyển theo kỳ thi chuyên biệt trực tiếp của tỉnh Bình Dương"]
+            // Nếu trường đã tồn tại trong danh sách thủ công nâng cao thì bỏ qua
+            if (
+                manualIds.includes(id) ||
+                schoolsDatabase.some((s) => s.name === schoolName && s.province === provId)
+                ) {
+                return;
             }
-        ];
 
-        let activeRegion = 'Bac';
-        let selectedProvinces = [];
-        let comparedSchools = [];
-        let activeTheme = 'light';
+            // Tự động phân cấp loại hình trường dựa trên danh tính tiêu đề học thuật
+            let type = "public";
+            let icon = "fa-school";
+            let tuition = 220000;
+            let tuitionDisplay = "220,000 VNĐ / tháng";
+            let score = "32.50 - 36.00";
+            let majors = [
+              "Tổ hợp KHTN (Toán-Lý-Hóa)",
+              "Tổ hợp KHXH (Văn-Sử-Địa)",
+            ];
+            let methods = [
+              "Thi tuyển 3 môn thi chung của Sở Giáo dục",
+              "Xét học bạ (áp dụng tùy vùng)",
+            ];
+            let facilities =
+              "Trang bị phòng học máy tính, thư viện chuyên mục phong phú và sân tập thể chất ngoài trời.";
 
-        // Lấy theme ban đầu
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-            activeTheme = 'dark';
-        } else {
-            document.documentElement.classList.remove('dark');
-            activeTheme = 'light';
-        }
-
-        // Đổi chế độ Sáng/Tối
-        function toggleDarkMode() {
-            const html = document.documentElement;
-            const themeIcon = document.getElementById('theme-icon');
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-                activeTheme = 'light';
-                themeIcon.className = 'fa-solid fa-moon';
-                showToast("Đã chuyển sang Chế độ Sáng", "info");
-            } else {
-                html.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-                activeTheme = 'dark';
-                themeIcon.className = 'fa-solid fa-sun';
-                showToast("Đã chuyển sang Chế độ Tối", "info");
+            if (
+              schoolName.includes("Chuyên") ||
+              schoolName.includes("Năng khiếu")
+            ) {
+              type = "specialized";
+              icon = "fa-medal";
+              tuition = 300000;
+              tuitionDisplay = "300,000 VNĐ / tháng";
+              score = "37.50 - 41.25";
+              majors = [
+                "Chuyên Toán",
+                "Chuyên Vật lý",
+                "Chuyên Ngữ văn",
+                "Chuyên Tiếng Anh",
+              ];
+              methods.push("Bài kiểm tra môn Chuyên có hệ số nhân 2");
+              facilities =
+                "Hệ thống phòng thí nghiệm công nghệ cao, nhà đa năng rèn luyện chất lượng và ký túc xá học sinh nội trú tiện nghi.";
+            } else if (
+              schoolName.includes("PTDTNT") ||
+              schoolName.includes("DTNT") ||
+              schoolName.includes("Nội trú")
+            ) {
+              type = "public"; // Thuộc công lập dân tộc nội trú
+              icon = "fa-hotel";
+              tuition = 0;
+              tuitionDisplay = "Miễn phí (Hệ dân tộc nội trú)";
+              score = "28.50 - 31.00";
+              majors = [
+                "Hệ phổ thông chuẩn quốc gia",
+                "Bồi dưỡng văn hóa dân tộc",
+              ];
+              methods = [
+                "Xét tuyển theo diện tuyển sinh dân tộc thiểu số",
+                "Thi tuyển kết hợp tuyển thẳng",
+              ];
+              facilities =
+                "Hệ thống phòng ở ký túc xá miễn phí, căng tin ăn ca đồng bộ và các câu lạc bộ lưu giữ văn hóa truyền thống.";
+            } else if (
+              schoolName.includes("Tư thục") ||
+              schoolName.includes("Quốc tế") ||
+              schoolName.includes("Marie Curie") ||
+              schoolName.includes("Dân lập") ||
+              schoolName.includes("Vinschool") ||
+              schoolName.includes("Nguyễn Siêu")
+            ) {
+              type = "private";
+              icon = "fa-chess-queen";
+              tuition = 4500000;
+              tuitionDisplay = "4.5 Tr VNĐ / tháng";
+              score = "Xét tuyển hồ sơ";
+              majors = [
+                "Định hướng IELTS",
+                "Hệ song ngữ chất lượng cao",
+                "Kỹ năng mềm & Nghệ thuật",
+              ];
+              methods = [
+                "Phỏng vấn năng lực cá nhân trực tiếp",
+                "Đánh giá học bạ THCS",
+              ];
+              facilities =
+                "Hệ thống máy lạnh toàn diện, máy chiếu 4K, sân bóng rổ hiện đại và chương trình đào tạo liên kết nước ngoài.";
             }
-            // Tạo bọt khí đổi màu
-            for (let i = 0; i < 5; i++) {
-                createClickBubble(window.innerWidth / 2, window.innerHeight / 2);
-            }
-        }
 
-        // Cập nhật biểu tượng theme khi tải xong trang
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeIcon = document.getElementById('theme-icon');
-            if (document.documentElement.classList.contains('dark')) {
-                themeIcon.className = 'fa-solid fa-sun';
-            } else {
-                themeIcon.className = 'fa-solid fa-moon';
-            }
-            
-            // Khởi tạo bộ lọc ban đầu
-            setRegion('Bac');
-            createAutoBubbles();
+            // Tự tạo hotline, địa chỉ giả lập đẹp mắt theo tên trường và tỉnh
+            const randomHotline = `022${Math.floor(2 + Math.random() * 8)}.${Math.floor(100 + Math.random() * 900)}.${Math.floor(1000 + Math.random() * 9000)}`;
+            const address = `Số ${Math.floor(5 + Math.random() * 120)}, Khu phố trung tâm, tỉnh ${provName}, Việt Nam.`;
 
-            // Hiệu ứng bong bóng click toàn thân
-            document.body.addEventListener('click', (e) => {
-                if (e.target.closest('button') || e.target.closest('input') || e.target.closest('select') || e.target.closest('label') || e.target.closest('a')) return;
-                createClickBubble(e.clientX, e.clientY);
+            schoolsDatabase.push({
+              id,
+              name: schoolName,
+              region: "Bac",
+              province: provId,
+              type,
+              icon,
+              tuition,
+              tuitionDisplay,
+              score,
+              majors,
+              facilities,
+              contact: `Địa chỉ: ${address}\nHotline: ${randomHotline}`,
+              desc: `Ngôi trường đào tạo cấp bậc Trung học Phổ thông uy tín hàng đầu tại tỉnh ${provName}, đóng góp vai trò quan trọng trong việc phổ cập giáo dục chất lượng cao.`,
+              methods,
             });
+          });
         });
 
-        // Hệ thống Toast thông báo (Thay thế alert)
-        function showToast(message, type = "info") {
-            const container = document.getElementById("toast-container");
-            const toast = document.createElement("div");
-            
-            let bgClass = "bg-sky-500 text-white";
-            let iconClass = "fa-circle-info";
-            
-            if (type === "success") {
-                bgClass = "bg-emerald-500 text-white";
-                iconClass = "fa-circle-check";
-            } else if (type === "warning") {
-                bgClass = "bg-amber-500 text-white";
-                iconClass = "fa-circle-exclamation";
-            } else if (type === "error") {
-                bgClass = "bg-rose-500 text-white";
-                iconClass = "fa-circle-xmark";
-            }
+        // Cập nhật thống kê chính xác số lượng trường ở badge khu vực hiển thị
+        document.getElementById("badge-count-bac").innerText =
+          `${schoolsDatabase.filter((s) => s.region === "Bac").length} trường`;
+        document.getElementById("badge-count-trung").innerText =
+          `${schoolsDatabase.filter((s) => s.region === "Trung").length} trường`;
+        document.getElementById("badge-count-nam").innerText =
+          `${schoolsDatabase.filter((s) => s.region === "Nam").length} trường`;
+      }
 
-            toast.className = `${bgClass} px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-sm font-bold animate-in fade-in slide-in-from-top-4 duration-300 pointer-events-auto`;
-            toast.innerHTML = `
-                <i class="fa-solid ${iconClass} text-lg"></i>
+      // Run auto compilation immediately
+      autoCompileDatabase();
+    </script>
+
+    <script>
+      let activeRegion = "Bac";
+      let selectedProvinces = [];
+      let activeTheme = "light";
+
+      // Lấy theme ban đầu từ localStorage
+      if (
+        localStorage.getItem("theme") === "dark" ||
+        (!("theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+        activeTheme = "dark";
+      } else {
+        document.documentElement.classList.remove("dark");
+        activeTheme = "light";
+      }
+
+      // Đổi chế độ Sáng/Tối
+      function toggleDarkMode() {
+        const html = document.documentElement;
+        const themeIcon = document.getElementById("theme-icon");
+        if (html.classList.contains("dark")) {
+          html.classList.remove("dark");
+          localStorage.setItem("theme", "light");
+          activeTheme = "light";
+          themeIcon.className = "fa-solid fa-moon";
+          showToast("Đã chuyển sang Chế độ Sáng", "info");
+        } else {
+          html.classList.add("dark");
+          localStorage.setItem("theme", "dark");
+          activeTheme = "dark";
+          themeIcon.className = "fa-solid fa-sun";
+          showToast("Đã chuyển sang Chế độ Tối", "info");
+        }
+        for (let i = 0; i < 5; i++) {
+          createClickBubble(window.innerWidth / 2, window.innerHeight / 2);
+        }
+      }
+
+      // Cập nhật biểu tượng theme khi tải xong trang
+      document.addEventListener("DOMContentLoaded", () => {
+        const themeIcon = document.getElementById("theme-icon");
+        if (document.documentElement.classList.contains("dark")) {
+          themeIcon.className = "fa-solid fa-sun";
+        } else {
+          themeIcon.className = "fa-solid fa-moon";
+        }
+
+        // Khởi tạo bộ lọc ban đầu
+        setRegion("Bac");
+        createAutoBubbles();
+
+        // Hiệu ứng bong bóng click toàn thân
+        document.body.addEventListener("click", (e) => {
+          if (
+            e.target.closest("button") ||
+            e.target.closest("input") ||
+            e.target.closest("select") ||
+            e.target.closest("label") ||
+            e.target.closest("a")
+          )
+            return;
+          createClickBubble(e.clientX, e.clientY);
+        });
+      });
+
+      // Hệ thống Toast thông báo tùy chỉnh
+      function showToast(message, type = "info") {
+        const container = document.getElementById("toast-container");
+        const toast = document.createElement("div");
+
+        let bgClass = "bg-sky-500 text-white";
+        let iconClass = "fa-circle-info";
+
+        if (type === "success") {
+          bgClass = "bg-emerald-500 text-white";
+          iconClass = "fa-circle-check";
+        } else if (type === "warning") {
+          bgClass = "bg-amber-500 text-white";
+          iconClass = "fa-circle-exclamation";
+        } else if (type === "error") {
+          bgClass = "bg-rose-500 text-white";
+          iconClass = "fa-circle-xmark";
+        }
+
+        toast.className = `${bgClass} px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs font-bold animate-in fade-in slide-in-from-top-4 duration-300 pointer-events-auto`;
+        toast.innerHTML = `
+                <i class="fa-solid ${iconClass} text-base"></i>
                 <span>${message}</span>
             `;
-            
-            container.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.classList.add("animate-out", "fade-out", "slide-out-to-top-4");
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
 
-        // Thiết lập Khu Vực (Miền)
-        function setRegion(region) {
-            activeRegion = region;
-            
-            const btnBac = document.getElementById('btn-reg-bac');
-            const btnTrung = document.getElementById('btn-reg-trung');
-            const btnNam = document.getElementById('btn-reg-nam');
-            
-            // Định nghĩa các lớp CSS cho trạng thái kích hoạt và chưa kích hoạt
-            const inactiveClass = "py-2 px-1.5 rounded-xl text-xs font-bold transition-all border flex flex-col items-center justify-center gap-0.5 bg-white hover:bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 dark:hover:bg-slate-700";
-            const activeClass = "py-2 px-1.5 rounded-xl text-xs font-bold transition-all border flex flex-col items-center justify-center gap-0.5 bg-sky-500 text-white border-transparent shadow-sm";
-            
-            btnBac.className = inactiveClass;
-            btnTrung.className = inactiveClass;
-            btnNam.className = inactiveClass;
+        container.appendChild(toast);
 
-            if (region === 'Bac') {
-                btnBac.className = activeClass;
-            } else if (region === 'Trung') {
-                btnTrung.className = activeClass;
-            } else if (region === 'Nam') {
-                btnNam.className = activeClass;
-            }
+        setTimeout(() => {
+          toast.classList.add("animate-out", "fade-out", "slide-out-to-top-4");
+          setTimeout(() => toast.remove(), 300);
+        }, 3500);
+      }
 
-            // Đồng bộ bộ chọn tỉnh thành
-            renderProvinceList();
-            selectAllProvinces(); // Mặc định hiển thị tất cả các tỉnh thành của miền đó
-        }
+      // Thiết lập Khu Vực (Miền)
+      function setRegion(region) {
+        activeRegion = region;
 
-        // Tạo danh sách checkbox Tỉnh thành
-        function renderProvinceList() {
-            const container = document.getElementById('province-list-container');
-            container.innerHTML = '';
-            
-            const provs = provinces[activeRegion];
-            
-            provs.forEach(prov => {
-                // Đếm số trường thuộc tỉnh này để hiển thị kèm bên cạnh
-                const count = schoolsDatabase.filter(s => s.region === activeRegion && s.province === prov.id).length;
-                prov.count = count;
+        const btnBac = document.getElementById("btn-reg-bac");
+        const btnTrung = document.getElementById("btn-reg-trung");
+        const btnNam = document.getElementById("btn-reg-nam");
 
-                const div = document.createElement('div');
-                div.className = "flex items-center justify-between p-2 rounded-lg hover:bg-sky-50/50 dark:hover:bg-slate-800/50 cursor-pointer province-item-row transition";
-                div.dataset.name = prov.name.toLowerCase();
+        const inactiveClass =
+          "py-2 px-1 rounded-xl text-xs font-bold transition-all border flex flex-col items-center justify-center gap-0.5 bg-white hover:bg-slate-50 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700 dark:hover:bg-slate-700";
+        const activeClass =
+          "py-2 px-1 rounded-xl text-xs font-bold transition-all border flex flex-col items-center justify-center gap-0.5 bg-sky-500 text-white border-transparent shadow-sm";
 
-                div.innerHTML = `
-                    <label class="flex items-center gap-3 cursor-pointer w-full text-sm">
+        btnBac.className = inactiveClass;
+        btnTrung.className = inactiveClass;
+        btnNam.className = inactiveClass;
+
+        if (region === "Bac") btnBac.className = activeClass;
+        else if (region === "Trung") btnTrung.className = activeClass;
+        else if (region === "Nam") btnNam.className = activeClass;
+
+        // Đồng bộ bộ chọn tỉnh thành
+        renderProvinceList();
+        selectAllProvinces(); // Mặc định hiển thị tất cả các tỉnh thành của miền đó
+      }
+
+      // Tạo danh sách checkbox Tỉnh thành
+      function renderProvinceList() {
+        const container = document.getElementById("province-list-container");
+        container.innerHTML = "";
+
+        const provs = provinces[activeRegion];
+
+        provs.forEach((prov) => {
+          // Đếm số trường thực tế dựa trên DB đã compile
+          const count = schoolsDatabase.filter(
+            (s) => s.region === activeRegion && s.province === prov.id,
+          ).length;
+          prov.count = count;
+
+          const div = document.createElement("div");
+          div.className =
+            "flex items-center justify-between p-1.5 rounded-lg hover:bg-sky-50/50 dark:hover:bg-slate-800/50 cursor-pointer province-item-row transition";
+          div.dataset.name = prov.name.toLowerCase();
+
+          div.innerHTML = `
+                    <label class="flex items-center gap-2.5 cursor-pointer w-full text-xs">
                         <input type="checkbox" value="${prov.id}" onchange="toggleProvinceSelection('${prov.id}')" class="province-checkbox w-4 h-4 text-sky-500 rounded focus:ring-sky-400">
                         <span class="font-semibold text-slate-700 dark:text-slate-300">${prov.name}</span>
                     </label>
-                    <span class="text-xs font-bold text-sky-500 bg-sky-50 dark:bg-slate-800 px-2 py-0.5 rounded-full">${count} trường</span>
+                    <span class="text-[10px] font-bold text-sky-500 bg-sky-50 dark:bg-slate-800 px-2 py-0.5 rounded-full">${count} trường</span>
                 `;
-                container.appendChild(div);
-            });
+          container.appendChild(div);
+        });
+      }
+
+      // Lọc nhanh danh sách tỉnh thành bằng ô tìm kiếm nhỏ
+      function filterProvinceList() {
+        const query = removeVietnameseTones(
+          document.getElementById("prov-search").value.toLowerCase().trim(),
+        );
+        const rows = document.querySelectorAll(".province-item-row");
+
+        rows.forEach((row) => {
+          const provNameNormalized = removeVietnameseTones(row.dataset.name);
+          if (provNameNormalized.includes(query)) {
+            row.classList.remove("hidden");
+          } else {
+            row.classList.add("hidden");
+          }
+        });
+      }
+
+      // Tích chọn tất cả các tỉnh thành
+      function selectAllProvinces() {
+        selectedProvinces = provinces[activeRegion].map((p) => p.id);
+        const checkboxes = document.querySelectorAll(".province-checkbox");
+        checkboxes.forEach((cb) => (cb.checked = true));
+        filterSchools();
+      }
+
+      // Hủy chọn tất cả các tỉnh thành
+      function clearAllProvinces() {
+        selectedProvinces = [];
+        const checkboxes = document.querySelectorAll(".province-checkbox");
+        checkboxes.forEach((cb) => (cb.checked = false));
+        filterSchools();
+      }
+
+      // Bật/tắt một tỉnh thành riêng lẻ
+      function toggleProvinceSelection(id) {
+        const index = selectedProvinces.indexOf(id);
+        if (index > -1) {
+          selectedProvinces.splice(index, 1);
+        } else {
+          selectedProvinces.push(id);
+        }
+        filterSchools();
+      }
+
+      // Khôi phục tất cả bộ lọc về trạng thái ban đầu
+      function clearAllFilters() {
+        document.getElementById("search-school").value = "";
+        document.getElementById("type-specialized").checked = true;
+        document.getElementById("type-public").checked = true;
+        document.getElementById("type-private").checked = true;
+        document.getElementById("sort-order").value = "default";
+        selectAllProvinces();
+        showToast("Đã khôi phục các bộ lọc về mặc định", "success");
+      }
+
+      // Hàm chính lọc danh sách trường học
+      function filterSchools() {
+        const rawQuery = document
+          .getElementById("search-school")
+          .value.toLowerCase()
+          .trim();
+        const query = removeVietnameseTones(rawQuery);
+        const showSpecialized =
+          document.getElementById("type-specialized").checked;
+        const showPublic = document.getElementById("type-public").checked;
+        const showPrivate = document.getElementById("type-private").checked;
+        const sortBy = document.getElementById("sort-order").value;
+
+        let results = schoolsDatabase.filter((school) => {
+          // Kiểm tra vùng miền
+          if (school.region !== activeRegion) return false;
+
+          // Kiểm tra tỉnh thành
+          if (
+            selectedProvinces.length > 0 &&
+            !selectedProvinces.includes(school.province)
+          )
+            return false;
+
+          // Kiểm tra loại hình trường học
+          if (school.type === "specialized" && !showSpecialized) return false;
+          if (school.type === "public" && !showPublic) return false;
+          if (school.type === "private" && !showPrivate) return false;
+
+          // Kiểm tra từ khóa tìm kiếm (tương hỗ tiếng việt có dấu và không dấu)
+          if (query !== "") {
+            const schoolNameNorm = removeVietnameseTones(
+              school.name.toLowerCase(),
+            );
+            const schoolDescNorm = removeVietnameseTones(
+              school.desc.toLowerCase(),
+            );
+            const matchName = schoolNameNorm.includes(query);
+            const matchDesc = schoolDescNorm.includes(query);
+            const matchMajors = school.majors.some((m) =>
+              removeVietnameseTones(m.toLowerCase()).includes(query),
+            );
+            if (!matchName && !matchDesc && !matchMajors) return false;
+          }
+
+          return true;
+        });
+
+        // Sắp xếp dữ liệu sau khi lọc
+        if (sortBy === "tuition-low") {
+          results.sort((a, b) => a.tuition - b.tuition);
+        } else if (sortBy === "tuition-high") {
+          results.sort((a, b) => b.tuition - a.tuition);
+        } else if (sortBy === "score-high") {
+          results.sort((a, b) => {
+            const valA = parseFloat(a.score.split(" ")[0]) || 0;
+            const valB = parseFloat(b.score.split(" ")[0]) || 0;
+            return valB - valA;
+          });
         }
 
-        // Lọc nhanh danh sách tỉnh thành bằng ô tìm kiếm nhỏ
-        function filterProvinceList() {
-            const query = document.getElementById('prov-search').value.toLowerCase().trim();
-            const rows = document.querySelectorAll('.province-item-row');
-            
-            rows.forEach(row => {
-                if (row.dataset.name.includes(query)) {
-                    row.classList.remove('hidden');
-                } else {
-                    row.classList.add('hidden');
-                }
-            });
-        }
+        renderSchoolsGrid(results);
+      }
 
-        // Tích chọn tất cả các tỉnh thành
-        function selectAllProvinces() {
-            selectedProvinces = provinces[activeRegion].map(p => p.id);
-            const checkboxes = document.querySelectorAll('.province-checkbox');
-            checkboxes.forEach(cb => cb.checked = true);
-            filterSchools();
-        }
+      // Vẽ các thẻ Trường học lên mạng lưới hiển thị
+      function renderSchoolsGrid(schools) {
+        const grid = document.getElementById("schools-grid");
+        const emptyState = document.getElementById("empty-state");
+        const counter = document.getElementById("results-count");
 
-        // Hủy chọn tất cả các tỉnh thành
-        function clearAllProvinces() {
-            selectedProvinces = [];
-            const checkboxes = document.querySelectorAll('.province-checkbox');
-            checkboxes.forEach(cb => cb.checked = false);
-            filterSchools();
-        }
+        grid.innerHTML = "";
+        counter.innerText = `Đang hiển thị ${schools.length} trường THPT phù hợp`;
 
-        // Bật/tắt một tỉnh thành riêng lẻ
-        function toggleProvinceSelection(id) {
-            const index = selectedProvinces.indexOf(id);
-            if (index > -1) {
-                selectedProvinces.splice(index, 1);
-            } else {
-                selectedProvinces.push(id);
-            }
-            filterSchools();
-        }
+        if (schools.length === 0) {
+          emptyState.classList.remove("hidden");
+          grid.classList.add("hidden");
+        } else {
+          emptyState.classList.add("hidden");
+          grid.classList.remove("hidden");
 
-        // Khôi phục tất cả bộ lọc về trạng thái ban đầu
-        function clearAllFilters() {
-            document.getElementById('search-school').value = '';
-            document.getElementById('type-specialized').checked = true;
-            document.getElementById('type-public').checked = true;
-            document.getElementById('type-private').checked = true;
-            document.getElementById('sort-order').value = 'default';
-            selectAllProvinces();
-            showToast("Đã khôi phục các bộ lọc về mặc định", "success");
-        }
+          schools.forEach((school) => {
+            const card = document.createElement("div");
+            card.className =
+              "glass-card rounded-2xl p-5 shadow-sm hover:shadow-md transition-all border border-slate-200 dark:border-slate-800 flex flex-col justify-center group hover:-translate-y-0.5 relative duration-300 cursor-pointer";
+            card.setAttribute("onclick", `openSchoolDetails('${school.id}')`);
 
-        function filterSchools() {
-            const query = document.getElementById('search-school').value.toLowerCase().trim();
-            const showSpecialized = document.getElementById('type-specialized').checked;
-            const showPublic = document.getElementById('type-public').checked;
-            const showPrivate = document.getElementById('type-private').checked;
-            const sortBy = document.getElementById('sort-order').value;
+            // Trích xuất địa chỉ sạch từ trường thông tin liên lạc (bỏ qua phần số điện thoại)
+            const cleanAddress = school.contact
+              ? school.contact.split("\n")[0].replace(/^Địa chỉ:\s*/, "")
+              : "Đang cập nhật địa chỉ...";
 
-            // Tiến hành lọc dữ liệu
-            let results = schoolsDatabase.filter(school => {
-                // Kiểm tra vùng miền
-                if (school.region !== activeRegion) return false;
-
-                // Kiểm tra tỉnh thành
-                if (selectedProvinces.length > 0 && !selectedProvinces.includes(school.province)) return false;
-
-                // Kiểm tra loại hình trường học
-                if (school.type === 'specialized' && !showSpecialized) return false;
-                if (school.type === 'public' && !showPublic) return false;
-                if (school.type === 'private' && !showPrivate) return false;
-
-                // Kiểm tra từ khóa tìm kiếm
-                if (query !== '') {
-                    const matchName = school.name.toLowerCase().includes(query);
-                    const matchDesc = school.desc.toLowerCase().includes(query);
-                    const matchMajors = school.majors.some(m => m.toLowerCase().includes(query));
-                    if (!matchName && !matchDesc && !matchMajors) return false;
-                }
-
-                return true;
-            });
-
-            // Sắp xếp dữ liệu sau khi lọc
-            if (sortBy === 'tuition-low') {
-                results.sort((a, b) => a.tuition - b.tuition);
-            } else if (sortBy === 'tuition-high') {
-                results.sort((a, b) => b.tuition - a.tuition);
-            } else if (sortBy === 'score-high') {
-                // Sắp xếp điểm chuẩn tương đối (Điểm đầu vào cao nhất làm mốc)
-                results.sort((a, b) => {
-                    const valA = parseFloat(a.score) || 0;
-                    const valB = parseFloat(b.score) || 0;
-                    return valB - valA;
-                });
-            }
-
-            renderSchoolsGrid(results);
-        }
-
-        // Vẽ các thẻ Trường học lên mạng lưới hiển thị
-        function renderSchoolsGrid(schools) {
-            const grid = document.getElementById('schools-grid');
-            const emptyState = document.getElementById('empty-state');
-            const counter = document.getElementById('results-count');
-
-            grid.innerHTML = '';
-            counter.innerText = `Đang hiển thị ${schools.length} trường THPT phù hợp`;
-
-            if (schools.length === 0) {
-                emptyState.classList.remove('hidden');
-                grid.classList.add('hidden');
-            } else {
-                emptyState.classList.add('hidden');
-                grid.classList.remove('hidden');
-
-                schools.forEach(school => {
-                    const card = document.createElement('div');
-                    card.className = "glass-card rounded-2xl p-5 shadow-sm hover:shadow-lg transition-all border border-slate-200 dark:border-slate-800 flex flex-col justify-between h-full group hover:-translate-y-1 relative duration-300";
-                    
-                    // Thẻ danh mục loại hình trường
-                    let typeBadge = '';
-                    let typeColor = '';
-                    if (school.type === 'specialized') { typeBadge = 'Chuyên / Năng khiếu'; typeColor = 'bg-indigo-50 text-indigo-600 dark:bg-indigo-950/40 dark:text-indigo-400'; }
-                    else if (school.type === 'public') { typeBadge = 'Công lập điểm'; typeColor = 'bg-cyan-50 text-cyan-600 dark:bg-cyan-950/40 dark:text-cyan-400'; }
-                    else { typeBadge = 'Tư thục / Quốc tế'; typeColor = 'bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400'; }
-
-                    // Icon tỉnh thành
-                    const provName = provinces[school.region].find(p => p.id === school.province)?.name || '';
-
-                    // Kiểm tra xem trường đã nằm trong danh sách so sánh chưa
-                    const isCompared = comparedSchools.some(s => s.id === school.id);
-                    const compareBtnText = isCompared ? 'Đang chọn' : 'So sánh';
-                    const compareBtnClass = isCompared 
-                        ? 'bg-emerald-500 text-white' 
-                        : 'bg-slate-100 hover:bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700';
-
-                    card.innerHTML = `
-                        <div>
-                            <!-- Header thẻ -->
-                            <div class="flex items-start justify-between mb-3">
-                                <div class="w-10 h-10 bg-sky-100 dark:bg-slate-800 text-sky-500 rounded-xl flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform">
-                                    <i class="fa-solid ${school.icon} text-md"></i>
-                                </div>
-                                <span class="px-2.5 py-0.5 text-[10px] font-bold rounded-full ${typeColor}">
-                                    ${typeBadge}
-                                </span>
-                            </div>
-
-                            <!-- Tên & Địa chỉ -->
-                            <h4 class="text-base font-extrabold text-slate-800 dark:text-slate-100 mb-1 leading-snug group-hover:text-sky-500 transition-colors">
-                                ${school.name}
-                            </h4>
-                            <p class="text-xs text-slate-400 font-semibold mb-3 flex items-center gap-1">
-                                <i class="fa-solid fa-location-dot"></i> ${provName}
-                            </p>
-                            
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4 line-clamp-3">
-                                ${school.desc}
-                            </p>
-
-                            <!-- Chuyên ngành / Hệ lớp nổi bật -->
-                            <div class="flex flex-wrap gap-1 mb-4">
-                                ${school.majors.slice(0, 3).map(m => `<span class="bg-slate-50 dark:bg-slate-800 text-[10px] text-slate-500 dark:text-slate-400 px-2 py-0.5 rounded-full font-medium border border-slate-100 dark:border-slate-700">${m}</span>`).join('')}
-                                ${school.majors.length > 3 ? `<span class="bg-slate-50 dark:bg-slate-800 text-[10px] text-sky-500 px-1.5 py-0.5 rounded-full font-bold">+${school.majors.length - 3}</span>` : ''}
-                            </div>
-                        </div>
-
-                        <!-- Footer thẻ -->
-                        <div class="flex items-center justify-between border-t border-slate-100/60 dark:border-slate-800/60 pt-3 mt-auto">
-                            <span class="text-xs font-bold text-amber-500 dark:text-amber-400 flex items-center gap-1">
-                                <i class="fa-solid fa-star text-[10px]"></i> Điểm tuyển: ${school.score.split(' ')[0]}
-                            </span>
-                            <div class="flex gap-1.5">
-                                <button onclick="toggleToCompare('${school.id}', event)" class="px-3 py-1.5 rounded-full text-[11px] font-bold transition flex items-center gap-1 ${compareBtnClass}">
-                                    <i class="fa-solid fa-columns"></i> ${compareBtnText}
-                                </button>
-                                <button onclick="openSchoolDetails('${school.id}')" class="px-3 py-1.5 bg-sky-500 hover:bg-sky-600 text-white rounded-full text-[11px] font-bold shadow-sm transition">
-                                    Chi tiết
-                                </button>
-                            </div>
-                        </div>
+            card.innerHTML = `
+                        <!-- Tên trường -->
+                        <h4 class="text-sm md:text-base font-extrabold text-slate-800 dark:text-slate-100 mb-2 leading-snug group-hover:text-sky-500 transition-colors" title="${school.name}">
+                            ${school.name}
+                        </h4>
+                        
+                        <!-- Địa chỉ -->
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed flex items-start gap-1.5">
+                            <i class="fa-solid fa-location-dot mt-0.5 text-sky-500 shrink-0"></i> 
+                            <span>${cleanAddress}</span>
+                        </p>
                     `;
-                    grid.appendChild(card);
-                });
-            }
+            grid.appendChild(card);
+          });
         }
+      }
 
-        // Mở Modal xem thông tin đầy đủ trường học
-        function openSchoolDetails(id) {
-            const school = schoolsDatabase.find(s => s.id === id);
-            if (school) {
-                document.getElementById("modal-title").textContent = school.name;
-                document.getElementById("modal-desc").textContent = school.desc;
-                document.getElementById("modal-tuition").textContent = school.tuitionDisplay;
-                document.getElementById("modal-score").textContent = school.score;
-                document.getElementById("modal-location").textContent = provinces[school.region].find(p => p.id === school.province)?.name || '';
-                document.getElementById("modal-facilities").textContent = school.facilities;
-                document.getElementById("modal-contact").textContent = school.contact;
-
-                // Thêm icon đặc thù của hệ đào tạo vào header
-                const iconContainer = document.getElementById("modal-icon-container");
-                iconContainer.innerHTML = `<i class="fa-solid ${school.icon} text-2xl text-sky-200"></i>`;
-
-                // Badge hệ đào tạo
-                const typeBadge = document.getElementById("modal-type-badge");
-                if (school.type === 'specialized') { typeBadge.textContent = 'Trường Chuyên / Năng khiếu'; typeBadge.className = 'px-2 py-0.5 text-[9px] font-extrabold rounded-full bg-indigo-500/30 text-white uppercase'; }
-                else if (school.type === 'public') { typeBadge.textContent = 'Trường Công lập điểm'; typeBadge.className = 'px-2 py-0.5 text-[9px] font-extrabold rounded-full bg-cyan-500/30 text-white uppercase'; }
-                else { typeBadge.textContent = 'Trường Tư thục / Quốc tế'; typeBadge.className = 'px-2 py-0.5 text-[9px] font-extrabold rounded-full bg-emerald-500/30 text-white uppercase'; }
-
-                // Tag danh sách lớp chuyên / điểm nổi bật
-                const tagContainer = document.getElementById("modal-majors-container");
-                tagContainer.innerHTML = '';
-                school.majors.forEach(m => {
-                    const span = document.createElement("span");
-                    span.className = "bg-sky-100/50 dark:bg-slate-800 text-sky-600 dark:text-sky-300 text-xs px-2.5 py-1 rounded-full font-bold border border-sky-100 dark:border-slate-700";
-                    span.textContent = m;
-                    tagContainer.appendChild(span);
-                });
-
-                // Phương thức xét tuyển
-                const methodsList = document.getElementById("modal-methods-list");
-                methodsList.innerHTML = '';
-                school.methods.forEach(method => {
-                    const li = document.createElement("li");
-                    li.textContent = method;
-                    methodsList.appendChild(li);
-                });
-
-                toggleSchoolModal(true);
-            }
+      // Bật/tắt Modal thông tin trường học
+      function toggleSchoolModal(show) {
+        const modal = document.getElementById("school-modal");
+        if (show) {
+          modal.classList.remove("hidden");
+          document.body.classList.add("overflow-hidden");
+        } else {
+          modal.classList.add("hidden");
+          document.body.classList.remove("overflow-hidden");
         }
+      }
 
-        // Bật/tắt modal chi tiết trường
-        function toggleSchoolModal(show) {
-            const modal = document.getElementById("school-modal");
-            if (show) {
-                modal.classList.remove("hidden");
-            } else {
-                modal.classList.add("hidden");
-            }
+      // Mở Modal xem thông tin đầy đủ trường học
+      function openSchoolDetails(id) {
+        const school = schoolsDatabase.find((s) => s.id === id);
+        if (school) {
+          document.getElementById("modal-title").textContent = school.name;
+          document.getElementById("modal-desc").textContent = school.desc;
+          document.getElementById("modal-tuition").textContent =
+            school.tuitionDisplay;
+          document.getElementById("modal-score").textContent = school.score;
+          document.getElementById("modal-location").textContent =
+            provinces[school.region].find((p) => p.id === school.province)
+              ?.name || "";
+          document.getElementById("modal-facilities").textContent =
+            school.facilities;
+          document.getElementById("modal-contact").textContent = school.contact;
+
+          // Thêm icon đặc thù của hệ đào tạo vào header
+          const iconContainer = document.getElementById("modal-icon-container");
+          iconContainer.innerHTML = `<i class="fa-solid ${school.icon} text-2xl text-sky-200"></i>`;
+
+          // Badge hệ đào tạo
+          const typeBadge = document.getElementById("modal-type-badge");
+          if (school.type === "specialized") {
+            typeBadge.textContent = "Trường Chuyên / Năng khiếu";
+            typeBadge.className =
+              "px-2 py-0.5 text-[9px] font-extrabold rounded-full bg-indigo-500/30 text-white uppercase";
+          } else if (school.type === "public") {
+            typeBadge.textContent = "Trường Công lập / Nội trú";
+            typeBadge.className =
+              "px-2 py-0.5 text-[9px] font-extrabold rounded-full bg-cyan-500/30 text-white uppercase";
+          } else {
+            typeBadge.textContent = "Trường Tư thục / Quốc tế";
+            typeBadge.className =
+              "px-2 py-0.5 text-[9px] font-extrabold rounded-full bg-emerald-500/30 text-white uppercase";
+          }
+
+          // Tag danh sách lớp chuyên / điểm nổi bật
+          const tagContainer = document.getElementById(
+            "modal-majors-container",
+          );
+          tagContainer.innerHTML = "";
+          school.majors.forEach((m) => {
+            const span = document.createElement("span");
+            span.className =
+              "bg-sky-100/50 dark:bg-slate-800 text-sky-600 dark:text-sky-300 text-[11px] px-2.5 py-1 rounded-full font-bold border border-sky-100 dark:border-slate-700";
+            span.textContent = m;
+            tagContainer.appendChild(span);
+          });
+
+          // Phương thức xét tuyển
+          const methodsList = document.getElementById("modal-methods-list");
+          methodsList.innerHTML = "";
+          school.methods.forEach((method) => {
+            const li = document.createElement("li");
+            li.textContent = method;
+            methodsList.appendChild(li);
+          });
+
+          toggleSchoolModal(true);
         }
+      }
 
-        function toggleToCompare(id, event) {
-            event.stopPropagation();
-            const school = schoolsDatabase.find(s => s.id === id);
-            if (!school) return;
+      // Tạo bong bóng tự động bay lơ lửng ngoài màn hình
+      function createAutoBubbles() {
+        const container = document.getElementById("bubble-container");
+        setInterval(() => {
+          const bubble = document.createElement("div");
+          const size = Math.random() * 25 + 5;
+          bubble.className = "bubble";
+          bubble.style.width = `${size}px`;
+          bubble.style.height = `${size}px`;
+          bubble.style.left = `${Math.random() * 100}%`;
 
-            const index = comparedSchools.findIndex(s => s.id === id);
-            
-            if (index > -1) {
-                // Đã có -> xóa khỏi danh sách so sánh
-                comparedSchools.splice(index, 1);
-                createClickBubble(event.clientX, event.clientY);
-                showToast(`Đã bỏ ${school.name} khỏi danh sách so sánh`, "info");
-            } else {
-                // Chưa có -> thêm vào (Giới hạn tối đa 3 trường)
-                if (comparedSchools.length >= 3) {
-                    showToast("Bạn chỉ có thể chọn tối đa 3 trường THPT để thực hiện so sánh!", "warning");
-                    return;
-                }
-                comparedSchools.push(school);
-                showToast(`Đã thêm ${school.name} vào danh sách so sánh`, "success");
-                
-                // Hiệu ứng bong bóng tại nút click
-                for (let i = 0; i < 3; i++) {
-                    setTimeout(() => {
-                        createClickBubble(event.clientX + (Math.random() * 20 - 10), event.clientY + (Math.random() * 20 - 10));
-                    }, i * 100);
-                }
-            }
+          const duration = Math.random() * 4 + 4;
+          bubble.style.animationDuration = `${duration}s`;
 
-            updateComparisonDock();
-            filterSchools(); // Cập nhật trạng thái nút bấm trên danh sách chính
-        }
+          container.appendChild(bubble);
 
-        // Đồng bộ hóa khu vực dock hiển thị phía dưới màn hình
-        function updateComparisonDock() {
-            const dock = document.getElementById("comparison-dock");
-            const dockList = document.getElementById("dock-schools-list");
-            const btnCompare = document.getElementById("btn-compare-now");
+          setTimeout(() => {
+            bubble.remove();
+          }, duration * 1000);
+        }, 1200);
+      }
 
-            dockList.innerHTML = '';
+      // Tạo bong bóng nổ ra khi click chuột
+      function createClickBubble(x, y) {
+        const container = document.getElementById("bubble-container");
+        const bubble = document.createElement("div");
+        const size = Math.random() * 15 + 5;
 
-            if (comparedSchools.length > 0) {
-                dock.classList.remove("translate-y-full");
-                
-                comparedSchools.forEach(school => {
-                    const tag = document.createElement("div");
-                    tag.className = "flex items-center gap-2 bg-sky-50 dark:bg-slate-800 border border-sky-100 dark:border-slate-700 px-3 py-1.5 rounded-full text-xs font-bold text-slate-700 dark:text-slate-200 animate-in fade-in slide-in-from-bottom-2 duration-200";
-                    
-                    const provName = provinces[school.region].find(p => p.id === school.province)?.name || '';
-                    
-                    tag.innerHTML = `
-                        <i class="fa-solid ${school.icon} text-sky-500"></i>
-                        <span class="max-w-[120px] sm:max-w-[180px] truncate">${school.name}</span>
-                        <span class="text-[9px] opacity-60">(${provName})</span>
-                        <button onclick="toggleToCompare('${school.id}', event)" class="text-slate-400 hover:text-rose-500 transition pl-1">
-                            <i class="fa-solid fa-circle-xmark"></i>
-                        </button>
-                    `;
-                    dockList.appendChild(tag);
-                });
+        bubble.className =
+          "absolute rounded-full pointer-events-none bg-sky-200/50 dark:bg-sky-400/20 border border-sky-300/60 dark:border-sky-500/30 transition-all duration-1000 ease-out z-50";
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+        bubble.style.left = `${x - size / 2}px`;
+        bubble.style.top = `${y - size / 2}px`;
 
-                // Cho phép bấm so sánh khi có từ 2 trường trở lên
-                if (comparedSchools.length >= 2) {
-                    btnCompare.removeAttribute("disabled");
-                    btnCompare.className = "px-5 py-2.5 bg-gradient-to-r from-sky-400 via-cyan-400 to-blue-500 text-white font-bold rounded-xl text-xs shadow-md hover:shadow-lg transition cursor-pointer";
-                } else {
-                    btnCompare.setAttribute("disabled", "true");
-                    btnCompare.className = "px-5 py-2.5 bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-800 dark:to-slate-800 text-slate-400 dark:text-slate-600 font-bold rounded-xl text-xs transition cursor-not-allowed";
-                }
-            } else {
-                dock.classList.add("translate-y-full");
-            }
-        }
+        container.appendChild(bubble);
 
-        // Xóa hoàn toàn danh sách so sánh hiện tại
-        function clearComparison() {
-            comparedSchools = [];
-            updateComparisonDock();
-            filterSchools();
-            showToast("Đã xóa toàn bộ danh sách so sánh", "info");
-        }
+        requestAnimationFrame(() => {
+          const moveY = Math.random() * 80 + 40;
+          const moveX = (Math.random() - 0.5) * 60;
+          bubble.style.transform = `translate(${moveX}px, -${moveY}px) scale(1.5)`;
+          bubble.style.opacity = "0";
+        });
 
-        // Mở bảng phân tích so sánh chi tiết
-        function openComparisonModal() {
-            if (comparedSchools.length < 2) return;
-
-            const headersRow = document.getElementById("compare-table-headers");
-            const body = document.getElementById("compare-table-body");
-
-            // Xóa rỗng bảng cũ
-            headersRow.innerHTML = '';
-            body.innerHTML = '';
-
-            // 1. Tạo headers cột tên trường học
-            headersRow.innerHTML = `<th class="py-3 px-4 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase">Tiêu chí</th>`;
-            comparedSchools.forEach(school => {
-                const provName = provinces[school.region].find(p => p.id === school.province)?.name || '';
-                headersRow.innerHTML += `
-                    <th class="py-3 px-4 text-sm font-extrabold text-slate-800 dark:text-slate-100 text-center border-l border-slate-100 dark:border-slate-800">
-                        <div class="flex flex-col items-center gap-1">
-                            <i class="fa-solid ${school.icon} text-sky-500 text-md"></i>
-                            <span class="max-w-[180px] line-clamp-2">${school.name}</span>
-                            <span class="text-[10px] text-slate-400 font-semibold">(${provName})</span>
-                        </div>
-                    </th>
-                `;
-            });
-
-            // 2. Định nghĩa các hàng tiêu chí so sánh
-            const criteria = [
-                { key: 'type', label: 'Loại hình trường', format: val => val === 'specialized' ? 'Trường Chuyên' : val === 'public' ? 'Công lập' : 'Tư thục / Quốc tế' },
-                { key: 'tuitionDisplay', label: 'Học phí / Kỳ học' },
-                { key: 'score', label: 'Điểm chuẩn lớp 10' },
-                { key: 'majors', label: 'Lớp Chuyên / Tổ hợp chính', format: val => `<div class="flex flex-col gap-1 items-center text-center">${val.map(m => `<span class="bg-sky-50 dark:bg-slate-800 text-[10px] text-sky-600 dark:text-sky-300 px-2 py-0.5 rounded-full border border-sky-100 dark:border-slate-700">${m}</span>`).join('')}</div>` },
-                { key: 'methods', label: 'Phương thức thi lớp 10', format: val => `<ul class="list-disc pl-4 text-xs text-left space-y-1">${val.map(m => `<li>${m}</li>`).join('')}</ul>` },
-                { key: 'facilities', label: 'Cơ sở vật chất', format: val => `<p class="text-xs text-slate-500 dark:text-slate-400 text-center max-w-[200px] mx-auto leading-relaxed">${val}</p>` },
-                { key: 'contact', label: 'Thông tin liên hệ', format: val => `<span class="text-[10px] text-slate-400 leading-snug whitespace-pre-line text-center">${val}</span>` }
-            ];
-
-            // 3. Đổ dữ liệu hàng tiêu chí
-            criteria.forEach(crit => {
-                const tr = document.createElement("tr");
-                tr.className = "hover:bg-sky-50/20 dark:hover:bg-slate-800/10 transition";
-                
-                tr.innerHTML = `<td class="py-3 px-4 font-extrabold text-xs text-slate-500 dark:text-slate-400 tracking-wide">${crit.label}</td>`;
-                
-                comparedSchools.forEach(school => {
-                    const rawVal = school[crit.key];
-                    const displayVal = crit.format ? crit.format(rawVal) : rawVal;
-                    tr.innerHTML += `
-                        <td class="py-4 px-4 text-center border-l border-slate-100 dark:border-slate-800 font-semibold text-xs md:text-sm text-slate-700 dark:text-slate-300">
-                            ${displayVal}
-                        </td>
-                    `;
-                });
-                body.appendChild(tr);
-            });
-
-            toggleCompareModal(true);
-        }
-
-        // Bật/tắt modal bảng so sánh
-        function toggleCompareModal(show) {
-            const modal = document.getElementById("compare-modal");
-            if (show) {
-                modal.classList.remove("hidden");
-            } else {
-                modal.classList.add("hidden");
-            }
-        }
-
-        function createAutoBubbles() {
-            const container = document.getElementById('bubble-container');
-            setInterval(() => {
-                const bubble = document.createElement('div');
-                const size = Math.random() * 25 + 5;
-                bubble.className = 'bubble';
-                bubble.style.width = `${size}px`;
-                bubble.style.height = `${size}px`;
-                bubble.style.left = `${Math.random() * 100}%`;
-                
-                const duration = Math.random() * 4 + 4;
-                bubble.style.animationDuration = `${duration}s`;
-                
-                container.appendChild(bubble);
-
-                setTimeout(() => {
-                    bubble.remove();
-                }, duration * 1000);
-            }, 1500);
-        }
-
-        function createClickBubble(x, y) {
-            const container = document.getElementById('bubble-container');
-            const bubble = document.createElement('div');
-            const size = Math.random() * 15 + 5;
-            
-            bubble.className = 'absolute rounded-full pointer-events-none bg-sky-200/50 dark:bg-sky-400/20 border border-sky-300/60 dark:border-sky-500/30 transition-all duration-1000 ease-out';
-            bubble.style.width = `${size}px`;
-            bubble.style.height = `${size}px`;
-            bubble.style.left = `${x - size / 2}px`;
-            bubble.style.top = `${y - size / 2}px`;
-            
-            container.appendChild(bubble);
-
-            requestAnimationFrame(() => {
-                const moveY = Math.random() * 80 + 40;
-                const moveX = (Math.random() - 0.5) * 60;
-                bubble.style.transform = `translate(${moveX}px, -${moveY}px) scale(1.5)`;
-                bubble.style.opacity = '0';
-            });
-
-            setTimeout(() => {
-                bubble.remove();
-            }, 1000);
-        }
+        setTimeout(() => {
+          bubble.remove();
+        }, 1000);
+      }
     </script>
-</body>
+  </body>
 </html>
