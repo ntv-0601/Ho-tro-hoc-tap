@@ -9,7 +9,1704 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background-color: #f0f2f5;
+        background-color: #f0f2f5;<!doctype html>
+<html lang="vi" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tư vấn chọn tổ hợp theo năng lực học tập</title>
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Orbitron:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background: linear-gradient(
+          135deg,
+          #020617 0%,
+          #071e3d 40%,
+          #0d3460 75%,
+          #055075 100%
+        );
+        min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: rgba(15, 23, 42, 0.6);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(14, 165, 233, 0.5);
+        border-radius: 999px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(14, 165, 233, 0.8);
+      }
+
+      /* Glassmorphism styling */
+      .glass-card {
+        background: rgba(15, 23, 42, 0.45);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      }
+
+      .glass-input {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #f8fafc;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .glass-input:focus {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: #38bdf8;
+        box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        outline: none;
+      }
+
+      /* Animated Wave effect */
+      .wave-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+        transform: rotate(180deg);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .waves {
+        position: relative;
+        width: 100%;
+        height: 120px;
+        margin-bottom: -7px; /* Fix for safari gap */
+        min-height: 100px;
+        max-height: 150px;
+      }
+
+      /* Parallax Wave Animation */
+      .parallax > use {
+        animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+      }
+      .parallax > use:nth-child(1) {
+        animation-delay: -2s;
+        animation-duration: 7s;
+        fill: rgba(14, 116, 144, 0.3);
+      }
+      .parallax > use:nth-child(2) {
+        animation-delay: -3s;
+        animation-duration: 10s;
+        fill: rgba(6, 182, 212, 0.2);
+      }
+      .parallax > use:nth-child(3) {
+        animation-delay: -4s;
+        animation-duration: 13s;
+        fill: rgba(14, 165, 233, 0.15);
+      }
+      .parallax > use:nth-child(4) {
+        animation-delay: -5s;
+        animation-duration: 20s;
+        fill: rgba(3, 105, 161, 0.4);
+      }
+
+      @keyframes move-forever {
+        0% {
+          transform: translate3d(-90px, 0, 0);
+        }
+        100% {
+          transform: translate3d(85px, 0, 0);
+        }
+      }
+
+      /* Rising Bubbles Background */
+      .bubble {
+        position: absolute;
+        bottom: -20px;
+        background: rgba(56, 189, 248, 0.15);
+        border-radius: 50%;
+        animation: rise 15s infinite ease-in;
+        pointer-events: none;
+      }
+
+      @keyframes rise {
+        0% {
+          bottom: -20px;
+          transform: translateX(0) scale(1);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.6;
+        }
+        90% {
+          opacity: 0.6;
+        }
+        100% {
+          bottom: 110vh;
+          transform: translateX(100px) scale(1.5);
+          opacity: 0;
+        }
+      }
+
+      /* Styled buttons */
+      .btn-gradient-cyan {
+        background: linear-gradient(
+          135deg,
+          #06b6d4 0%,
+          #0891b2 50%,
+          #0e7490 100%
+        );
+        box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .btn-gradient-cyan:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(6, 182, 212, 0.6);
+        filter: brightness(1.1);
+      }
+
+      .btn-gradient-blue {
+        background: linear-gradient(
+          135deg,
+          #3b82f6 0%,
+          #2563eb 50%,
+          #1d4ed8 100%
+        );
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .btn-gradient-blue:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+        filter: brightness(1.1);
+      }
+
+      .btn-gradient-green {
+        background: linear-gradient(
+          135deg,
+          #10b981 0%,
+          #059669 50%,
+          #047857 100%
+        );
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .btn-gradient-green:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+        filter: brightness(1.1);
+      }
+
+      .btn-gradient-red {
+        background: linear-gradient(
+          135deg,
+          #ef4444 0%,
+          #dc2626 50%,
+          #b91c1c 100%
+        );
+        box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .btn-gradient-red:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
+        filter: brightness(1.1);
+      }
+    </style>
+  </head>
+  <body class="text-slate-100 flex flex-col justify-between min-height-screen">
+    <!-- Bubble Background Elements -->
+    <div
+      class="bubble-container absolute inset-0 overflow-hidden pointer-events-none z-0"
+    >
+      <div
+        class="bubble"
+        style="
+          left: 10%;
+          width: 40px;
+          height: 40px;
+          animation-duration: 12s;
+          animation-delay: 1s;
+        "
+      ></div>
+      <div
+        class="bubble"
+        style="
+          left: 30%;
+          width: 20px;
+          height: 20px;
+          animation-duration: 18s;
+          animation-delay: 3s;
+        "
+      ></div>
+      <div
+        class="bubble"
+        style="
+          left: 55%;
+          width: 50px;
+          height: 50px;
+          animation-duration: 14s;
+          animation-delay: 0s;
+        "
+      ></div>
+      <div
+        class="bubble"
+        style="
+          left: 75%;
+          width: 30px;
+          height: 30px;
+          animation-duration: 16s;
+          animation-delay: 5s;
+        "
+      ></div>
+      <div
+        class="bubble"
+        style="
+          left: 90%;
+          width: 25px;
+          height: 25px;
+          animation-duration: 10s;
+          animation-delay: 2s;
+        "
+      ></div>
+    </div>
+
+    <!-- MAIN WRAPPER CONTAINER -->
+    <div
+      class="container mx-auto px-4 pt-12 pb-8 max-w-6xl relative z-10 flex-grow"
+    >
+      <!-- HEADER PANEL -->
+      <header class="text-center mb-8 pt-4">
+        <div
+          class="inline-flex items-center gap-3 bg-cyan-950/40 border border-cyan-500/30 px-6 py-2 rounded-full mb-4"
+        >
+          <i
+            class="fa-solid fa-compass-drafting text-cyan-400 animate-pulse text-xl"
+          ></i>
+          <span
+            class="text-cyan-300 font-semibold tracking-wider text-sm uppercase"
+            >Hệ Thống Trực Quan Hóa Hướng Nghiệp</span
+          >
+        </div>
+        <h1
+          class="text-3xl md:text-5xl font-extrabold tracking-normal leading-normal text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-200 to-indigo-300 drop-shadow-lg py-3"
+        >
+          TƯ VẤN CHỌN TỔ HỢP MÔN
+        </h1>
+        <p class="text-slate-400 mt-2 max-w-2xl mx-auto text-sm md:text-base">
+          Phân tích năng lực học tập THCS thông minh để đề xuất tổ hợp môn Trung
+          học phổ thông tối ưu nhất cho học sinh.
+        </p>
+      </header>
+
+      <!-- MAIN CONTENT GRID -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- COLUMN 1: INTERACTIVE GRADES INPUT (lg:span-7) -->
+        <div
+          class="lg:col-span-7 glass-card p-5 md:p-6 rounded-2xl border border-slate-700/50"
+        >
+          <div
+            class="flex items-center justify-between mb-5 border-b border-slate-700/60 pb-3"
+          >
+            <h2 class="text-lg font-bold text-cyan-300 flex items-center gap-2">
+              <i class="fa-solid fa-graduation-cap text-cyan-400"></i> Bảng Điểm
+              Trung Học Cơ Sở
+            </h2>
+            <span class="text-xs text-slate-400 italic"
+              >Nhập điểm từ 0.0 - 10.0</span
+            >
+          </div>
+
+          <div
+            class="overflow-x-auto rounded-xl border border-slate-700/40 bg-slate-900/30"
+          >
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr
+                  class="bg-gradient-to-r from-slate-800 to-slate-900 text-cyan-200 font-semibold text-sm border-b border-slate-700/80"
+                >
+                  <th class="p-3">Môn học</th>
+                  <th class="p-3 text-center">Lớp 6</th>
+                  <th class="p-3 text-center">Lớp 7</th>
+                  <th class="p-3 text-center">Lớp 8</th>
+                  <th class="p-3 text-center">Lớp 9</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800/60 text-sm">
+                <!-- Subject Rows -->
+                <tr class="hover:bg-cyan-950/20 transition-colors">
+                  <td class="p-3 font-medium text-slate-200">
+                    <i class="fa-solid fa-book-open text-orange-400 mr-2"></i
+                    >Ngữ văn
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="van6"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="van7"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="van8"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="van9"
+                      placeholder="-"
+                    />
+                  </td>
+                </tr>
+                <tr class="hover:bg-cyan-950/20 transition-colors">
+                  <td class="p-3 font-medium text-slate-200">
+                    <i class="fa-solid fa-calculator text-blue-400 mr-2"></i
+                    >Toán
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="toan6"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="toan7"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="toan8"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="toan9"
+                      placeholder="-"
+                    />
+                  </td>
+                </tr>
+                <tr class="hover:bg-cyan-950/20 transition-colors">
+                  <td class="p-3 font-medium text-slate-200">
+                    <i class="fa-solid fa-language text-emerald-400 mr-2"></i
+                    >Ngoại ngữ 1
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="anh6"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="anh7"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="anh8"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="anh9"
+                      placeholder="-"
+                    />
+                  </td>
+                </tr>
+                <tr class="hover:bg-cyan-950/20 transition-colors">
+                  <td class="p-3 font-medium text-slate-200">
+                    <i
+                      class="fa-solid fa-scale-balanced text-purple-400 mr-2"
+                    ></i
+                    >GDCD
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="gdcd6"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="gdcd7"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="gdcd8"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="gdcd9"
+                      placeholder="-"
+                    />
+                  </td>
+                </tr>
+                <tr class="hover:bg-cyan-950/20 transition-colors">
+                  <td class="p-3 font-medium text-slate-200">
+                    <i class="fa-solid fa-earth-americas text-teal-400 mr-2"></i
+                    >Lịch sử - Địa lý
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="lsdl6"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="lsdl7"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="lsdl8"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="lsdl9"
+                      placeholder="-"
+                    />
+                  </td>
+                </tr>
+                <tr class="hover:bg-cyan-950/20 transition-colors">
+                  <td class="p-3 font-medium text-slate-200">
+                    <i class="fa-solid fa-atom text-rose-400 mr-2"></i>Khoa học
+                    tự nhiên
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="khtn6"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="khtn7"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="khtn8"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="khtn9"
+                      placeholder="-"
+                    />
+                  </td>
+                </tr>
+                <tr class="hover:bg-cyan-950/20 transition-colors">
+                  <td class="p-3 font-medium text-slate-200">
+                    <i class="fa-solid fa-gears text-yellow-500 mr-2"></i>Công
+                    nghệ
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="cn6"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="cn7"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="cn8"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="cn9"
+                      placeholder="-"
+                    />
+                  </td>
+                </tr>
+                <tr class="hover:bg-cyan-950/20 transition-colors">
+                  <td class="p-3 font-medium text-slate-200">
+                    <i class="fa-solid fa-laptop-code text-cyan-400 mr-2"></i
+                    >Tin học
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="th6"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="th7"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="th8"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="th9"
+                      placeholder="-"
+                    />
+                  </td>
+                </tr>
+                <tr class="hover:bg-cyan-950/20 transition-colors">
+                  <td class="p-3 font-medium text-slate-200">
+                    <i class="fa-solid fa-palette text-pink-400 mr-2"></i>Nghệ
+                    thuật
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="nghethuat6"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="nghethuat7"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="nghethuat8"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="nghethuat9"
+                      placeholder="-"
+                    />
+                  </td>
+                </tr>
+                <tr class="hover:bg-cyan-950/20 transition-colors">
+                  <td class="p-3 font-medium text-slate-200">
+                    <i class="fa-solid fa-compass text-pink-300 mr-2"></i>HĐ
+                    trải nghiệm
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="hoatdong6"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="hoatdong7"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="hoatdong8"
+                      placeholder="-"
+                    />
+                  </td>
+                  <td class="p-2">
+                    <input
+                      class="glass-input rounded-lg w-full py-1.5 px-2 text-center text-sm font-semibold"
+                      type="number"
+                      step="0.1"
+                      min="0"
+                      max="10"
+                      id="hoatdong9"
+                      placeholder="-"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- COLUMN 2: TOOLS, EXCEL ACTIONS & ANALYSIS RESULTS (lg:span-5) -->
+        <div class="lg:col-span-5 flex flex-col gap-6">
+          <!-- Tool/File Controller Glassmorphic Panel -->
+          <div
+            class="glass-card p-5 md:p-6 rounded-2xl border border-slate-700/50"
+          >
+            <h2
+              class="text-lg font-bold text-cyan-300 flex items-center gap-2 mb-4"
+            >
+              <i class="fa-solid fa-sliders text-cyan-400"></i> Điều Khiển &
+              Nhập Liệu
+            </h2>
+
+            <div class="space-y-4">
+              <!-- Upload Excel Section -->
+              <div
+                class="flex flex-col gap-2 p-4 bg-slate-900/40 rounded-xl border border-slate-800"
+              >
+                <span
+                  class="text-xs text-slate-400 uppercase tracking-wider font-semibold"
+                  >Tải lên bảng điểm từ file</span
+                >
+                <div class="flex items-center gap-2 w-full">
+                  <label
+                    for="excelFile"
+                    class="flex-shrink-0 cursor-pointer bg-slate-800 hover:bg-slate-700 text-slate-100 hover:text-cyan-300 border border-slate-700 hover:border-cyan-500/50 py-2.5 px-4 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all"
+                  >
+                    <i
+                      class="fa-solid fa-file-excel text-emerald-400 text-sm"
+                    ></i>
+                    Chọn file điểm
+                  </label>
+                  <span
+                    id="fileName"
+                    class="text-xs text-slate-400 truncate italic"
+                    >Chưa chọn file nào</span
+                  >
+                </div>
+              </div>
+
+              <!-- Primary Action Grid -->
+              <div class="grid grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  id="mau2"
+                  class="btn-gradient-cyan text-white py-3 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2"
+                >
+                  <i class="fa-solid fa-cloud-arrow-up"></i> Đọc File Excel
+                </button>
+                <a
+                  href="https://docs.google.com/spreadsheets/d/12LE1T-fZDEmBTrQCzmQNjRHgfTy9X5Cy/edit?usp=sharing&ouid=113662691499014817150&rtpof=true&sd=true"
+                  download
+                  class="btn-gradient-green text-white py-3 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 text-center"
+                >
+                  <i class="fa-solid fa-download"></i> Tải File Mẫu
+                </a>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  id="tuvan"
+                  class="btn-gradient-blue text-white py-3 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2"
+                >
+                  <i class="fa-solid fa-wand-magic-sparkles"></i> Tư Vấn Ngay
+                </button>
+                <button
+                  type="button"
+                  id="xoa"
+                  class="btn-gradient-red text-white py-3 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2"
+                >
+                  <i class="fa-solid fa-trash-can"></i> Xóa Dữ Liệu
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Analysis Output Panel -->
+          <div
+            class="glass-card p-5 md:p-6 rounded-2xl border border-slate-700/50 flex-grow flex flex-col min-h-[350px]"
+          >
+            <h2
+              class="text-lg font-bold text-cyan-300 flex items-center gap-2 mb-4"
+            >
+              <i class="fa-solid fa-brain text-cyan-400"></i> Báo Cáo Tư Vấn
+            </h2>
+            <div
+              class="result-container flex-grow relative bg-slate-950/60 border border-slate-800 rounded-xl overflow-hidden flex flex-col p-4"
+            >
+              <div
+                id="kqtuvan"
+                class="result-box text-slate-200 text-sm leading-relaxed overflow-y-auto max-h-[320px] whitespace-pre-wrap font-sans"
+              >
+                <div
+                  class="flex flex-col items-center justify-center text-center h-full text-slate-500 py-10"
+                >
+                  <i
+                    class="fa-solid fa-info-circle text-3xl text-cyan-500/20 mb-3 animate-bounce"
+                  ></i>
+                  <p class="font-medium">
+                    Vui lòng nhập điểm hoặc tải file điểm Excel, sau đó ấn nút
+                    "Tư Vấn Ngay" để xem phân tích hướng nghiệp.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RADAR CHART CONTAINER -->
+      <div class="mt-8 glass-card p-6 rounded-2xl border border-slate-700/50">
+        <div
+          class="flex items-center gap-2 mb-4 border-b border-slate-700/60 pb-3"
+        >
+          <h2 class="text-lg font-bold text-cyan-300 flex items-center gap-2">
+            <i class="fa-solid fa-chart-pie text-cyan-400"></i> Biểu Đồ Radar
+            Đánh Giá Năng Lực Học Tập
+          </h2>
+        </div>
+        <div class="chart-wrapper w-full h-[380px] relative">
+          <canvas id="abilityChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- WAVE ANIMATION FOOTER (SÓNG BIỂN XANH ĐỘNG) -->
+    <div class="wave-container">
+      <svg
+        class="waves"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28"
+        preserveAspectRatio="none"
+        shape-rendering="auto"
+      >
+        <defs>
+          <path
+            id="gentle-wave"
+            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+          />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- FOOTER COPYRIGHTS -->
+    <footer
+      class="relative z-20 bg-slate-950/70 border-t border-slate-800 text-center py-4 text-xs text-slate-400 font-medium"
+    >
+      <div class="container mx-auto px-4">
+        © 2026 Hệ Thống Tư Vấn Chọn Tổ Hợp Môn THPT. Giao diện thiết kế đại
+        dương động cao cấp.
+      </div>
+    </footer>
+
+    <!-- HIDDEN EXCEL FILE INPUT -->
+    <input type="file" id="excelFile" class="hidden" accept=".xls,.xlsx,.csv" />
+
+    <!-- CUSTOM TOAST CONTAINER (REPLACES BROWSER ALERT) -->
+    <div
+      id="toast-container"
+      class="fixed top-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"
+    ></div>
+
+    <!-- JAVASCRIPT CONTROL LOGIC -->
+    <script>
+      let selectedFile;
+      let abilityChart = null;
+
+      // Custom Floating Toast Notification System (Sleek replacing basic system alert)
+      function showToast(message, type = "info") {
+        const container = document.getElementById("toast-container");
+        const toast = document.createElement("div");
+        toast.className = `pointer-events-auto flex items-center gap-3 px-5 py-4 rounded-xl shadow-2xl border transition-all duration-300 translate-x-12 opacity-0 max-w-sm`;
+
+        // Dynamic classes based on type
+        if (type === "success") {
+          toast.className +=
+            " bg-emerald-950/95 border-emerald-500/50 text-emerald-200";
+          toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 text-xl"></i> <div>${message}</div>`;
+        } else if (type === "error") {
+          toast.className += " bg-rose-950/95 border-rose-500/50 text-rose-200";
+          toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-rose-400 text-xl"></i> <div>${message}</div>`;
+        } else {
+          toast.className += " bg-cyan-950/95 border-cyan-500/50 text-cyan-200";
+          toast.innerHTML = `<i class="fa-solid fa-circle-info text-cyan-400 text-xl"></i> <div>${message}</div>`;
+        }
+
+        container.appendChild(toast);
+
+        // Trigger animation transition
+        setTimeout(() => {
+          toast.classList.remove("translate-x-12", "opacity-0");
+        }, 10);
+
+        // Auto remove toast
+        setTimeout(() => {
+          toast.classList.add("translate-x-12", "opacity-0");
+          setTimeout(() => {
+            toast.remove();
+          }, 300);
+        }, 4000);
+      }
+
+      // Handle custom file upload display
+      document
+        .getElementById("excelFile")
+        .addEventListener("change", function (e) {
+          selectedFile = e.target.files[0];
+          document.getElementById("fileName").textContent = selectedFile
+            ? selectedFile.name
+            : "Chưa chọn file nào";
+          if (selectedFile) {
+            showToast(`Đã nhận file: ${selectedFile.name}`, "info");
+          }
+        });
+
+      document.getElementById("mau2").addEventListener("click", function () {
+        if (!selectedFile) {
+          showToast("Vui lòng chọn một file Excel trước.", "error");
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          try {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: "array" });
+
+            if (workbook.SheetNames.length === 0) {
+              showToast("File Excel trống hoặc lỗi cấu trúc.", "error");
+              return;
+            }
+
+            const sheet = workbook.Sheets[workbook.SheetNames[0]];
+            const jsonData = XLSX.utils.sheet_to_json(sheet);
+
+            if (jsonData.length === 0) {
+              showToast(
+                "File Excel không có dữ liệu hoặc sai định dạng mẫu.",
+                "error",
+              );
+              return;
+            }
+
+            const row = jsonData[0];
+
+            // Mapping Excel keys to DOM input IDs
+            const fields = [
+              { id: "van6", key: "Van6" },
+              { id: "van7", key: "Van7" },
+              { id: "van8", key: "Van8" },
+              { id: "van9", key: "Van9" },
+              { id: "toan6", key: "Toan6" },
+              { id: "toan7", key: "Toan7" },
+              { id: "toan8", key: "Toan8" },
+              { id: "toan9", key: "Toan9" },
+              { id: "anh6", key: "Anh6" },
+              { id: "anh7", key: "Anh7" },
+              { id: "anh8", key: "Anh8" },
+              { id: "anh9", key: "Anh9" },
+              { id: "gdcd6", key: "GDCD6" },
+              { id: "gdcd7", key: "GDCD7" },
+              { id: "gdcd8", key: "GDCD8" },
+              { id: "gdcd9", key: "GDCD9" },
+              { id: "lsdl6", key: "LSDL6" },
+              { id: "lsdl7", key: "LSDL7" },
+              { id: "lsdl8", key: "LSDL8" },
+              { id: "lsdl9", key: "LSDL9" },
+              { id: "khtn6", key: "KHTN6" },
+              { id: "khtn7", key: "KHTN7" },
+              { id: "khtn8", key: "KHTN8" },
+              { id: "khtn9", key: "KHTN9" },
+              { id: "cn6", key: "CongNghe6" },
+              { id: "cn7", key: "CongNghe7" },
+              { id: "cn8", key: "CongNghe8" },
+              { id: "cn9", key: "CongNghe9" },
+              { id: "th6", key: "Tin6" },
+              { id: "th7", key: "Tin7" },
+              { id: "th8", key: "Tin8" },
+              { id: "th9", key: "Tin9" },
+              { id: "nghethuat6", key: "NgheThuat6" },
+              { id: "nghethuat7", key: "NgheThuat7" },
+              { id: "nghethuat8", key: "NgheThuat8" },
+              { id: "nghethuat9", key: "NgheThuat9" },
+              { id: "hoatdong6", key: "HoatDong6" },
+              { id: "hoatdong7", key: "HoatDong7" },
+              { id: "hoatdong8", key: "HoatDong8" },
+              { id: "hoatdong9", key: "HoatDong9" },
+            ];
+
+            let filledFields = 0;
+            fields.forEach((field) => {
+              const value = row[field.key];
+              if (value !== undefined && value !== null && value !== "") {
+                document.getElementById(field.id).value = value;
+                filledFields++;
+              }
+            });
+
+            showToast(
+              `Đọc file thành công! Đã điền ${filledFields} trường điểm học tập.`,
+              "success",
+            );
+
+            // Auto trigger consultation view after reading
+            document.getElementById("tuvan").click();
+          } catch (error) {
+            console.error("Lỗi khi đọc file:", error);
+            showToast(
+              "Có lỗi xảy ra khi xử lý file: " + error.message,
+              "error",
+            );
+          }
+        };
+
+        reader.onerror = function () {
+          showToast("Lỗi khi đọc tệp tin. Thử lại.", "error");
+        };
+
+        reader.readAsArrayBuffer(selectedFile);
+      });
+
+      // Render and style custom radar capability chart
+      function updateAbilityChart(subjects, scores) {
+        const ctx = document.getElementById("abilityChart").getContext("2d");
+
+        if (abilityChart) {
+          abilityChart.destroy();
+        }
+
+        abilityChart = new Chart(ctx, {
+          type: "radar",
+          data: {
+            labels: subjects,
+            datasets: [
+              {
+                label: "Năng lực học tập bình quân",
+                data: scores,
+                backgroundColor: "rgba(6, 182, 212, 0.25)", // Transparent Cyan
+                borderColor: "rgba(6, 182, 212, 1)", // Solid Cyan
+                borderWidth: 2.5,
+                pointBackgroundColor: "rgba(56, 189, 248, 1)",
+                pointBorderColor: "#ffffff",
+                pointHoverBackgroundColor: "#ffffff",
+                pointHoverBorderColor: "rgba(6, 182, 212, 1)",
+                pointRadius: 4,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              r: {
+                grid: {
+                  color: "rgba(255, 255, 255, 0.1)",
+                },
+                angleLines: {
+                  color: "rgba(255, 255, 255, 0.15)",
+                },
+                pointLabels: {
+                  color: "#e2e8f0",
+                  font: {
+                    family: "'Plus Jakarta Sans'",
+                    size: 11,
+                    weight: "600",
+                  },
+                },
+                suggestedMin: 0,
+                suggestedMax: 10,
+                ticks: {
+                  stepSize: 2,
+                  backdropColor: "transparent",
+                  color: "rgba(255, 255, 255, 0.5)",
+                },
+              },
+            },
+            plugins: {
+              legend: {
+                labels: {
+                  color: "#f1f5f9",
+                  font: {
+                    family: "'Plus Jakarta Sans'",
+                    size: 12,
+                    weight: "500",
+                  },
+                },
+              },
+            },
+          },
+        });
+      }
+
+      document.getElementById("tuvan").onclick = function () {
+        // Retrieve grade inputs
+        let van6 = parseFloat(document.getElementById("van6").value) || 0;
+        let van7 = parseFloat(document.getElementById("van7").value) || 0;
+        let van8 = parseFloat(document.getElementById("van8").value) || 0;
+        let van9 = parseFloat(document.getElementById("van9").value) || 0;
+        let toan6 = parseFloat(document.getElementById("toan6").value) || 0;
+        let toan7 = parseFloat(document.getElementById("toan7").value) || 0;
+        let toan8 = parseFloat(document.getElementById("toan8").value) || 0;
+        let toan9 = parseFloat(document.getElementById("toan9").value) || 0;
+        let anh6 = parseFloat(document.getElementById("anh6").value) || 0;
+        let anh7 = parseFloat(document.getElementById("anh7").value) || 0;
+        let anh8 = parseFloat(document.getElementById("anh8").value) || 0;
+        let anh9 = parseFloat(document.getElementById("anh9").value) || 0;
+        let gdcd6 = parseFloat(document.getElementById("gdcd6").value) || 0;
+        let gdcd7 = parseFloat(document.getElementById("gdcd7").value) || 0;
+        let gdcd8 = parseFloat(document.getElementById("gdcd8").value) || 0;
+        let gdcd9 = parseFloat(document.getElementById("gdcd9").value) || 0;
+        let lsdl6 = parseFloat(document.getElementById("lsdl6").value) || 0;
+        let lsdl7 = parseFloat(document.getElementById("lsdl7").value) || 0;
+        let lsdl8 = parseFloat(document.getElementById("lsdl8").value) || 0;
+        let lsdl9 = parseFloat(document.getElementById("lsdl9").value) || 0;
+        let khtn6 = parseFloat(document.getElementById("khtn6").value) || 0;
+        let khtn7 = parseFloat(document.getElementById("khtn7").value) || 0;
+        let khtn8 = parseFloat(document.getElementById("khtn8").value) || 0;
+        let khtn9 = parseFloat(document.getElementById("khtn9").value) || 0;
+        let cn6 = parseFloat(document.getElementById("cn6").value) || 0;
+        let cn7 = parseFloat(document.getElementById("cn7").value) || 0;
+        let cn8 = parseFloat(document.getElementById("cn8").value) || 0;
+        let cn9 = parseFloat(document.getElementById("cn9").value) || 0;
+        let th6 = parseFloat(document.getElementById("th6").value) || 0;
+        let th7 = parseFloat(document.getElementById("th7").value) || 0;
+        let th8 = parseFloat(document.getElementById("th8").value) || 0;
+        let th9 = parseFloat(document.getElementById("th9").value) || 0;
+        let nghethuat6 =
+          parseFloat(document.getElementById("nghethuat6").value) || 0;
+        let nghethuat7 =
+          parseFloat(document.getElementById("nghethuat7").value) || 0;
+        let nghethuat8 =
+          parseFloat(document.getElementById("nghethuat8").value) || 0;
+        let nghethuat9 =
+          parseFloat(document.getElementById("nghethuat9").value) || 0;
+        let hoatdong6 =
+          parseFloat(document.getElementById("hoatdong6").value) || 0;
+        let hoatdong7 =
+          parseFloat(document.getElementById("hoatdong7").value) || 0;
+        let hoatdong8 =
+          parseFloat(document.getElementById("hoatdong8").value) || 0;
+        let hoatdong9 =
+          parseFloat(document.getElementById("hoatdong9").value) || 0;
+
+        const calculateAverage = (scores) => {
+          const validScores = scores.filter((s) => s > 0);
+          return validScores.length > 0
+            ? validScores.reduce((sum, s) => sum + s, 0) / validScores.length
+            : 0;
+        };
+
+        let tbVan = calculateAverage([van6, van7, van8, van9]);
+        let tbToan = calculateAverage([toan6, toan7, toan8, toan9]);
+        let tbAnh = calculateAverage([anh6, anh7, anh8, anh9]);
+        let tbGDCD = calculateAverage([gdcd6, gdcd7, gdcd8, gdcd9]);
+        let tbLSDL = calculateAverage([lsdl6, lsdl7, lsdl8, lsdl9]);
+        let tbKHTN = calculateAverage([khtn6, khtn7, khtn8, khtn9]);
+        let tbCN = calculateAverage([cn6, cn7, cn8, cn9]);
+        let tbTH = calculateAverage([th6, th7, th8, th9]);
+
+        // Cập nhật biểu đồ năng lực học tập
+        const subjects = [
+          "Ngữ văn",
+          "Toán",
+          "Ngoại ngữ",
+          "KHTN",
+          "LSDL",
+          "Công nghệ",
+          "Tin học",
+        ];
+        const scores = [tbVan, tbToan, tbAnh, tbKHTN, tbLSDL, tbCN, tbTH];
+
+        updateAbilityChart(subjects, scores);
+
+        // Core Consultation Decision Engine
+        let allSubjects = [
+          van6,
+          van7,
+          van8,
+          van9,
+          toan6,
+          toan7,
+          toan8,
+          toan9,
+          anh6,
+          anh7,
+          anh8,
+          anh9,
+          gdcd6,
+          gdcd7,
+          gdcd8,
+          gdcd9,
+          lsdl6,
+          lsdl7,
+          lsdl8,
+          lsdl9,
+          khtn6,
+          khtn7,
+          khtn8,
+          khtn9,
+          cn6,
+          cn7,
+          cn8,
+          cn9,
+          th6,
+          th7,
+          th8,
+          th9,
+          nghethuat6,
+          nghethuat7,
+          nghethuat8,
+          nghethuat9,
+          hoatdong6,
+          hoatdong7,
+          hoatdong8,
+          hoatdong9,
+        ];
+
+        let tbAll = calculateAverage(allSubjects);
+        let subjectsScores = [
+          { name: "Ngữ văn", score: tbVan },
+          { name: "Toán", score: tbToan },
+          { name: "Ngoại ngữ", score: tbAnh },
+          { name: "Giáo dục công dân", score: tbGDCD },
+          { name: "Lịch sử - Địa lý", score: tbLSDL },
+          { name: "Khoa học tự nhiên", score: tbKHTN },
+          { name: "Công nghệ", score: tbCN },
+          { name: "Tin học", score: tbTH },
+        ];
+
+        let highScoringSubjects = subjectsScores.filter(
+          (subject) => subject.score >= 6.5,
+        );
+
+        let resultBox = document.getElementById("kqtuvan");
+        resultBox.innerHTML = ""; // Clear loader/previous data
+
+        // Check if no grades entered
+        if (tbAll === 0) {
+          showToast("Vui lòng nhập điểm số trước khi bấm Tư vấn.", "error");
+          resultBox.innerHTML = `
+            <div class="flex flex-col items-center justify-center text-center h-full text-rose-300/80 py-10">
+              <i class="fa-solid fa-triangle-exclamation text-3xl mb-3 text-rose-500"></i>
+              <p class="font-bold text-base">CHƯA CÓ DỮ LIỆU ĐIỂM SỐ</p>
+              <p class="text-xs text-slate-400 mt-1">Hệ thống không thể thực hiện phân tích khi tất cả điểm đều bằng 0.</p>
+            </div>`;
+          return;
+        }
+
+        let outputHTML = "";
+
+        if (highScoringSubjects.length < 2) {
+          subjectsScores.sort((a, b) => b.score - a.score);
+          let topSubject = subjectsScores[0];
+          let secondSubject = subjectsScores[1];
+          let recommendedVocations = [];
+
+          if (topSubject.score < 5.0) {
+            recommendedVocations.push(
+              "Hiện tại điểm số các môn đều thấp, bạn nên tập trung cải thiện học lực trước khi chọn nghề.",
+            );
+          } else {
+            switch (topSubject.name) {
+              case "Toán":
+              case "Khoa học tự nhiên":
+                recommendedVocations.push(
+                  "Sửa chữa điện",
+                  "Cơ khí lắp ráp",
+                  "Chế biến thực phẩm",
+                );
+                if (
+                  secondSubject.name === "Công nghệ" &&
+                  secondSubject.score >= 6.0
+                ) {
+                  recommendedVocations.push("May công nghiệp");
+                }
+                break;
+              case "Công nghệ":
+                recommendedVocations.push(
+                  "May công nghiệp",
+                  "Cơ khí lắp ráp",
+                  "Hàn cơ khí",
+                );
+                break;
+              case "Tin học":
+                recommendedVocations.push(
+                  "Sửa chữa thiết bị điện tử",
+                  "Lắp ráp máy tính",
+                  "Cài đặt phần mềm cơ bản",
+                );
+                break;
+              case "Ngữ văn":
+              case "Giáo dục công dân":
+                recommendedVocations.push(
+                  "Nhân viên dịch vụ khách hàng",
+                  "Thư ký văn phòng",
+                  "Hỗ trợ hành chính",
+                );
+                break;
+              case "Ngoại ngữ":
+                recommendedVocations.push(
+                  "Nhân viên lễ tân",
+                  "Hỗ trợ du lịch cơ bản",
+                  "Nhân viên bán hàng",
+                );
+                break;
+              case "Lịch sử - Địa lý":
+                recommendedVocations.push(
+                  "Hỗ trợ du lịch địa phương",
+                  "Nhân viên bảo vệ môi trường",
+                  "Công nhân nông nghiệp",
+                );
+                break;
+            }
+          }
+
+          // Build Vocational HTML Output
+          outputHTML += `
+            <div class="space-y-4">
+              <div class="bg-cyan-900/30 border-l-4 border-cyan-400 p-3 rounded-r-lg">
+                <h3 class="text-base font-bold text-cyan-300 uppercase tracking-wide flex items-center gap-2">
+                  <i class="fa-solid fa-graduation-cap text-cyan-400"></i> Hướng Nghiệp Thực Hành Nghề
+                </h3>
+                <p class="text-xs text-slate-300 mt-1">Đạt điểm trung bình chung học tập: <span class="text-cyan-300 font-bold">${tbAll.toFixed(2)}</span></p>
+              </div>
+
+              <div class="bg-amber-950/30 border border-amber-500/20 p-4 rounded-xl">
+                <h4 class="text-xs font-bold text-amber-400 uppercase tracking-widest mb-2 flex items-center gap-2">
+                  <i class="fa-solid fa-briefcase"></i> Gợi Ý Ngành Nghề Đào Tạo:
+                </h4>
+                <ul class="space-y-1.5 text-xs text-slate-300">
+          `;
+          recommendedVocations.forEach((vocation) => {
+            outputHTML += `<li class="flex items-center gap-2"><i class="fa-solid fa-chevron-right text-amber-500 text-[10px]"></i> ${vocation}</li>`;
+          });
+          outputHTML += `
+                </ul>
+              </div>
+
+              <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                <h4 class="text-xs font-bold text-slate-300 uppercase tracking-widest mb-3">Phân tích điểm số trung bình các môn:</h4>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
+                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Ngữ văn:</span> <span class="font-bold text-slate-200">${tbVan.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Toán:</span> <span class="font-bold text-slate-200">${tbToan.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Ngoại ngữ:</span> <span class="font-bold text-slate-200">${tbAnh.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>KHTN:</span> <span class="font-bold text-slate-200">${tbKHTN.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>LSDL:</span> <span class="font-bold text-slate-200">${tbLSDL.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Công nghệ:</span> <span class="font-bold text-slate-200">${tbCN.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Tin học:</span> <span class="font-bold text-slate-200">${tbTH.toFixed(2)}</span></div>
+                </div>
+              </div>
+
+              <div class="text-xs text-slate-400 bg-slate-950/40 p-3 rounded-lg border border-slate-900 leading-relaxed italic">
+                💡 <strong>Lời khuyên:</strong> Điểm số hiện tại của bạn cho thấy bạn phù hợp với các chương trình đào tạo nghề cơ bản. Hãy chọn ngành nghề dựa trên sở thích kết hợp với thực tế và tiếp tục cố gắng cải thiện kết quả học tập.
+              </div>
+            </div>
+          `;
+        } else {
+          // Combined subject consultation algorithm
+          const toHop = [
+            {
+              name: "A00 (Toán, Vật lý, Hóa học)",
+              subjects: ["Toán", "KHTN"],
+              weights: [0.6, 0.4],
+              check: () => tbToan >= 6.5 && tbKHTN >= 6.5,
+            },
+            {
+              name: "B00 (Toán, Hóa học, Sinh học)",
+              subjects: ["Toán", "KHTN"],
+              weights: [0.5, 0.5],
+              check: () => tbToan >= 6.5 && tbKHTN >= 6.5,
+            },
+            {
+              name: "A01 (Toán, Vật lý, Tiếng Anh)",
+              subjects: ["Toán", "KHTN", "Anh"],
+              weights: [0.4, 0.3, 0.3],
+              check: () => tbToan >= 6.5 && tbKHTN >= 6.5 && tbAnh >= 6.5,
+            },
+            {
+              name: "D01 (Toán, Ngữ văn, Tiếng Anh)",
+              subjects: ["Toán", "Văn", "Anh"],
+              weights: [0.4, 0.3, 0.3],
+              check: () => tbToan >= 6.5 && tbVan >= 6.5 && tbAnh >= 6.5,
+            },
+            {
+              name: "C00 (Ngữ văn, Lịch sử, Địa lý)",
+              subjects: ["Văn", "LSDL"],
+              weights: [0.5, 0.5],
+              check: () => tbVan >= 6.5 && tbLSDL >= 6.5,
+            },
+          ];
+
+          let diemToHop = toHop
+            .filter((comb) => comb.check())
+            .map((comb) => {
+              let diem = 0;
+              comb.subjects.forEach((subject, index) => {
+                switch (subject) {
+                  case "Văn":
+                    diem += tbVan * comb.weights[index];
+                    break;
+                  case "Toán":
+                    diem += tbToan * comb.weights[index];
+                    break;
+                  case "Anh":
+                    diem += tbAnh * comb.weights[index];
+                    break;
+                  case "GDCD":
+                    diem += tbGDCD * comb.weights[index];
+                    break;
+                  case "LSDL":
+                    diem += tbLSDL * comb.weights[index];
+                    break;
+                  case "KHTN":
+                    diem += tbKHTN * comb.weights[index];
+                    break;
+                  case "CN":
+                    diem += tbCN * comb.weights[index];
+                    break;
+                  case "TH":
+                    diem += tbTH * comb.weights[index];
+                    break;
+                }
+              });
+              return { name: comb.name, diem: diem };
+            });
+
+          diemToHop.sort((a, b) => b.diem - a.diem);
+
+          outputHTML += `
+            <div class="space-y-4">
+              <div class="bg-gradient-to-r from-blue-950/50 to-cyan-950/30 border-l-4 border-cyan-400 p-3 rounded-r-lg">
+                <h3 class="text-base font-bold text-cyan-300 uppercase tracking-wide flex items-center gap-2">
+                  <i class="fa-solid fa-star text-yellow-400"></i> Tư Vấn Khối Tổ Hợp Môn
+                </h3>
+                <p class="text-xs text-slate-300 mt-1">Đạt điểm trung bình chung học tập: <span class="text-cyan-300 font-bold">${tbAll.toFixed(2)}</span></p>
+              </div>
+          `;
+
+          if (diemToHop.length === 0) {
+            outputHTML += `
+              <div class="bg-rose-950/20 border border-rose-500/20 p-4 rounded-xl text-center">
+                <p class="text-xs text-rose-300 font-semibold">⚠️ Không tìm thấy tổ hợp xét tuyển phù hợp do không có đủ môn trên 6.5 điểm.</p>
+                <p class="text-[11px] text-slate-400 mt-2">Khuyên bạn nên tích cực cải thiện điểm trung bình các bộ môn chính để đạt chuẩn.</p>
+              </div>
+            `;
+          } else {
+            outputHTML += `
+              <!-- Top Recommended Combination Option -->
+              <div class="bg-cyan-950/40 border border-cyan-500/30 p-4 rounded-xl">
+                <span class="text-[10px] font-bold text-cyan-400 uppercase tracking-widest block mb-1">⭐ ĐỀ XUẤT PHÙ HỢP NHẤT</span>
+                <h4 class="text-base font-extrabold text-white">${diemToHop[0].name}</h4>
+                <p class="text-xs text-slate-300 mt-1">Điểm chỉ số năng lực tích hợp: <span class="text-cyan-300 font-extrabold">${diemToHop[0].diem.toFixed(2)}</span></p>
+              </div>
+            `;
+
+            if (diemToHop.length > 1) {
+              outputHTML += `
+                <!-- Second Recommended Combination Option -->
+                <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl">
+                  <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">🥈 ĐỀ XUẤT LỰA CHỌN 2</span>
+                  <h4 class="text-sm font-bold text-slate-200">${diemToHop[1].name}</h4>
+                  <p class="text-xs text-slate-400 mt-1">Điểm chỉ số năng lực tích hợp: <span class="text-slate-300 font-bold">${diemToHop[1].diem.toFixed(2)}</span></p>
+                </div>
+              `;
+            }
+          }
+
+          outputHTML += `
+              <!-- Grades breakdown list -->
+              <div class="bg-slate-900/40 p-4 rounded-xl border border-slate-800/80">
+                <h4 class="text-xs font-bold text-slate-300 uppercase tracking-widest mb-3">Điểm số trung bình tích lũy:</h4>
+                <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
+                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Ngữ văn:</span> <span class="font-bold text-slate-200">${tbVan.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Toán:</span> <span class="font-bold text-slate-200">${tbToan.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Ngoại ngữ:</span> <span class="font-bold text-slate-200">${tbAnh.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>KHTN:</span> <span class="font-bold text-slate-200">${tbKHTN.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>LSDL:</span> <span class="font-bold text-slate-200">${tbLSDL.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Công nghệ:</span> <span class="font-bold text-slate-200">${tbCN.toFixed(2)}</span></div>
+                  <div class="flex justify-between border-b border-slate-800 pb-1"><span>Tin học:</span> <span class="font-bold text-slate-200">${tbTH.toFixed(2)}</span></div>
+                </div>
+              </div>
+
+              <div class="text-[11px] text-cyan-300 bg-cyan-950/20 p-3 rounded-lg border border-cyan-800/30 leading-relaxed italic">
+                💡 <strong>Gợi ý hướng đi:</strong> Học sinh nên tập trung cao độ vào nhóm môn thi trọng điểm ở khối thi tốt nhất phía trên. Trao đổi thêm với chuyên viên hướng nghiệp của nhà trường để chọn mã ngành nghề đại học thích hợp.
+              </div>
+            </div>
+          `;
+        }
+
+        resultBox.innerHTML = outputHTML;
+        showToast(
+          "Hệ thống đã hoàn tất phân tích định hướng học tập!",
+          "success",
+        );
+      };
+
+      document.getElementById("xoa").onclick = function () {
+        const inputElements = document.querySelectorAll(".glass-input");
+        inputElements.forEach((input) => {
+          input.value = "";
+        });
+
+        // Reset results box
+        document.getElementById("kqtuvan").innerHTML = `
+          <div class="flex flex-col items-center justify-center text-center h-full text-slate-500 py-10">
+            <i class="fa-solid fa-info-circle text-3xl text-cyan-500/20 mb-3"></i>
+            <p class="font-medium">Vui lòng nhập điểm hoặc tải file điểm Excel, sau đó ấn nút "Tư Vấn Ngay" để xem phân tích hướng nghiệp.</p>
+          </div>`;
+
+        document.getElementById("fileName").textContent = "Chưa chọn file nào";
+        document.getElementById("excelFile").value = "";
+        selectedFile = null;
+
+        // Reset chart data
+        if (abilityChart) {
+          abilityChart.destroy();
+          abilityChart = null;
+        }
+
+        showToast("Đã xóa toàn bộ điểm số hiện có.", "info");
+      };
+
+      // Auto Render Initial Empty Chart on Page Load
+      window.onload = function () {
+        const initialSubjects = [
+          "Ngữ văn",
+          "Toán",
+          "Ngoại ngữ",
+          "KHTN",
+          "LSDL",
+          "Công nghệ",
+          "Tin học",
+        ];
+        const initialScores = [0, 0, 0, 0, 0, 0, 0];
+        updateAbilityChart(initialSubjects, initialScores);
+      };
+    </script>
+  </body>
+</html>
+
         display: flex;
         justify-content: center;
         align-items: flex-start;
