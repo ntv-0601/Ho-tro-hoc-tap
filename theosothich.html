@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Định Hướng Nghề Nghiệp Theo Sở Thích - Ocean Waves</title>
+    <title>Định Hướng Khối Học Cấp 3 Theo Sở Thích - Ocean Waves</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -148,7 +148,7 @@
           <i data-lucide="arrow-left" class="w-4 h-4"></i> Trang chủ
         </a>
 
-        <!-- Icon sóng biển nổi bật -->
+        <!-- Icon định hướng nổi bật -->
         <div
           class="inline-flex items-center justify-center p-4 bg-white/20 backdrop-blur-md rounded-full mb-4 shadow-lg animate-bounce"
         >
@@ -156,15 +156,16 @@
         </div>
 
         <h1
-          class="text-3xl md:text-5xl font-black tracking-tight mb-3 drop-shadow"
+          class="text-3xl md:text-5xl font-black tracking-tight mb-3 drop-shadow uppercase"
         >
-          TÌM KIẾM NGHỀ NGHIỆP THEO SỞ THÍCH
+          Chọn Khối Lớp 10 Theo Sở Thích
         </h1>
         <p
-          class="text-sky-100 max-w-xl mx-auto text-base md:text-lg font-medium drop-shadow-sm"
+          class="text-sky-100 max-w-2xl mx-auto text-base md:text-lg font-medium drop-shadow-sm"
         >
-          Lựa chọn những điểm mạnh và sở thích cá nhân của bạn, chúng tôi sẽ đề
-          xuất con đường nghề nghiệp tối ưu nhất.
+          Bạn chuẩn bị vào Cấp 3 và bối rối trước hàng chục tổ hợp môn học lựa
+          chọn? Hãy tích chọn sở thích của bạn để tìm ra khối học (A, B, C,
+          D...) lý tưởng nhất nhé!
         </p>
       </div>
 
@@ -209,7 +210,7 @@
 
     <!-- Main Content -->
     <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full z-10">
-      <!-- BƯỚC 1: Chọn sở thích của bạn -->
+      <!-- BƯỚC 1: Chọn thế mạnh & sở thích học tập -->
       <section
         class="glass-card rounded-3xl p-6 mb-10 border border-sky-100 shadow-md"
       >
@@ -218,16 +219,16 @@
         >
           <i data-lucide="sparkles" class="w-6 h-6 text-sky-500"></i>
           <h2 class="text-xl font-bold text-slate-800">
-            Bước 1: Chọn những việc bạn thích hoặc tự tin nhất
+            Bước 1: Chọn những môn học hoặc hoạt động bạn có hứng thú nhất
           </h2>
         </div>
 
         <p class="text-sm text-slate-500 mb-4">
-          Bạn có thể chọn một hoặc nhiều thẻ sở thích dưới đây để hệ thống tính
-          toán độ tương thích của ngành nghề:
+          Hãy nhấp chọn những sở thích phản ánh chân thực nhất năng khiếu hoặc
+          niềm đam mê của bạn ở cấp THCS:
         </p>
 
-        <!-- Danh sách các thẻ tag sở thích để bấm chọn -->
+        <!-- Danh sách các thẻ tag sở thích học tập -->
         <div class="flex flex-wrap gap-2.5" id="interest-tags-container">
           <!-- Sẽ được sinh tự động bởi JS -->
         </div>
@@ -239,8 +240,9 @@
           <span
             id="selected-count-badge"
             class="text-sm text-sky-600 font-bold bg-sky-50 px-3 py-1.5 rounded-full"
-            >Đã chọn: 0 sở thích</span
           >
+            Đã chọn: 0 sở thích học tập
+          </span>
           <button
             onclick="clearSelectedInterests()"
             class="text-sm text-slate-400 hover:text-rose-500 transition-colors font-semibold flex items-center gap-1"
@@ -250,25 +252,64 @@
         </div>
       </section>
 
-      <!-- BƯỚC 2: Tìm kiếm và Kết quả -->
+      <!-- BƯỚC 2: Kết quả Khối học gợi ý -->
       <section>
         <div
-          class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6"
+          class="flex flex-col lg:flex-row items-center justify-between gap-4 mb-6"
         >
           <div class="flex items-center gap-2">
-            <i data-lucide="briefcase" class="w-6 h-6 text-cyan-500"></i>
+            <i data-lucide="graduation-cap" class="w-6 h-6 text-cyan-500"></i>
             <h2 class="text-xl font-bold text-slate-800">
-              Bước 2: Kết quả nghề nghiệp phù hợp
+              Bước 2: Các khối học và Tổ hợp lớp 10 đề xuất
             </h2>
           </div>
 
-          <!-- Ô tìm kiếm bằng chữ -->
-          <div class="relative w-full md:w-80">
+          <!-- Bộ lọc nhanh theo khối chính -->
+          <div class="flex flex-wrap gap-2 justify-center" id="block-filters">
+            <button
+              onclick="filterBlock('all')"
+              id="filter-all"
+              class="px-4 py-2 rounded-full text-xs font-bold transition shadow-sm bg-cyan-500 text-white"
+            >
+              Tất cả
+            </button>
+            <button
+              onclick="filterBlock('A')"
+              id="filter-A"
+              class="px-4 py-2 rounded-full text-xs font-bold transition shadow-sm bg-white hover:bg-cyan-50 text-slate-600 border border-slate-200"
+            >
+              Khối A
+            </button>
+            <button
+              onclick="filterBlock('B')"
+              id="filter-B"
+              class="px-4 py-2 rounded-full text-xs font-bold transition shadow-sm bg-white hover:bg-cyan-50 text-slate-600 border border-slate-200"
+            >
+              Khối B
+            </button>
+            <button
+              onclick="filterBlock('C')"
+              id="filter-C"
+              class="px-4 py-2 rounded-full text-xs font-bold transition shadow-sm bg-white hover:bg-cyan-50 text-slate-600 border border-slate-200"
+            >
+              Khối C
+            </button>
+            <button
+              onclick="filterBlock('D')"
+              id="filter-D"
+              class="px-4 py-2 rounded-full text-xs font-bold transition shadow-sm bg-white hover:bg-cyan-50 text-slate-600 border border-slate-200"
+            >
+              Khối D
+            </button>
+          </div>
+
+          <!-- Ô tìm kiếm khối học bằng chữ -->
+          <div class="relative w-full lg:w-80">
             <input
               type="text"
               id="search-input"
               oninput="handleSearch()"
-              placeholder="Tìm tên nghề nghiệp hoặc lĩnh vực..."
+              placeholder="Tìm tên khối (ví dụ: A01, B00, Giáo dục công dân...)..."
               class="w-full px-4 py-2.5 pl-10 rounded-full border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-300 transition bg-white/80 shadow-inner text-sm"
             />
             <i
@@ -278,7 +319,7 @@
           </div>
         </div>
 
-        <!-- Grid kết quả nghề nghiệp -->
+        <!-- Grid kết quả khối học -->
         <div
           id="careers-grid"
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -297,17 +338,17 @@
             <i data-lucide="search-code" class="w-8 h-8"></i>
           </div>
           <h3 class="text-lg font-bold text-slate-700 mb-1">
-            Không tìm thấy ngành nghề phù hợp
+            Không tìm thấy khối học phù hợp
           </h3>
           <p class="text-slate-500 text-sm max-w-sm">
-            Hãy thử chọn thêm một vài sở thích khác hoặc thay đổi từ khóa tìm
-            kiếm của bạn.
+            Hãy thử chọn thêm một vài sở thích học tập khác hoặc chỉnh sửa bộ
+            lọc để khám phá thêm các định hướng bổ trợ.
           </p>
         </div>
       </section>
     </main>
 
-    <!-- Modal Chi Tiết Lộ Trình Nghề Nghiệp -->
+    <!-- Modal Chi Tiết Tổ Hợp Và Định Hướng Khối Học -->
     <div
       id="career-modal"
       class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-opacity"
@@ -323,12 +364,12 @@
             class="text-xl font-extrabold flex items-center gap-2"
             id="modal-title"
           >
-            Tên Nghề Nghiệp
+            Tên Khối Học
           </h3>
           <span
             id="modal-category-badge"
             class="px-2.5 py-1 text-xs font-bold rounded-full bg-white/20 text-white ml-2"
-            >Danh mục</span
+            >Hướng đi</span
           >
           <button
             onclick="toggleModal(false)"
@@ -344,7 +385,7 @@
             <h4
               class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1"
             >
-              Mô tả công việc
+              Giới thiệu định hướng khối học
             </h4>
             <p
               id="modal-desc"
@@ -359,8 +400,8 @@
               <h4
                 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1"
               >
-                <i data-lucide="coins" class="w-4 h-4 text-amber-500"></i> Lương
-                trung bình
+                <i data-lucide="book-open" class="w-4 h-4 text-emerald-500"></i>
+                Môn cốt lõi
               </h4>
               <p
                 id="modal-salary"
@@ -371,11 +412,8 @@
               <h4
                 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1"
               >
-                <i
-                  data-lucide="graduation-cap"
-                  class="w-4 h-4 text-sky-500"
-                ></i>
-                Ngành học gợi ý
+                <i data-lucide="award" class="w-4 h-4 text-sky-500"></i> Ngành
+                Đại học đích
               </h4>
               <p
                 id="modal-majors"
@@ -388,8 +426,8 @@
             <h4
               class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1"
             >
-              <i data-lucide="milestone" class="w-4 h-4 text-emerald-500"></i>
-              Lộ trình thăng tiến
+              <i data-lucide="milestone" class="w-4 h-4 text-amber-500"></i>
+              Nhóm môn lựa chọn đề xuất (Lớp 10)
             </h4>
             <p
               id="modal-roadmap"
@@ -401,8 +439,8 @@
             <h4
               class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1"
             >
-              <i data-lucide="building-2" class="w-4 h-4 text-cyan-500"></i> Các
-              trường đào tạo hàng đầu
+              <i data-lucide="brain-circuit" class="w-4 h-4 text-cyan-500"></i>
+              Lời khuyên học tốt từ đầu cấp 3
             </h4>
             <p
               id="modal-schools"
@@ -426,261 +464,844 @@
     <!-- Footer gợn sóng -->
     <footer
       class="mt-auto bg-slate-100 border-t border-slate-200 py-6 text-center text-slate-500 text-sm z-10"
-    ></footer>
+    >
+      <p class="flex items-center justify-center gap-1">
+        Hệ thống hỗ trợ lựa chọn khối học THPT © 2026.
+      </p>
+    </footer>
 
     <!-- JS Logic -->
     <script>
-      // Khởi tạo danh mục các sở thích để người dùng tích chọn
+      // Danh mục các sở thích để học sinh lớp 9 chuẩn bị lên lớp 10 tích chọn
       const interestsList = [
         {
-          id: "programming",
-          label: "💻 Lập trình & Công nghệ",
-          category: "tech",
-        },
-        { id: "art", label: "🎨 Mỹ thuật & Thiết kế", category: "creative" },
-        {
-          id: "writing",
-          label: "✍️ Viết lách & Sáng tác",
-          category: "creative",
+          id: "math",
+          label: "🧮 Thích giải toán & tư duy logic",
+          category: "science",
         },
         {
-          id: "speaking",
-          label: "🗣️ Thuyết trình & Giao tiếp",
-          category: "social",
-        },
-        { id: "numbers", label: "📊 Tính toán & Số liệu", category: "logical" },
-        {
-          id: "research",
-          label: "🧬 Nghiên cứu khoa học",
-          category: "logical",
+          id: "physics",
+          label: "⚡ Tò mò về điện, cơ học, vật lí",
+          category: "science",
         },
         {
-          id: "helping",
-          label: "🤝 Giúp đỡ, tư vấn tâm lý",
-          category: "social",
+          id: "chem",
+          label: "🧪 Thích thí nghiệm hóa học, liên kết chất",
+          category: "science",
         },
         {
-          id: "business",
-          label: "💼 Quản lý & Kinh doanh",
-          category: "management",
+          id: "bio",
+          label: "🌱 Yêu thích sinh học, y khoa, động thực vật",
+          category: "science",
         },
         {
-          id: "camera",
-          label: "📸 Quay phim & Chụp ảnh",
-          category: "creative",
+          id: "literature",
+          label: "✍️ Cảm thụ thơ văn, viết lách, văn học",
+          category: "humanities",
         },
         {
-          id: "languages",
-          label: "🌐 Ngoại ngữ & Dịch thuật",
-          category: "social",
+          id: "history",
+          label: "⏳ Tìm tòi lịch sử, văn hóa xã hội cổ xưa",
+          category: "humanities",
         },
         {
-          id: "nature",
-          label: "🌱 Sinh học & Môi trường",
-          category: "logical",
+          id: "geography",
+          label: "🗺️ Thích bản đồ, địa lí tự nhiên & dân cư",
+          category: "humanities",
         },
-        { id: "sports", label: "🏃 Thể thao & Vận động", category: "active" },
+        {
+          id: "english",
+          label: "🌐 Thích học từ vựng, nghe nói tiếng Anh",
+          category: "languages",
+        },
+        {
+          id: "gdcd",
+          label: "⚖️ Quan tâm đạo đức, pháp luật (GDCD)",
+          category: "humanities",
+        },
+        {
+          id: "khtn",
+          label: "🔬 Thích khám phá Khoa học Tự nhiên tổng hợp",
+          category: "science",
+        },
+        {
+          id: "khxh",
+          label: "🏛️ Say mê các môn Khoa học Xã hội tổng hợp",
+          category: "humanities",
+        },
       ];
 
-      // Cơ sở dữ liệu ngành nghề đầy đủ
+      // Cơ sở dữ liệu tất cả các khối tuyển sinh do người dùng cung cấp
       const careersDatabase = [
+        // --- KHỐI A ---
         {
           id: 1,
-          title: "Kỹ Sư Phần Mềm (Developer)",
-          desc: "Thiết kế, lập trình và duy trì các hệ điều hành, website, app di động hoặc cơ sở dữ liệu hệ thống.",
-          category: "Khoa học & Công nghệ",
-          categoryType: "tech",
-          icon: "code",
-          tags: ["programming", "logical", "research"],
-          skills: ["Tư duy thuật toán", "Lập trình", "Giải quyết vấn đề"],
-          majors: "Công nghệ thông tin, Khoa học Máy tính",
-          salary: "15,000,000 - 45,000,000 VNĐ",
+          title: "Khối A00 (Toán, Vật lí, Hóa học)",
+          desc: "Định hướng Khoa học Kỹ thuật & Công nghệ. Phù hợp tuyệt đối với những bạn có tư duy logic cao, yêu thích tính toán và thực hành vật lý, hóa học.",
+          category: "Khối A",
+          categoryType: "A",
+          icon: "binary",
+          tags: ["math", "physics", "chem"],
+          skills: ["Tư duy thuật toán", "Giải quyết vấn đề", "Kiên trì"],
+          majors:
+            "Công nghệ thông tin, Kỹ thuật điện, Công nghệ hóa học, Xây dựng",
+          salary: "Toán, Vật lí, Hóa học",
           roadmap:
-            "Lập trình viên tập sự -> Junior Developer -> Senior Developer -> Technical Lead hoặc Software Architect.",
+            "Môn lựa chọn lớp 10: Vật lí, Hóa học, Tin học, Công nghệ (Thiết kế công nghiệp).",
           schools:
-            "Đại học Bách Khoa, ĐHQG Hà Nội/TP.HCM, Học viện Bưu chính Viễn thông.",
+            "Tập trung giải bài tập bản chất từ đầu lớp 10; chú trọng thực hành các chuyên đề khó như Cơ học và Hóa vô cơ nâng cao.",
         },
         {
           id: 2,
-          title: "Thiết Kế Đồ Họa (Graphic Designer)",
-          desc: "Sử dụng các công cụ mỹ thuật số để thiết kế ấn phẩm truyền thông, bao bì, nhận diện thương hiệu cho các nhãn hàng.",
-          category: "Nghệ thuật & Sáng tạo",
-          categoryType: "creative",
-          icon: "palette",
-          tags: ["art", "creative", "camera"],
-          skills: [
-            "Bố cục & Màu sắc",
-            "Adobe Photoshop/Illustrator",
-            "Tư duy thẩm mỹ",
-          ],
-          majors: "Thiết kế đồ họa, Mỹ thuật công nghiệp",
-          salary: "10,000,000 - 25,000,000 VNĐ",
+          title: "Khối A01 (Toán, Vật lí, Tiếng Anh)",
+          desc: "Định hướng Công nghệ cao & Hội nhập Quốc tế. Khối học cực kỳ 'hot' mở ra cơ hội việc làm toàn cầu và cập nhật công nghệ mới nhất.",
+          category: "Khối A",
+          categoryType: "A",
+          icon: "cpu",
+          tags: ["math", "physics", "english"],
+          skills: ["Năng lực số", "Ngoại ngữ tốt", "Phân tích số liệu"],
+          majors:
+            "Khoa học máy tính, Trí tuệ nhân tạo (AI), Kỹ thuật điện tử, Hệ thống nhúng",
+          salary: "Toán, Vật lí, Tiếng Anh",
           roadmap:
-            "Junior Designer -> Senior Designer -> Art Director -> Creative Director.",
+            "Môn lựa chọn lớp 10: Vật lí, Tin học, Công nghệ, kết hợp ôn luyện chứng chỉ ngoại ngữ sớm.",
           schools:
-            "Đại học Mỹ thuật Công nghiệp, Đại học Kiến trúc, Đại học FPT.",
+            "Tận dụng lợi thế tiếng Anh để đọc tài liệu công nghệ nước ngoài; học chắc lý thuyết Vật lí lớp 10 và phần Đại số.",
         },
         {
           id: 3,
-          title: "Chuyên Viên Marketing Số (Digital Marketer)",
-          desc: "Xây dựng chiến dịch quảng cáo trực tuyến, tối ưu hóa công cụ tìm kiếm và quản lý nội dung mạng xã hội để tiếp cận khách hàng tiềm năng.",
-          category: "Kinh doanh & Quản lý",
-          categoryType: "management",
-          icon: "trending-up",
-          tags: ["business", "writing", "speaking"],
-          skills: [
-            "Phân tích thị trường",
-            "Quảng cáo Facebook/Google Ads",
-            "Sáng tạo nội dung",
-          ],
-          majors: "Marketing, Quản trị kinh doanh",
-          salary: "12,000,000 - 30,000,000 VNĐ",
+          title: "Khối A02 (Toán, Vật lí, Sinh học)",
+          desc: "Giao thoa giữa Vật lý kỹ thuật và Khoa học sự sống. Thích hợp nghiên cứu thiết bị y tế hoặc nông nghiệp ứng dụng công nghệ cao.",
+          category: "Khối A",
+          categoryType: "A",
+          icon: "activity",
+          tags: ["math", "physics", "bio"],
+          skills: ["Logic hệ thống", "Am hiểu cơ học", "Kiến thức tế bào"],
+          majors: "Kỹ thuật y sinh, Nông nghiệp công nghệ cao, Lý sinh học",
+          salary: "Toán, Vật lí, Sinh học",
           roadmap:
-            "Marketing Executive -> Senior Executive -> Marketing Manager -> CMO (Giám đốc Marketing).",
+            "Môn lựa chọn lớp 10: Vật lí, Sinh học, Công nghệ trồng trọt.",
           schools:
-            "Đại học Kinh tế Quốc dân, Đại học Thương mại, Đại học Ngoại thương.",
+            "Rèn luyện khả năng tích hợp kiến thức; ứng dụng các định luật Vật lý vào phân tích cấu trúc cơ học sinh học.",
         },
         {
           id: 4,
-          title: "Nhà Biên Tập / Sáng Tạo Nội Dung (Content Creator)",
-          desc: "Sáng tác kịch bản, viết bài viết chuẩn SEO cho blog/mạng xã hội hoặc lập kế hoạch nội dung video sáng tạo trên TikTok/YouTube.",
-          category: "Nghệ thuật & Sáng tạo",
-          categoryType: "creative",
-          icon: "pen-tool",
-          tags: ["writing", "creative", "languages"],
-          skills: [
-            "Storytelling (Kể chuyện)",
-            "Kỹ năng viết tốt",
-            "Nhanh nhạy xu hướng xã hội",
-          ],
-          majors: "Báo chí, Ngữ văn, Truyền thông đa phương tiện",
-          salary: "8,000,000 - 20,000,000 VNĐ",
+          title: "Khối A03 (Toán, Vật lí, Lịch sử)",
+          desc: "Sự kết hợp độc đáo giữa tư duy tự nhiên nhạy bén và hiểu biết tiến trình phát triển xã hội, phục vụ các ngành nghiên cứu định lượng.",
+          category: "Khối A",
+          categoryType: "A",
+          icon: "landmark",
+          tags: ["math", "physics", "history"],
+          skills: ["Phân tích chuỗi", "Logic toán học", "Tư duy lịch sử"],
+          majors:
+            "Sư phạm Vật lý - Lịch sử, Khảo cổ học kỹ thuật, Bản đồ học lịch sử",
+          salary: "Toán, Vật lí, Lịch sử",
           roadmap:
-            "Content Writer -> Content Planner -> Content Manager -> Head of Content.",
-          schools: "Học viện Báo chí và Tuyên truyền, Đại học KHXH&NV.",
+            "Môn lựa chọn lớp 10: Vật lí, Lịch sử, Giáo dục Kinh tế và Pháp luật.",
+          schools:
+            "Học sử theo sơ đồ tư duy để giải phóng trí nhớ, dành thời gian rèn luyện bài tập cơ học Vật lý lớp 10.",
         },
         {
           id: 5,
-          title: "Chuyên Gia Phân Tích Dữ Liệu (Data Analyst)",
-          desc: "Thu thập, làm sạch và dịch thuật các con số thống kê khổng lồ thành thông tin có ích giúp doanh nghiệp ra quyết định kinh doanh chuẩn xác.",
-          category: "Khoa học & Công nghệ",
-          categoryType: "tech",
-          icon: "bar-chart-3",
-          tags: ["numbers", "logical", "research"],
+          title: "Khối A04 (Toán, Vật lí, Địa lí)",
+          desc: "Khối học tuyệt vời cho các ngành khoa học Trái Đất, quản lý đất đai và nghiên cứu địa lý khí quyển.",
+          category: "Khối A",
+          categoryType: "A",
+          icon: "globe",
+          tags: ["math", "physics", "geography"],
           skills: [
-            "SQL/Python",
-            "Thống kê toán học",
-            "Sử dụng Power BI/Tableau",
+            "Sử dụng bản đồ",
+            "Phân tích không gian",
+            "Giải toán đại số",
           ],
-          majors: "Hệ thống thông tin quản lý, Thống kê dữ liệu, Toán ứng dụng",
-          salary: "15,000,000 - 35,000,000 VNĐ",
-          roadmap:
-            "Junior Analyst -> Senior Data Analyst -> Data Analytics Manager -> Chief Data Officer.",
+          majors:
+            "Cát địa chính, Khí tượng thủy văn, Quy hoạch đô thị, Quản lý tài nguyên",
+          salary: "Toán, Vật lí, Địa lí",
+          roadmap: "Môn lựa chọn lớp 10: Vật lí, Địa lí, Công nghệ.",
           schools:
-            "Đại học Bách Khoa, Đại học Kinh tế Quốc dân, Học viện Công nghệ Bưu chính Viễn thông.",
+            "Kết hợp quan sát thực tiễn tự nhiên địa lý với các định luật vật lý về động học, lực học để đạt kết quả tốt nhất.",
         },
         {
           id: 6,
-          title: "Chuyên Viên Quan Hệ Công Chúng (PR Specialist)",
-          desc: "Xây dựng hình ảnh thương hiệu tích cực, thiết lập mối quan hệ với báo chí, đối tác truyền thông và giải quyết các khủng hoảng phát sinh.",
-          category: "Xã hội & Truyền thông",
-          categoryType: "social",
-          icon: "users",
-          tags: ["speaking", "languages", "helping"],
-          skills: [
-            "Giao tiếp thuyết phục",
-            "Xử lý tình huống khủng hoảng",
-            "Ngoại ngữ trôi chảy",
-          ],
-          majors: "Quan hệ công chúng, Quan hệ quốc tế",
-          salary: "12,000,000 - 28,000,000 VNĐ",
-          roadmap: "PR Executive -> PR Account Manager -> PR Director.",
+          title: "Khối A05 (Toán, Hóa học, Lịch sử)",
+          desc: "Tổ hợp dành cho các bạn học tốt Hóa học nhưng có niềm yêu thích đặc biệt đối với nghiên cứu dòng thời gian và tài liệu lịch sử.",
+          category: "Khối A",
+          categoryType: "A",
+          icon: "beaker",
+          tags: ["math", "chem", "history"],
+          skills: ["Hóa phân tích", "Nghiên cứu tài liệu cổ", "Logic toán"],
+          majors:
+            "Khảo cổ học (phân tích đồng vị), Sư phạm liên môn, Bảo tồn di sản",
+          salary: "Toán, Hóa học, Lịch sử",
+          roadmap:
+            "Môn lựa chọn lớp 10: Hóa học, Lịch sử, Thiết kế công nghiệp.",
           schools:
-            "Học viện Báo chí và Tuyên truyền, Đại học RMIT, Đại học KHXH&NV.",
+            "Học kỹ các phản ứng hóa học cơ bản và hệ thống sự kiện lịch sử theo sơ đồ thời gian.",
         },
         {
           id: 7,
-          title: "Nhà Tâm Lý Học Học Đường",
-          desc: "Lắng nghe, tư vấn tinh thần, giải quyết các khó khăn tâm lý, định hướng hành vi cho học sinh hoặc hỗ trợ phụ huynh thấu hiểu con cái.",
-          category: "Y tế & Sức khỏe",
-          categoryType: "social",
-          icon: "heart-handshake",
-          tags: ["helping", "speaking", "research"],
+          title: "Khối A06 (Toán, Hóa học, Địa lí)",
+          desc: "Khối học hướng đến môi trường, quản lý đất trồng và hóa chất nông nghiệp tự nhiên.",
+          category: "Khối A",
+          categoryType: "A",
+          icon: "shovel",
+          tags: ["math", "chem", "geography"],
           skills: [
-            "Lắng nghe thấu cảm",
-            "Kiến thức tâm lý học hành vi",
-            "Bảo mật thông tin khách hàng",
+            "Phân tích hóa thổ nhưỡng",
+            "Đọc bản đồ phân bổ",
+            "Tính toán hóa học",
           ],
-          majors: "Tâm lý học, Giáo dục đặc biệt",
-          salary: "10,000,000 - 20,000,000 VNĐ",
+          majors: "Khoa học môi trường, Địa chất hóa học, Nông nghệ thổ nhưỡng",
+          salary: "Toán, Hóa học, Địa lí",
           roadmap:
-            "Chuyên viên tâm lý trường học -> Trưởng phòng tham vấn -> Chuyên gia trị liệu độc lập.",
-          schools: "Đại học Sư phạm Hà Nội/TP.HCM, Đại học KHXH&NV.",
+            "Môn lựa chọn lớp 10: Hóa học, Địa lí, Công nghệ trồng trọt.",
+          schools:
+            "Đọc thêm sách báo về biến đổi khí hậu và ô nhiễm nguồn nước để gia tăng kiến thức thực tế môn Địa và Hóa.",
         },
         {
           id: 8,
-          title: "Biên Tập Viên Video / Làm Phim (Video Editor)",
-          desc: "Chỉnh sửa hình ảnh thô, lồng ghép âm thanh, kỹ xảo để hoàn thiện các video clip, phim quảng cáo ngắn hoặc phim tài liệu.",
-          category: "Nghệ thuật & Sáng tạo",
-          categoryType: "creative",
-          icon: "film",
-          tags: ["camera", "art", "creative"],
-          skills: [
-            "Premiere, After Effects",
-            "Cảm thụ nhịp điệu & âm nhạc",
-            "Tư duy kể chuyện bằng hình ảnh",
-          ],
-          majors: "Công nghệ điện ảnh, Truyền thông đa phương tiện",
-          salary: "10,000,000 - 25,000,000 VNĐ",
+          title: "Khối A07 (Toán, Lịch sử, Địa lí)",
+          desc: "Bản lề chuyển giao giữa khối xã hội và toán học, mở ra cơ hội phát triển du lịch địa phương bền vững dựa trên phân tích số liệu.",
+          category: "Khối A",
+          categoryType: "A",
+          icon: "map",
+          tags: ["math", "history", "geography"],
+          skills: ["Phân tích vùng miền", "Sự kiện lịch sử", "Thống kê"],
+          majors:
+            "Quản trị dịch vụ du lịch & lữ hành, Việt Nam học, Kinh tế chính trị",
+          salary: "Toán, Lịch sử, Địa lí",
           roadmap:
-            "Editor tập sự -> Video Editor -> Post-Production Producer -> Film Director.",
-          schools: "Đại học Sân khấu Điện ảnh, Đại học FPT.",
+            "Môn lựa chọn lớp 10: Lịch sử, Địa lí, Giáo dục Kinh tế và Pháp luật.",
+          schools:
+            "Tìm hiểu mối liên kết giữa điều kiện địa lý tự nhiên và sự hình thành lịch sử văn hóa để học tốt cả hai môn cùng lúc.",
         },
         {
           id: 9,
-          title: "Chuyên Gia Công Nghệ Sinh Học",
-          desc: "Nghiên cứu tạo ra các giống cây trồng biến đổi gen kháng bệnh, chế tạo vacxin hoặc phát triển các sản phẩm sinh học bảo vệ môi trường sạch.",
-          category: "Khoa học & Công nghệ",
-          categoryType: "tech",
-          icon: "dna",
-          tags: ["research", "nature", "logical"],
+          title: "Khối A08 (Toán, Lịch sử, Giáo dục công dân)",
+          desc: "Tập trung định hướng luật pháp, chính trị xã hội kết hợp với tư duy toán học logic sắc bén.",
+          category: "Khối A",
+          categoryType: "A",
+          icon: "scale",
+          tags: ["math", "history", "gdcd"],
           skills: [
-            "Nghiên cứu phòng thí nghiệm",
-            "Phân tích vi sinh vật",
-            "Kiên nhẫn và tỉ mỉ",
+            "Lập luận sắc sảo",
+            "Kiến thức hiến pháp",
+            "Phân tích logic",
           ],
-          majors: "Công nghệ sinh học, Sinh học thực nghiệm",
-          salary: "11,000,000 - 25,000,000 VNĐ",
+          majors: "Luật học, Quản lý nhà nước, Giáo dục chính trị",
+          salary: "Toán, Lịch sử, Giáo dục công dân",
           roadmap:
-            "Nghiên cứu viên dự án -> Trưởng nhóm Lab -> Giám đốc R&D Sinh học.",
+            "Môn lựa chọn lớp 10: Lịch sử, Giáo dục Kinh tế và Pháp luật (GDKT&PL).",
           schools:
-            "Đại học Khoa học Tự nhiên (ĐHQG), Học viện Nông nghiệp Việt Nam.",
+            "Chú ý rèn luyện khả năng tranh biện và phân tích tình huống thực tế pháp luật trong đời sống thường nhật.",
         },
         {
           id: 10,
-          title: "Huấn Luyện Viên Thể Thao / PT",
-          desc: "Thiết lập kế hoạch tập luyện, hướng dẫn động tác thể chất đúng kỹ thuật và tư vấn dinh dưỡng nâng cao sức khỏe cho học viên.",
-          category: "Y tế & Sức khỏe",
-          categoryType: "active",
-          icon: "trophy",
-          tags: ["sports", "helping", "speaking"],
+          title: "Khối A09 (Toán, Địa lí, Giáo dục công dân)",
+          desc: "Sự kết hợp thực tế hướng nghiệp về quy hoạch, quản trị xã hội hành chính và tổ chức kinh tế.",
+          category: "Khối A",
+          categoryType: "A",
+          icon: "navigation",
+          tags: ["math", "geography", "gdcd"],
           skills: [
-            "Sức bền & Vận động tốt",
-            "Giao tiếp tạo động lực",
-            "Kiến thức giải phẫu cơ thể",
+            "Phân tích chính sách",
+            "Đọc dữ liệu kinh tế vùng",
+            "Tính toán địa đồ",
           ],
-          majors: "Giáo dục thể chất, Quản lý thể dục thể thao",
-          salary: "12,000,000 - 30,000,000 VNĐ (Phụ thuộc số giờ dạy)",
+          majors: "Xã hội học, Luật đất đai, Quản lý đô thị & nông thôn",
+          salary: "Toán, Địa lí, Giáo dục công dân",
           roadmap:
-            "Personal Trainer -> Senior PT -> Quản lý phòng tập -> Chủ chuỗi thương hiệu thể hình.",
+            "Môn lựa chọn lớp 10: Địa lí, Giáo dục Kinh tế và Pháp luật, Tin học.",
           schools:
-            "Đại học Thể dục Thể thao Hà Nội / TP.HCM, Đại học Sư phạm Thể dục Thể thao.",
+            "Chủ động cập nhật các quy định luật mới của Việt Nam và bản đồ hành chính các tỉnh thành.",
+        },
+        {
+          id: 11,
+          title: "Khối A10 (Toán, Vật lí, Giáo dục công dân)",
+          desc: "Sự kết hợp giữa tư duy kỹ thuật vật lý và kiến thức xây dựng pháp luật, chuẩn mực đạo đức xã hội.",
+          category: "Khối A",
+          categoryType: "A",
+          icon: "gavel",
+          tags: ["math", "physics", "gdcd"],
+          skills: ["Kiểm soát kỹ thuật", "Nhận thức luật pháp", "Giải tích"],
+          majors: "Kỹ thuật an toàn lao động, Quản lý sở hữu trí tuệ công nghệ",
+          salary: "Toán, Vật lí, Giáo dục công dân",
+          roadmap:
+            "Môn lựa chọn lớp 10: Vật lí, Giáo dục Kinh tế và Pháp luật, Công nghệ.",
+          schools:
+            "Đọc thêm các văn bản pháp quy về bảo hộ lao động và quy chuẩn kỹ thuật thiết bị điện nước.",
+        },
+        {
+          id: 12,
+          title: "Khối A11 (Toán, Hóa học, Giáo dục công dân)",
+          desc: "Cốt lõi phục vụ các nhóm ngành thanh tra kiểm định chất lượng, hóa dược phẩm gắn liền trách nhiệm xã hội.",
+          category: "Khối A",
+          categoryType: "A",
+          icon: "heart-pulse",
+          tags: ["math", "chem", "gdcd"],
+          skills: [
+            "Kiểm định an toàn",
+            "Logic hóa học",
+            "Nhận thức trách nhiệm",
+          ],
+          majors: "Vệ sinh an toàn thực phẩm, Thanh tra y dược, Hóa môi trường",
+          salary: "Toán, Hóa học, Giáo dục công dân",
+          roadmap:
+            "Môn lựa chọn lớp 10: Hóa học, Giáo dục Kinh tế và Pháp luật, Sinh học.",
+          schools:
+            "Tự rèn luyện thái độ học tập công tâm, khách quan và chú ý các chuỗi phản ứng sinh hóa lớp 10.",
+        },
+        {
+          id: 13,
+          title: "Khối A12 (Toán, Khoa học tự nhiên, Khoa học xã hội)",
+          desc: "Khối học tổng hợp tuyệt đối giúp học sinh phát triển năng lực toàn diện cả về tự nhiên, tính toán lẫn nhân văn học.",
+          category: "Khối A",
+          categoryType: "A",
+          icon: "layers",
+          tags: ["math", "khtn", "khxh"],
+          skills: ["Tư duy bao quát", "Xử lý đa tác vụ", "Tích hợp liên môn"],
+          majors: "Sư phạm liên môn (KHTN-KHXH), Quản lý dự án tổng hợp",
+          salary: "Toán, Khoa học tự nhiên, Khoa học xã hội",
+          roadmap:
+            "Môn lựa chọn lớp 10: Lịch sử, Địa lí, Vật lí, Hóa học (Hệ thống tích hợp).",
+          schools:
+            "Cần xây dựng thời gian biểu cân bằng hoàn hảo, tránh tối đa việc học lệch nhóm môn tự nhiên hay xã hội.",
+        },
+        {
+          id: 14,
+          title: "Khối A14 (Toán, Khoa học tự nhiên, Địa lí)",
+          desc: "Chuyên sâu quy hoạch vùng, thủy văn ứng dụng và địa chất tự nhiên.",
+          category: "Khối A",
+          categoryType: "A",
+          icon: "wind",
+          tags: ["math", "khtn", "geography"],
+          skills: ["Đo đạc địa chất", "Tư duy sinh thái", "Toán ứng dụng"],
+          majors: "Quản lý đất đai, Địa lý học tự nhiên, Bản đồ số (GIS)",
+          salary: "Toán, Khoa học tự nhiên, Địa lí",
+          roadmap: "Môn lựa chọn lớp 10: Địa lí, Vật lí, Hóa học, Tin học.",
+          schools:
+            "Rèn luyện kỹ năng thực địa, quan sát hiện tượng địa quyển kết hợp lý thuyết KHTN.",
+        },
+        {
+          id: 15,
+          title: "Khối A15 (Toán, Khoa học tự nhiên, Giáo dục công dân)",
+          desc: "Thiết lập nền tảng quản trị các chuẩn mực an toàn xã hội dựa trên khoa học kiểm chứng thực nghiệm.",
+          category: "Khối A",
+          categoryType: "A",
+          icon: "shield-check",
+          tags: ["math", "khtn", "gdcd"],
+          skills: [
+            "Đánh giá tác động",
+            "Nhận thức luật pháp",
+            "Logic khoa học",
+          ],
+          majors:
+            "Kỹ thuật môi trường đô thị, Giám định pháp y, Thanh tra an toàn kỹ nghệ",
+          salary: "Toán, Khoa học tự nhiên, Giáo dục công dân",
+          roadmap:
+            "Môn lựa chọn lớp 10: Vật lí, Hóa học, Giáo dục Kinh tế và Pháp luật.",
+          schools:
+            "Đọc kỹ hiến pháp về bảo vệ môi trường, tìm hiểu các công thức hóa lý phục vụ giám định.",
+        },
+        {
+          id: 16,
+          title: "Khối A16 (Toán, Khoa học tự nhiên, Ngữ văn)",
+          desc: "Được mệnh danh là khối học đa năng kết nối cảm xúc nhân văn tinh tế với hệ thống tư duy khoa học chính xác.",
+          category: "Khối A",
+          categoryType: "A",
+          icon: "git-branch",
+          tags: ["math", "khtn", "literature"],
+          skills: [
+            "Giao tiếp thuyết phục",
+            "Nhận thức logic",
+            "Biểu đạt văn bản tốt",
+          ],
+          majors: "Báo chí khoa học, Công nghệ truyền thông, Sư phạm tích hợp",
+          salary: "Toán, Khoa học tự nhiên, Ngữ văn",
+          roadmap:
+            "Môn lựa chọn lớp 10: Vật lí, Hóa học, Sinh học, kết hợp chuyên đề Ngữ văn nâng cao.",
+          schools:
+            "Không ngừng luyện tập kỹ năng diễn đạt văn chương dựa trên lập luận toán học chặt chẽ và số liệu minh chứng thực tế.",
+        },
+
+        // --- KHỐI B ---
+        {
+          id: 17,
+          title: "Khối B00 (Toán, Hóa học, Sinh học)",
+          desc: "Định hướng Y Dược, Nông nghiệp & Công nghệ Sinh học. Dành riêng cho học sinh yêu thích khoa học sự sống và mong muốn cống hiến vì sức khỏe con người.",
+          category: "Khối B",
+          categoryType: "B",
+          icon: "test-tube",
+          tags: ["math", "chem", "bio"],
+          skills: ["Ghi nhớ chi tiết", "Tỉ mỉ thực nghiệm", "Thấu cảm"],
+          majors: "Y đa khoa, Dược học, Răng - Hàm - Mặt, Công nghệ sinh học",
+          salary: "Toán, Hóa học, Sinh học",
+          roadmap:
+            "Môn lựa chọn lớp 10: Hóa học, Sinh học, Chuyên đề học tập Toán - Hóa - Sinh.",
+          schools:
+            "Đọc thêm sách y khoa phổ thông, rèn luyện thói quen tự lập sơ đồ tư duy cho môn Sinh học vốn có lượng kiến thức khổng lồ.",
+        },
+        {
+          id: 18,
+          title: "Khối B01 (Toán, Sinh học, Lịch sử)",
+          desc: "Sự kết hợp liên môn giữa nguồn gốc sinh vật học và tiến trình phát triển nhân loại, tạo bước đệm cho nghiên cứu sinh học lịch sử.",
+          category: "Khối B",
+          categoryType: "B",
+          icon: "hourglass",
+          tags: ["math", "bio", "history"],
+          skills: [
+            "Nghiên cứu tiến hóa",
+            "Xâu chuỗi lịch sử",
+            "Thống kê sinh học",
+          ],
+          majors: "Nhân chủng học, Khảo cổ sinh vật học, Sư phạm liên môn",
+          salary: "Toán, Sinh học, Lịch sử",
+          roadmap:
+            "Môn lựa chọn lớp 10: Sinh học, Lịch sử, Giáo dục Kinh tế và Pháp luật.",
+          schools:
+            "Chú ý học kỹ phần di truyền và lý thuyết tiến hóa của sinh học, đối chiếu với các giai đoạn lịch sử tự nhiên.",
+        },
+        {
+          id: 19,
+          title: "Khối B02 (Toán, Sinh học, Địa lí)",
+          desc: "Khối học phục vụ đắc lực cho các ngành nghiên cứu hệ sinh thái, đa dạng sinh học theo phân vùng khí hậu.",
+          category: "Khối B",
+          categoryType: "B",
+          icon: "trees",
+          tags: ["math", "bio", "geography"],
+          skills: ["Phân tích hệ sinh thái", "Định vị GIS", "Logic toán"],
+          majors: "Quản lý rừng, Địa lý sinh vật, Sinh thái học cảnh quan",
+          salary: "Toán, Sinh học, Địa lí",
+          roadmap:
+            "Môn lựa chọn lớp 10: Sinh học, Địa lí, Công nghệ trồng trọt.",
+          schools:
+            "Hãy xem bản đồ địa lý thực địa như một phòng thí nghiệm sinh thái sinh động ngoài tự nhiên để dễ tiếp thụ.",
+        },
+        {
+          id: 20,
+          title: "Khối B03 (Toán, Sinh học, Ngữ văn)",
+          desc: "Tổ hợp nhân văn sinh thái, giúp truyền cảm hứng bảo vệ thiên nhiên, viết sách khoa học đời sống sáng tạo.",
+          category: "Khối B",
+          categoryType: "B",
+          icon: "scroll",
+          tags: ["math", "bio", "literature"],
+          skills: [
+            "Truyền thông khoa học",
+            "Văn phong cảm xúc",
+            "Nghiên cứu cơ thể sống",
+          ],
+          majors: "Tâm lý y học, Viết văn khoa học, Báo chí môi trường",
+          salary: "Toán, Sinh học, Ngữ văn",
+          roadmap:
+            "Môn lựa chọn lớp 10: Sinh học, Địa lí, Giáo dục Kinh tế và Pháp luật.",
+          schools:
+            "Đọc nhiều bài báo khoa học về tâm sinh lý con người, tập diễn đạt các khái niệm sinh học phức tạp bằng câu từ trôi chảy.",
+        },
+        {
+          id: 21,
+          title: "Khối B04 (Toán, Sinh học, Giáo dục công dân)",
+          desc: "Nền tảng tuyệt vời cho định hướng y đức học và đạo đức sinh học lâm sàng.",
+          category: "Khối B",
+          categoryType: "B",
+          icon: "heart-handshake",
+          tags: ["math", "bio", "gdcd"],
+          skills: [
+            "Đạo đức nghề nghiệp",
+            "Phân tích sinh học",
+            "Nhận thức chuẩn mực",
+          ],
+          majors: "Quản lý bệnh viện, Y đức lâm sàng, Bảo vệ quyền động vật",
+          salary: "Toán, Sinh học, Giáo dục công dân",
+          roadmap:
+            "Môn lựa chọn lớp 10: Sinh học, Giáo dục Kinh tế và Pháp luật, Tin học.",
+          schools:
+            "Cần tìm đọc các tài liệu về công ước quốc tế bảo vệ mạng sống sinh vật và đạo đức hành nghề y từ sớm.",
+        },
+        {
+          id: 22,
+          title: "Khối B08 (Toán, Sinh học, Tiếng Anh)",
+          desc: "Bước đệm hoàn hảo để bước vào ngành Công nghệ sinh học hiện đại ở quy mô toàn cầu.",
+          category: "Khối B",
+          categoryType: "B",
+          icon: "dna",
+          tags: ["math", "bio", "english"],
+          skills: [
+            "Ngoại ngữ chuyên ngành",
+            "Nghiên cứu gene",
+            "Lập luận logic",
+          ],
+          majors:
+            "Kỹ thuật di truyền, Công nghệ thực phẩm (hệ quốc tế), Y sinh học phân tử",
+          salary: "Toán, Sinh học, Tiếng Anh",
+          roadmap: "Môn lựa chọn lớp 10: Sinh học, Hóa học, Tin học.",
+          schools:
+            "Sử dụng tiếng Anh thường xuyên để tra cứu thuật ngữ y sinh quốc tế trên Pubmed hoặc các tạp chí khoa học uy tín.",
+        },
+
+        // --- KHỐI C ---
+        {
+          id: 23,
+          title: "Khối C00 (Ngữ văn, Lịch sử, Địa lí)",
+          desc: "Định hướng Khoa học Xã hội, Nhân văn & Sư phạm. Dành cho những tâm hồn bay bổng, có năng lực diễn thuyết sắc bén và say mê giá trị lịch sử xã hội.",
+          category: "Khối C",
+          categoryType: "C",
+          icon: "book-open",
+          tags: ["literature", "history", "geography"],
+          skills: [
+            "Viết lách lưu loát",
+            "Cảm thụ xã hội",
+            "Lập luận thuyết phục",
+          ],
+          majors: "Báo chí, Luật học, Sư phạm Văn/Sử/Địa, Du lịch, Văn hóa học",
+          salary: "Ngữ văn, Lịch sử, Địa lí",
+          roadmap:
+            "Môn lựa chọn lớp 10: Lịch sử, Địa lí, Giáo dục Kinh tế và Pháp luật (GDKT&PL).",
+          schools:
+            "Tránh học vẹt. Hãy xâu chuỗi sự kiện lịch sử bằng sơ đồ trục thời gian, tập liên hệ thực tiễn xã hội để viết văn sâu sắc hơn.",
+        },
+        {
+          id: 24,
+          title: "Khối C01 (Ngữ văn, Toán, Vật lí)",
+          desc: "Tổ hợp chuyển tiếp công nghệ và truyền thông số, đòi hỏi tư duy phân tích kỹ thuật và kỹ năng biểu đạt tuyệt vời.",
+          category: "Khối C",
+          categoryType: "C",
+          icon: "tv",
+          tags: ["literature", "math", "physics"],
+          skills: ["Sáng tạo nội dung", "Tư duy kỹ thuật", "Lập luận đại số"],
+          majors:
+            "Truyền thông đa phương tiện, Đạo diễn điện ảnh, Quảng cáo số",
+          salary: "Ngữ văn, Toán, Vật lí",
+          roadmap:
+            "Môn lựa chọn lớp 10: Vật lí, Tin học, Giáo dục Kinh tế và Pháp luật.",
+          schools:
+            "Cân bằng thời gian học Văn tự luận và giải trắc nghiệm Vật lý nhanh thông qua các công thức cơ bản.",
+        },
+        {
+          id: 25,
+          title: "Khối C02 (Ngữ văn, Toán, Hóa học)",
+          desc: "Dành cho những bạn học tốt Hóa học nhưng đồng thời có thế mạnh lớn về tư duy ngôn ngữ học nghệ thuật.",
+          category: "Khối C",
+          categoryType: "C",
+          icon: "sparkles",
+          tags: ["literature", "math", "chem"],
+          skills: ["Logic hóa học", "Viết bài khoa học", "Trình bày mạch lạc"],
+          majors:
+            "Công nghệ thẩm mỹ, Sư phạm Hóa học, Quản trị công nghiệp hóa",
+          salary: "Ngữ văn, Toán, Hóa học",
+          roadmap: "Môn lựa chọn lớp 10: Hóa học, Vật lí, Địa lí.",
+          schools:
+            "Rèn luyện tư duy thực tế bằng cách liên kết hóa học đời sống vào các đề văn nghị luận xã hội.",
+        },
+        {
+          id: 26,
+          title: "Khối C03 (Ngữ văn, Toán, Lịch sử)",
+          desc: "Khối học phục vụ xuất sắc cho các ngành khoa học chính trị và lực lượng vũ trang nhân dân.",
+          category: "Khối C",
+          categoryType: "C",
+          icon: "award",
+          tags: ["literature", "math", "history"],
+          skills: [
+            "Lập luận lịch sử",
+            "Cảm quan tư tưởng",
+            "Phân tích sự kiện",
+          ],
+          majors: "Chính trị học, Khảo cổ học, Quản lý hành chính công",
+          salary: "Ngữ văn, Toán, Lịch sử",
+          roadmap:
+            "Môn lựa chọn lớp 10: Lịch sử, Giáo dục Kinh tế và Pháp luật, Địa lí.",
+          schools:
+            "Ghi nhớ lịch sử theo nguyên lý nguyên nhân - kết quả để viết các luận điểm sắc sảo trong văn học.",
+        },
+        {
+          id: 27,
+          title: "Khối C04 (Ngữ văn, Toán, Địa lí)",
+          desc: "Định hướng quản trị du lịch, quy hoạch không gian kinh tế xã hội và quảng bá điểm đến.",
+          category: "Khối C",
+          categoryType: "C",
+          icon: "compass",
+          tags: ["literature", "math", "geography"],
+          skills: [
+            "Đánh giá không gian",
+            "Văn phong mô tả",
+            "Đọc dữ liệu địa đồ",
+          ],
+          majors: "Quản trị du lịch & lữ hành, Địa lý học kinh tế, Bản đồ học",
+          salary: "Ngữ văn, Toán, Địa lí",
+          roadmap:
+            "Môn lựa chọn lớp 10: Địa lí, Giáo dục Kinh tế và Pháp luật, Tin học.",
+          schools:
+            "Khai thác triệt đề công cụ Át-lát Địa lí Việt Nam để tiết kiệm thời gian ghi nhớ lý thuyết Địa lí.",
+        },
+        {
+          id: 28,
+          title: "Khối C08 (Ngữ văn, Hóa học, Sinh học)",
+          desc: "Khối thi y sinh mang đậm tính chất truyền thông sức khỏe và tâm lý trị liệu.",
+          category: "Khối C",
+          categoryType: "C",
+          icon: "users",
+          tags: ["literature", "chem", "bio"],
+          skills: ["Truyền thông y tế", "Tư duy hóa sinh", "Đồng cảm sâu sắc"],
+          majors: "Tâm lý học hành vi, Dược lâm sàng, Điều dưỡng cộng đồng",
+          salary: "Ngữ văn, Hóa học, Sinh học",
+          roadmap: "Môn lựa chọn lớp 10: Hóa học, Sinh học, Lịch sử.",
+          schools:
+            "Cần xây dựng vốn từ vựng phong phú để viết các bài luận tâm lý kết hợp lý thuyết hóa sinh chuẩn xác.",
+        },
+        {
+          id: 29,
+          title: "Khối C14 (Ngữ văn, Toán, Giáo dục công dân)",
+          desc: "Khối học hướng về pháp trị đời sống, hành chính công lực và chuẩn mực tư pháp.",
+          category: "Khối C",
+          categoryType: "C",
+          icon: "file-text",
+          tags: ["literature", "math", "gdcd"],
+          skills: [
+            "Phân tích pháp lý",
+            "Lập luận chính luận",
+            "Tính toán thống kê",
+          ],
+          majors: "Luật kinh tế, Thư ký tư pháp, Hành chính văn phòng",
+          salary: "Ngữ văn, Toán, Giáo dục công dân",
+          roadmap:
+            "Môn lựa chọn lớp 10: Lịch sử, Giáo dục Kinh tế và Pháp luật, Tin học.",
+          schools:
+            "Học tập trung vào chương trình GDKT&PL, rèn kỹ năng xử lý các bài toán tình huống thực tế pháp luật.",
+        },
+        {
+          id: 30,
+          title: "Khối C19 (Ngữ văn, Lịch sử, Giáo dục công dân)",
+          desc: "Bản lĩnh chính trị vững vàng, hiểu biết sâu sắc luật lệ và sự phát triển tư tưởng xã hội.",
+          category: "Khối C",
+          categoryType: "C",
+          icon: "shield",
+          tags: ["literature", "history", "gdcd"],
+          skills: [
+            "Xử lý khủng hoảng truyền thông",
+            "Lập luận chính sách",
+            "Tranh biện thuyết phục",
+          ],
+          majors: "Xây dựng Đảng, Công tác xã hội, Tuyên giáo chính trị",
+          salary: "Ngữ văn, Lịch sử, Giáo dục công dân",
+          roadmap:
+            "Môn lựa chọn lớp 10: Lịch sử, Giáo dục Kinh tế và Pháp luật, Địa lí.",
+          schools:
+            "Nắm chắc các mốc lịch sử kết hợp cập nhật thời sự chính trị pháp luật trong và ngoài nước hàng ngày.",
+        },
+        {
+          id: 31,
+          title: "Khối C20 (Ngữ văn, Địa lí, Giáo dục công dân)",
+          desc: "Bản đồ hóa đời sống chính trị và quản lý biên giới hành chính quốc gia.",
+          category: "Khối C",
+          categoryType: "C",
+          icon: "globe-2",
+          tags: ["literature", "geography", "gdcd"],
+          skills: [
+            "Tư duy quy hoạch xã hội",
+            "Cảm quan vùng lãnh thổ",
+            "Lập hiến học",
+          ],
+          majors:
+            "Quản lý nhà nước vùng biên viễn, Địa chính hành chính, Quan hệ công chúng",
+          salary: "Ngữ văn, Địa lí, Giáo dục công dân",
+          roadmap:
+            "Môn lựa chọn lớp 10: Địa lí, Giáo dục Kinh tế và Pháp luật, Lịch sử.",
+          schools:
+            "Kết hợp tư duy không gian của Địa lý với các tình huống xử lý quy định đất đai, pháp luật của GDCD.",
+        },
+
+        // --- KHỐI D ---
+        {
+          id: 32,
+          title: "Khối D01 (Toán, Ngữ văn, Tiếng Anh)",
+          desc: "Khối học đa năng và toàn diện nhất thời đại hội nhập toàn cầu. Sự giao thoa hoàn hảo giữa tư duy số liệu, biểu đạt cảm xúc và năng lực ngôn ngữ quốc tế.",
+          category: "Khối D",
+          categoryType: "D",
+          icon: "languages",
+          tags: ["math", "literature", "english"],
+          skills: [
+            "Giao tiếp đa ngôn ngữ",
+            "Quản lý thời gian",
+            "Thích ứng linh hoạt",
+          ],
+          majors:
+            "Quản trị kinh doanh, Kinh tế đối ngoại, Ngôn ngữ Anh, Quan hệ quốc tế",
+          salary: "Toán, Ngữ văn, Tiếng Anh",
+          roadmap:
+            "Môn lựa chọn lớp 10: Địa lí, Giáo dục Kinh tế và Pháp luật, Tin học.",
+          schools:
+            "Do khối này phân bố đều ở các môn, bạn cần chia lịch học cân bằng, tránh học lệch. Tập thói quen tự luận văn học kết hợp giải trắc nghiệm toán nhanh.",
+        },
+        {
+          id: 33,
+          title: "Khối D07 (Toán, Hóa học, Tiếng Anh)",
+          desc: "Sử dụng thế mạnh tự nhiên logic vượt bậc kết hợp kỹ năng ngoại ngữ xuất sắc, phục vụ các tập đoàn dược phẩm đa quốc gia.",
+          category: "Khối D",
+          categoryType: "D",
+          icon: "flask-conical",
+          tags: ["math", "chem", "english"],
+          skills: [
+            "Phân tích hóa kỹ thuật",
+            "Ngoại ngữ chuyên sâu",
+            "Tư duy hệ thống",
+          ],
+          majors:
+            "Kỹ thuật hóa dầu, Công nghệ sinh học dược phẩm, Kinh tế hóa chất",
+          salary: "Toán, Hóa học, Tiếng Anh",
+          roadmap: "Môn lựa chọn lớp 10: Hóa học, Vật lí, Tin học.",
+          schools:
+            "Chủ động nghiên cứu các công trình công bố hóa học quốc tế bằng tiếng Anh để nâng cao trình độ chuyên ngành.",
+        },
+        {
+          id: 34,
+          title: "Khối D08 (Toán, Sinh học, Tiếng Anh)",
+          desc: "Định hướng công nghệ sinh học y dược chất lượng cao, đón đầu làn sóng nông nghiệp tuần hoàn bền vững.",
+          category: "Khối D",
+          categoryType: "D",
+          icon: "flower-2",
+          tags: ["math", "bio", "english"],
+          skills: [
+            "Nghiên cứu sinh thái",
+            "Tin sinh học (Bioinformatics)",
+            "Giao dịch quốc tế",
+          ],
+          majors:
+            "Khoa học môi trường bền vững, Công nghệ thực phẩm, Kỹ thuật y sinh",
+          salary: "Toán, Sinh học, Tiếng Anh",
+          roadmap: "Môn lựa chọn lớp 10: Sinh học, Hóa học, Tin học.",
+          schools:
+            "Tập trung học tốt môn Sinh học lớp 10 phần thế giới sống vi mô kết hợp nâng chuẩn giao tiếp tiếng Anh.",
+        },
+        {
+          id: 35,
+          title: "Khối D09 (Toán, Lịch sử, Tiếng Anh)",
+          desc: "Đào tạo các nhà nghiên cứu ngoại giao và sử học có tư duy phân tích toán học chuẩn mực.",
+          category: "Khối D",
+          categoryType: "D",
+          icon: "globe-lock",
+          tags: ["math", "history", "english"],
+          skills: [
+            "Tư duy ngoại giao",
+            "Nghiên cứu dữ liệu sử",
+            "Dịch thuật học thuật",
+          ],
+          majors: "Ngoại giao học, Lịch sử thế giới, Quan hệ quốc tế đương đại",
+          salary: "Toán, Lịch sử, Tiếng Anh",
+          roadmap:
+            "Môn lựa chọn lớp 10: Lịch sử, Giáo dục Kinh tế và Pháp luật, Địa lí.",
+          schools:
+            "Nên xem các tư liệu lịch sử quốc tế bằng tiếng Anh để phát triển vốn từ vựng học thuật đa chiều.",
+        },
+        {
+          id: 36,
+          title: "Khối D10 (Toán, Địa lí, Tiếng Anh)",
+          desc: "Rất phù hợp với lĩnh vực logistics, vận tải đường biển hàng không toàn cầu và bản đồ số thương mại.",
+          category: "Khối D",
+          categoryType: "D",
+          icon: "truck",
+          tags: ["math", "geography", "english"],
+          skills: [
+            "Logistics chuỗi cung ứng",
+            "Phân tích số địa lý",
+            "Giao dịch hải quan",
+          ],
+          majors:
+            "Quản trị chuỗi cung ứng quốc tế, Kinh tế vùng, Thương mại điện tử",
+          salary: "Toán, Địa lí, Tiếng Anh",
+          roadmap:
+            "Môn lựa chọn lớp 10: Địa lí, Giáo dục Kinh tế và Pháp luật, Tin học.",
+          schools:
+            "Tìm hiểu xu hướng phát triển kinh tế thương mại thế giới kết hợp việc giải các bài tập biểu đồ địa lý.",
+        },
+        {
+          id: 37,
+          title: "Khối D14 (Ngữ văn, Lịch sử, Tiếng Anh)",
+          desc: "Tổ hợp đỉnh cao của các ngành văn hóa học nghệ thuật, truyền thông báo chí toàn cầu.",
+          category: "Khối D",
+          categoryType: "D",
+          icon: "newspaper",
+          tags: ["literature", "history", "english"],
+          skills: [
+            "Biên dịch & Phiên dịch",
+            "Biết cảm văn hóa",
+            "Viết lách sắc bén",
+          ],
+          majors:
+            "Ngôn ngữ Anh biên - phiên dịch, Đông phương học, Quan hệ quốc tế",
+          salary: "Ngữ văn, Lịch sử, Tiếng Anh",
+          roadmap:
+            "Môn lựa chọn lớp 10: Lịch sử, Địa lí, Giáo dục Kinh tế và Pháp luật.",
+          schools:
+            "Đọc nhiều sách văn học nước ngoài dịch song ngữ để rèn luyện tư duy ngôn ngữ linh hoạt.",
+        },
+        {
+          id: 38,
+          title: "Khối D15 (Ngữ văn, Địa lí, Tiếng Anh)",
+          desc: "Bệ phóng tương lai cho các nhà hoạch định phát triển du lịch xanh, dịch thuật lữ hành quốc tế.",
+          category: "Khối D",
+          categoryType: "D",
+          icon: "palmtree",
+          tags: ["literature", "geography", "english"],
+          skills: [
+            "Điều phối du lịch lữ hành",
+            "Trình bày văn viết",
+            "Ngoại ngữ chuyên ngành",
+          ],
+          majors:
+            "Quản trị du lịch quốc tế, Kinh tế địa quyển, Ngôn ngữ học ứng dụng",
+          salary: "Ngữ văn, Địa lí, Tiếng Anh",
+          roadmap:
+            "Môn lựa chọn lớp 10: Địa lí, Lịch sử, Giáo dục Kinh tế và Pháp luật.",
+          schools:
+            "Tập thuyết trình các chủ đề danh lam thắng cảnh toàn cầu bằng tiếng Anh để nâng cao kỹ năng phản xạ.",
+        },
+        {
+          id: 39,
+          title: "Khối D66 (Ngữ văn, Giáo dục công dân, Tiếng Anh)",
+          desc: "Định hướng truyền thông chính sách, pháp luật xã hội học và bảo vệ nhân quyền toàn diện.",
+          category: "Khối D",
+          categoryType: "D",
+          icon: "user-check",
+          tags: ["literature", "gdcd", "english"],
+          skills: [
+            "Soạn thảo văn bản pháp quy",
+            "Lắng nghe đa văn hóa",
+            "Nhận thức xã hội",
+          ],
+          majors:
+            "Luật thương mại quốc tế, Truyền thông chính trị, Giáo dục công dân quốc tế",
+          salary: "Ngữ văn, Giáo dục công dân, Tiếng Anh",
+          roadmap:
+            "Môn lựa chọn lớp 10: Giáo dục Kinh tế và Pháp luật, Lịch sử, Địa lí.",
+          schools:
+            "Phân tích các đạo luật quốc tế cơ bản và rèn kỹ năng viết luận xã hội sâu sắc.",
+        },
+        {
+          id: 40,
+          title: "Các khối D Ngôn ngữ khác (D02 - D06, D78 - D90...)",
+          desc: "Dành riêng cho những bạn đam mê ngôn ngữ đặc thù (tiếng Nhật, Hàn, Trung, Pháp, Đức, Nga...) hướng tới môi trường làm việc bản xứ năng động.",
+          category: "Khối D",
+          categoryType: "D",
+          icon: "languages",
+          tags: ["english", "literature", "math"], // Sử dụng english thay cho ngoại ngữ chung
+          skills: [
+            "Thông dịch chuyên sâu",
+            "Hiểu biết văn hóa bản địa",
+            "Thích ứng nhanh",
+          ],
+          majors:
+            "Ngôn ngữ Nhật/Hàn/Trung, Sư phạm tiếng Nhật/Pháp, Ngoại thương song ngữ",
+          salary: "Toán/Văn & Tiếng Nhật/Trung/Hàn/Pháp...",
+          roadmap:
+            "Môn lựa chọn lớp 10: Lịch sử, Địa lí, Giáo dục Kinh tế và Pháp luật, Tin học.",
+          schools:
+            "Đăng ký các lớp học chứng chỉ ngoại ngữ mục tiêu (JLPT, TOPIK, HSK...) song song với việc duy trì điểm học bạ tốt tại trường cấp 3.",
         },
       ];
 
       // Mảng lưu trạng thái các sở thích đang được chọn
       let selectedInterests = [];
       let searchQuery = "";
+      let activeCategory = "all";
 
       // Khởi động khi tải xong trang
       document.addEventListener("DOMContentLoaded", () => {
@@ -694,7 +1315,8 @@
           if (
             e.target.closest("button") ||
             e.target.closest("input") ||
-            e.target.closest("span")
+            e.target.closest("span") ||
+            e.target.closest("select")
           )
             return;
           createClickBubble(e.clientX, e.clientY);
@@ -738,9 +1360,9 @@
             "bg-gradient-to-r from-sky-400 to-cyan-400 border-transparent text-white shadow-md scale-105";
         }
 
-        // Cập nhật số lượng tag đã chọn ở badge
+        // Cập nhật số lượng tag đã chọn ở bộ đếm
         document.getElementById("selected-count-badge").textContent =
-          `Đã chọn: ${selectedInterests.length} sở thích`;
+          `Đã chọn: ${selectedInterests.length} sở thích học tập`;
 
         renderCareers();
       }
@@ -749,7 +1371,7 @@
       function clearSelectedInterests() {
         selectedInterests = [];
         document.getElementById("selected-count-badge").textContent =
-          `Đã chọn: 0 sở thích`;
+          `Đã chọn: 0 sở thích học tập`;
 
         // Vẽ lại toàn bộ giao diện tag trở về mặc định
         interestsList.forEach((interest) => {
@@ -764,6 +1386,23 @@
         renderCareers();
       }
 
+      // Xử lý khi chọn bộ lọc nhóm khối học A, B, C, D
+      function filterBlock(block) {
+        activeCategory = block;
+        const filterBtns = ["all", "A", "B", "C", "D"];
+        filterBtns.forEach((btnId) => {
+          const btn = document.getElementById(`filter-${btnId}`);
+          if (btnId === block) {
+            btn.className =
+              "px-4 py-2 rounded-full text-xs font-bold transition shadow-sm bg-cyan-500 text-white";
+          } else {
+            btn.className =
+              "px-4 py-2 rounded-full text-xs font-bold transition shadow-sm bg-white hover:bg-cyan-50 text-slate-600 border border-slate-200";
+          }
+        });
+        renderCareers();
+      }
+
       // Xử lý khi gõ tìm kiếm bằng chữ
       function handleSearch() {
         searchQuery = document
@@ -773,31 +1412,37 @@
         renderCareers();
       }
 
-      // Đổ danh sách ngành nghề và hiển thị Match Score động
+      // Đổ danh sách khối học và hiển thị Match Score động
       function renderCareers() {
         const grid = document.getElementById("careers-grid");
         const emptyState = document.getElementById("empty-state");
         grid.innerHTML = "";
 
         let scoredCareers = careersDatabase.map((career) => {
-          // Tính toán Match Score bằng tỉ lệ trùng khớp giữa tag sở thích đã chọn & tag nghề nghiệp
+          // Tính toán Match Score bằng tỉ lệ trùng khớp giữa tag sở thích học sinh chọn & khối thi
           let matchScore = 0;
 
           if (selectedInterests.length > 0) {
             const intersected = career.tags.filter((t) =>
               selectedInterests.includes(t),
             );
-            // Công thức tính điểm phần trăm: Tỷ lệ trùng khớp sở thích của nghề nghiệp
+            // Công thức tính điểm phần trăm khớp khối học
             matchScore = Math.round(
               (intersected.length / career.tags.length) * 100,
             );
           } else {
-            // Nếu không chọn sở thích nào thì mặc định hiển thị điểm trung bình dựa trên sự quan tâm chung
             matchScore = 0;
           }
 
           return { ...career, matchScore };
         });
+
+        // Lọc theo bộ lọc khối A, B, C, D hiện tại
+        if (activeCategory !== "all") {
+          scoredCareers = scoredCareers.filter(
+            (c) => c.categoryType === activeCategory,
+          );
+        }
 
         // Lọc theo từ khóa tìm kiếm chữ
         if (searchQuery !== "") {
@@ -805,11 +1450,12 @@
             (c) =>
               c.title.toLowerCase().includes(searchQuery) ||
               c.desc.toLowerCase().includes(searchQuery) ||
-              c.category.toLowerCase().includes(searchQuery),
+              c.category.toLowerCase().includes(searchQuery) ||
+              c.salary.toLowerCase().includes(searchQuery),
           );
         }
 
-        // Nếu có bộ chọn sở thích, ưu tiên sắp xếp nghề có Match Score cao lên hàng đầu
+        // Nếu có bộ chọn sở thích, ưu tiên sắp xếp khối học có Match Score cao lên hàng đầu
         if (selectedInterests.length > 0) {
           scoredCareers.sort((a, b) => b.matchScore - a.matchScore);
         }
@@ -827,18 +1473,16 @@
             card.className =
               "glass-card rounded-3xl p-6 wave-hover transition-all flex flex-col justify-between group h-full z-10 relative border border-white/50 hover:-translate-y-2 hover:shadow-xl duration-300";
 
-            // Chuyển đổi màu sắc dựa theo Match Score
+            // Chuyển đổi màu sắc dựa theo Match Score độ tương hợp khối học
             let scoreBadgeColor = "bg-slate-100 text-slate-500";
-            let glowBorder = "";
-            if (career.matchScore > 70) {
+            if (career.matchScore > 50) {
               scoreBadgeColor =
                 "bg-gradient-to-r from-emerald-400 to-teal-400 text-white shadow-sm animate-pulse";
-              glowBorder = "border-emerald-300";
             } else if (career.matchScore > 0) {
               scoreBadgeColor = "bg-sky-100 text-sky-600";
             }
 
-            // Đổ dữ liệu kỹ năng bổ sung
+            // Đổ dữ liệu các phẩm chất/kỹ năng cần có
             const skillsListHtml = career.skills
               .map(
                 (s) =>
@@ -869,7 +1513,7 @@
                                 </div>
                             </div>
 
-                            <!-- Tên & Mô tả -->
+                            <!-- Tên & Mô tả khối học -->
                             <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-cyan-600 transition-colors">
                                 ${career.title}
                             </h3>
@@ -877,7 +1521,7 @@
                                 ${career.desc}
                             </p>
 
-                            <!-- Kỹ năng chính -->
+                            <!-- Kỹ năng/Phẩm chất cốt lõi -->
                             <div class="flex flex-wrap gap-1.5 mb-6">
                                 ${skillsListHtml}
                             </div>
@@ -886,11 +1530,11 @@
                         <!-- Footer thẻ -->
                         <div class="flex items-center justify-between border-t border-slate-100/50 pt-4 mt-auto relative z-10">
                             <span class="text-xs text-amber-500 font-bold flex items-center gap-1">
-                                <i data-lucide="wallet" class="w-4 h-4"></i> ${career.salary.split(" - ")[0]}
+                                <i data-lucide="book" class="w-4 h-4"></i> Cốt lõi: ${career.salary}
                             </span>
                             <button onclick="showCareerDetails(${career.id})" 
                                     class="flex items-center gap-1 px-4 py-2 bg-sky-50 text-sky-600 hover:bg-sky-100 rounded-full text-xs font-bold transition">
-                                Chi tiết <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                                Tư vấn chọn môn <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
                             </button>
                         </div>
                     `;
@@ -900,7 +1544,7 @@
         lucide.createIcons();
       }
 
-      // Mở Modal hiển thị toàn bộ lộ trình học tập, đào tạo & thăng tiến của nghề
+      // Mở Modal hiển thị toàn bộ lộ trình chọn môn, ngành nghề đích & lời khuyên
       function showCareerDetails(id) {
         const career = careersDatabase.find((c) => c.id === id);
         if (career) {
