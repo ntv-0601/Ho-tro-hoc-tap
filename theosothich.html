@@ -1,0 +1,980 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Định Hướng Nghề Nghiệp Theo Sở Thích - Ocean Waves</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      /* CSS Wave Animation */
+      .waves {
+        position: relative;
+        width: 100%;
+        height: 12vh;
+        min-height: 80px;
+        max-height: 120px;
+        margin-bottom: -1px; /* Sửa lỗi khoảng trắng nhỏ ở trình duyệt */
+      }
+
+      .parallax > use {
+        animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+      }
+
+      .parallax > use:nth-child(1) {
+        animation-delay: -2s;
+        animation-duration: 7s;
+      }
+
+      .parallax > use:nth-child(2) {
+        animation-delay: -3s;
+        animation-duration: 10s;
+      }
+
+      .parallax > use:nth-child(3) {
+        animation-delay: -4s;
+        animation-duration: 13s;
+      }
+
+      .parallax > use:nth-child(4) {
+        animation-delay: -5s;
+        animation-duration: 20s;
+      }
+
+      @keyframes move-forever {
+        0% {
+          transform: translate3d(-90px, 0, 0);
+        }
+        100% {
+          transform: translate3d(85px, 0, 0);
+        }
+      }
+
+      /* Thủy tinh mờ (Glassmorphism) */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+      }
+
+      /* Bong bóng nước nổi lên */
+      .bubble {
+        position: absolute;
+        bottom: -20px;
+        background: rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 50%;
+        pointer-events: none;
+        animation: rise 4s ease-in infinite;
+      }
+
+      @keyframes rise {
+        0% {
+          bottom: -20px;
+          transform: translateX(0) scale(1);
+          opacity: 0.8;
+        }
+        50% {
+          transform: translateX(30px) scale(1.2);
+        }
+        100% {
+          bottom: 105%;
+          transform: translateX(-20px) scale(0.8);
+          opacity: 0;
+        }
+      }
+
+      /* Hiệu ứng trượt gợn sóng khi rê chuột */
+      .wave-hover {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .wave-hover::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: rgba(186, 230, 253, 0.2);
+        transition: height 0.3s ease;
+        z-index: 0;
+      }
+
+      .wave-hover:hover::after {
+        height: 100%;
+      }
+
+      /* Tùy chỉnh thanh cuộn đẹp mắt */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #bae6fd;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #7dd3fc;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-50 min-h-screen text-slate-800 font-sans flex flex-col relative overflow-x-hidden"
+  >
+    <!-- Container hiệu ứng bong bóng nước -->
+    <div
+      id="bubble-container"
+      class="absolute inset-0 pointer-events-none z-0 overflow-hidden"
+    ></div>
+
+    <!-- Header & Hero Section -->
+    <header
+      class="relative bg-gradient-to-r from-sky-400 via-cyan-400 to-blue-500 text-white z-10"
+    >
+      <div class="max-w-6xl mx-auto px-6 pt-16 pb-8 text-center relative">
+        <a
+          href="index.html"
+          class="absolute top-6 left-6 flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition text-sm font-semibold border border-white/20 shadow-sm"
+        >
+          <i data-lucide="arrow-left" class="w-4 h-4"></i> Trang chủ
+        </a>
+
+        <!-- Icon sóng biển nổi bật -->
+        <div
+          class="inline-flex items-center justify-center p-4 bg-white/20 backdrop-blur-md rounded-full mb-4 shadow-lg animate-bounce"
+        >
+          <i data-lucide="compass" class="w-10 h-10 text-white"></i>
+        </div>
+
+        <h1
+          class="text-3xl md:text-5xl font-black tracking-tight mb-3 drop-shadow"
+        >
+          TÌM KIẾM NGHỀ NGHIỆP THEO SỞ THÍCH
+        </h1>
+        <p
+          class="text-sky-100 max-w-xl mx-auto text-base md:text-lg font-medium drop-shadow-sm"
+        >
+          Lựa chọn những điểm mạnh và sở thích cá nhân của bạn, chúng tôi sẽ đề
+          xuất con đường nghề nghiệp tối ưu nhất.
+        </p>
+      </div>
+
+      <!-- SVG Gợn Sóng Chuyển Động -->
+      <svg
+        class="waves"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28"
+        preserveAspectRatio="none"
+        shape-rendering="auto"
+      >
+        <defs>
+          <path
+            id="gentle-wave"
+            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+          />
+        </defs>
+        <g class="parallax">
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="0"
+            fill="rgba(248, 250, 252, 0.7)"
+          />
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="3"
+            fill="rgba(248, 250, 252, 0.5)"
+          />
+          <use
+            xlink:href="#gentle-wave"
+            x="48"
+            y="5"
+            fill="rgba(248, 250, 252, 0.3)"
+          />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="#f8fafc" />
+        </g>
+      </svg>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full z-10">
+      <!-- BƯỚC 1: Chọn sở thích của bạn -->
+      <section
+        class="glass-card rounded-3xl p-6 mb-10 border border-sky-100 shadow-md"
+      >
+        <div
+          class="flex items-center gap-2 mb-4 border-b border-sky-100/50 pb-3"
+        >
+          <i data-lucide="sparkles" class="w-6 h-6 text-sky-500"></i>
+          <h2 class="text-xl font-bold text-slate-800">
+            Bước 1: Chọn những việc bạn thích hoặc tự tin nhất
+          </h2>
+        </div>
+
+        <p class="text-sm text-slate-500 mb-4">
+          Bạn có thể chọn một hoặc nhiều thẻ sở thích dưới đây để hệ thống tính
+          toán độ tương thích của ngành nghề:
+        </p>
+
+        <!-- Danh sách các thẻ tag sở thích để bấm chọn -->
+        <div class="flex flex-wrap gap-2.5" id="interest-tags-container">
+          <!-- Sẽ được sinh tự động bởi JS -->
+        </div>
+
+        <!-- Nút chọn nhanh / xóa chọn -->
+        <div
+          class="flex items-center justify-between mt-4 pt-4 border-t border-slate-100"
+        >
+          <span
+            id="selected-count-badge"
+            class="text-sm text-sky-600 font-bold bg-sky-50 px-3 py-1.5 rounded-full"
+            >Đã chọn: 0 sở thích</span
+          >
+          <button
+            onclick="clearSelectedInterests()"
+            class="text-sm text-slate-400 hover:text-rose-500 transition-colors font-semibold flex items-center gap-1"
+          >
+            <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Đặt lại lựa chọn
+          </button>
+        </div>
+      </section>
+
+      <!-- BƯỚC 2: Tìm kiếm và Kết quả -->
+      <section>
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6"
+        >
+          <div class="flex items-center gap-2">
+            <i data-lucide="briefcase" class="w-6 h-6 text-cyan-500"></i>
+            <h2 class="text-xl font-bold text-slate-800">
+              Bước 2: Kết quả nghề nghiệp phù hợp
+            </h2>
+          </div>
+
+          <!-- Ô tìm kiếm bằng chữ -->
+          <div class="relative w-full md:w-80">
+            <input
+              type="text"
+              id="search-input"
+              oninput="handleSearch()"
+              placeholder="Tìm tên nghề nghiệp hoặc lĩnh vực..."
+              class="w-full px-4 py-2.5 pl-10 rounded-full border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-300 transition bg-white/80 shadow-inner text-sm"
+            />
+            <i
+              data-lucide="search"
+              class="absolute left-3.5 top-3 w-4.5 h-4.5 text-slate-400"
+            ></i>
+          </div>
+        </div>
+
+        <!-- Grid kết quả nghề nghiệp -->
+        <div
+          id="careers-grid"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <!-- Sẽ được sinh tự động bởi JS -->
+        </div>
+
+        <!-- Trạng thái trống (Không tìm thấy kết quả phù hợp) -->
+        <div
+          id="empty-state"
+          class="hidden flex flex-col items-center justify-center py-16 text-center"
+        >
+          <div
+            class="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center text-cyan-500 mb-4 animate-bounce"
+          >
+            <i data-lucide="search-code" class="w-8 h-8"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-700 mb-1">
+            Không tìm thấy ngành nghề phù hợp
+          </h3>
+          <p class="text-slate-500 text-sm max-w-sm">
+            Hãy thử chọn thêm một vài sở thích khác hoặc thay đổi từ khóa tìm
+            kiếm của bạn.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal Chi Tiết Lộ Trình Nghề Nghiệp -->
+    <div
+      id="career-modal"
+      class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-opacity"
+    >
+      <div
+        class="glass-card rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl border border-white/50 animate-in fade-in zoom-in-95 duration-200"
+      >
+        <!-- Modal Header -->
+        <div
+          class="bg-gradient-to-r from-sky-400 to-cyan-500 p-6 text-white relative"
+        >
+          <h3
+            class="text-xl font-extrabold flex items-center gap-2"
+            id="modal-title"
+          >
+            Tên Nghề Nghiệp
+          </h3>
+          <span
+            id="modal-category-badge"
+            class="px-2.5 py-1 text-xs font-bold rounded-full bg-white/20 text-white ml-2"
+            >Danh mục</span
+          >
+          <button
+            onclick="toggleModal(false)"
+            class="absolute top-6 right-6 text-white/80 hover:text-white transition"
+          >
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <!-- Modal Content -->
+        <div class="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
+          <div>
+            <h4
+              class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1"
+            >
+              Mô tả công việc
+            </h4>
+            <p
+              id="modal-desc"
+              class="text-sm text-slate-600 leading-relaxed"
+            ></p>
+          </div>
+
+          <div
+            class="grid grid-cols-2 gap-4 bg-sky-50/50 p-4 rounded-2xl border border-sky-100/30"
+          >
+            <div>
+              <h4
+                class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1"
+              >
+                <i data-lucide="coins" class="w-4 h-4 text-amber-500"></i> Lương
+                trung bình
+              </h4>
+              <p
+                id="modal-salary"
+                class="text-sm font-extrabold text-slate-700"
+              ></p>
+            </div>
+            <div>
+              <h4
+                class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1"
+              >
+                <i
+                  data-lucide="graduation-cap"
+                  class="w-4 h-4 text-sky-500"
+                ></i>
+                Ngành học gợi ý
+              </h4>
+              <p
+                id="modal-majors"
+                class="text-sm font-semibold text-slate-700"
+              ></p>
+            </div>
+          </div>
+
+          <div>
+            <h4
+              class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1"
+            >
+              <i data-lucide="milestone" class="w-4 h-4 text-emerald-500"></i>
+              Lộ trình thăng tiến
+            </h4>
+            <p
+              id="modal-roadmap"
+              class="text-sm text-slate-600 leading-relaxed bg-slate-50 p-3.5 rounded-xl border border-slate-100"
+            ></p>
+          </div>
+
+          <div>
+            <h4
+              class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1"
+            >
+              <i data-lucide="building-2" class="w-4 h-4 text-cyan-500"></i> Các
+              trường đào tạo hàng đầu
+            </h4>
+            <p
+              id="modal-schools"
+              class="text-sm text-slate-600 leading-relaxed"
+            ></p>
+          </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-end">
+          <button
+            onclick="toggleModal(false)"
+            class="px-6 py-2 bg-gradient-to-r from-sky-400 to-cyan-400 text-white font-bold rounded-full shadow-md hover:shadow-lg transition"
+          >
+            Đã hiểu
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer gợn sóng -->
+    <footer
+      class="mt-auto bg-slate-100 border-t border-slate-200 py-6 text-center text-slate-500 text-sm z-10"
+    ></footer>
+
+    <!-- JS Logic -->
+    <script>
+      // Khởi tạo danh mục các sở thích để người dùng tích chọn
+      const interestsList = [
+        {
+          id: "programming",
+          label: "💻 Lập trình & Công nghệ",
+          category: "tech",
+        },
+        { id: "art", label: "🎨 Mỹ thuật & Thiết kế", category: "creative" },
+        {
+          id: "writing",
+          label: "✍️ Viết lách & Sáng tác",
+          category: "creative",
+        },
+        {
+          id: "speaking",
+          label: "🗣️ Thuyết trình & Giao tiếp",
+          category: "social",
+        },
+        { id: "numbers", label: "📊 Tính toán & Số liệu", category: "logical" },
+        {
+          id: "research",
+          label: "🧬 Nghiên cứu khoa học",
+          category: "logical",
+        },
+        {
+          id: "helping",
+          label: "🤝 Giúp đỡ, tư vấn tâm lý",
+          category: "social",
+        },
+        {
+          id: "business",
+          label: "💼 Quản lý & Kinh doanh",
+          category: "management",
+        },
+        {
+          id: "camera",
+          label: "📸 Quay phim & Chụp ảnh",
+          category: "creative",
+        },
+        {
+          id: "languages",
+          label: "🌐 Ngoại ngữ & Dịch thuật",
+          category: "social",
+        },
+        {
+          id: "nature",
+          label: "🌱 Sinh học & Môi trường",
+          category: "logical",
+        },
+        { id: "sports", label: "🏃 Thể thao & Vận động", category: "active" },
+      ];
+
+      // Cơ sở dữ liệu ngành nghề đầy đủ
+      const careersDatabase = [
+        {
+          id: 1,
+          title: "Kỹ Sư Phần Mềm (Developer)",
+          desc: "Thiết kế, lập trình và duy trì các hệ điều hành, website, app di động hoặc cơ sở dữ liệu hệ thống.",
+          category: "Khoa học & Công nghệ",
+          categoryType: "tech",
+          icon: "code",
+          tags: ["programming", "logical", "research"],
+          skills: ["Tư duy thuật toán", "Lập trình", "Giải quyết vấn đề"],
+          majors: "Công nghệ thông tin, Khoa học Máy tính",
+          salary: "15,000,000 - 45,000,000 VNĐ",
+          roadmap:
+            "Lập trình viên tập sự -> Junior Developer -> Senior Developer -> Technical Lead hoặc Software Architect.",
+          schools:
+            "Đại học Bách Khoa, ĐHQG Hà Nội/TP.HCM, Học viện Bưu chính Viễn thông.",
+        },
+        {
+          id: 2,
+          title: "Thiết Kế Đồ Họa (Graphic Designer)",
+          desc: "Sử dụng các công cụ mỹ thuật số để thiết kế ấn phẩm truyền thông, bao bì, nhận diện thương hiệu cho các nhãn hàng.",
+          category: "Nghệ thuật & Sáng tạo",
+          categoryType: "creative",
+          icon: "palette",
+          tags: ["art", "creative", "camera"],
+          skills: [
+            "Bố cục & Màu sắc",
+            "Adobe Photoshop/Illustrator",
+            "Tư duy thẩm mỹ",
+          ],
+          majors: "Thiết kế đồ họa, Mỹ thuật công nghiệp",
+          salary: "10,000,000 - 25,000,000 VNĐ",
+          roadmap:
+            "Junior Designer -> Senior Designer -> Art Director -> Creative Director.",
+          schools:
+            "Đại học Mỹ thuật Công nghiệp, Đại học Kiến trúc, Đại học FPT.",
+        },
+        {
+          id: 3,
+          title: "Chuyên Viên Marketing Số (Digital Marketer)",
+          desc: "Xây dựng chiến dịch quảng cáo trực tuyến, tối ưu hóa công cụ tìm kiếm và quản lý nội dung mạng xã hội để tiếp cận khách hàng tiềm năng.",
+          category: "Kinh doanh & Quản lý",
+          categoryType: "management",
+          icon: "trending-up",
+          tags: ["business", "writing", "speaking"],
+          skills: [
+            "Phân tích thị trường",
+            "Quảng cáo Facebook/Google Ads",
+            "Sáng tạo nội dung",
+          ],
+          majors: "Marketing, Quản trị kinh doanh",
+          salary: "12,000,000 - 30,000,000 VNĐ",
+          roadmap:
+            "Marketing Executive -> Senior Executive -> Marketing Manager -> CMO (Giám đốc Marketing).",
+          schools:
+            "Đại học Kinh tế Quốc dân, Đại học Thương mại, Đại học Ngoại thương.",
+        },
+        {
+          id: 4,
+          title: "Nhà Biên Tập / Sáng Tạo Nội Dung (Content Creator)",
+          desc: "Sáng tác kịch bản, viết bài viết chuẩn SEO cho blog/mạng xã hội hoặc lập kế hoạch nội dung video sáng tạo trên TikTok/YouTube.",
+          category: "Nghệ thuật & Sáng tạo",
+          categoryType: "creative",
+          icon: "pen-tool",
+          tags: ["writing", "creative", "languages"],
+          skills: [
+            "Storytelling (Kể chuyện)",
+            "Kỹ năng viết tốt",
+            "Nhanh nhạy xu hướng xã hội",
+          ],
+          majors: "Báo chí, Ngữ văn, Truyền thông đa phương tiện",
+          salary: "8,000,000 - 20,000,000 VNĐ",
+          roadmap:
+            "Content Writer -> Content Planner -> Content Manager -> Head of Content.",
+          schools: "Học viện Báo chí và Tuyên truyền, Đại học KHXH&NV.",
+        },
+        {
+          id: 5,
+          title: "Chuyên Gia Phân Tích Dữ Liệu (Data Analyst)",
+          desc: "Thu thập, làm sạch và dịch thuật các con số thống kê khổng lồ thành thông tin có ích giúp doanh nghiệp ra quyết định kinh doanh chuẩn xác.",
+          category: "Khoa học & Công nghệ",
+          categoryType: "tech",
+          icon: "bar-chart-3",
+          tags: ["numbers", "logical", "research"],
+          skills: [
+            "SQL/Python",
+            "Thống kê toán học",
+            "Sử dụng Power BI/Tableau",
+          ],
+          majors: "Hệ thống thông tin quản lý, Thống kê dữ liệu, Toán ứng dụng",
+          salary: "15,000,000 - 35,000,000 VNĐ",
+          roadmap:
+            "Junior Analyst -> Senior Data Analyst -> Data Analytics Manager -> Chief Data Officer.",
+          schools:
+            "Đại học Bách Khoa, Đại học Kinh tế Quốc dân, Học viện Công nghệ Bưu chính Viễn thông.",
+        },
+        {
+          id: 6,
+          title: "Chuyên Viên Quan Hệ Công Chúng (PR Specialist)",
+          desc: "Xây dựng hình ảnh thương hiệu tích cực, thiết lập mối quan hệ với báo chí, đối tác truyền thông và giải quyết các khủng hoảng phát sinh.",
+          category: "Xã hội & Truyền thông",
+          categoryType: "social",
+          icon: "users",
+          tags: ["speaking", "languages", "helping"],
+          skills: [
+            "Giao tiếp thuyết phục",
+            "Xử lý tình huống khủng hoảng",
+            "Ngoại ngữ trôi chảy",
+          ],
+          majors: "Quan hệ công chúng, Quan hệ quốc tế",
+          salary: "12,000,000 - 28,000,000 VNĐ",
+          roadmap: "PR Executive -> PR Account Manager -> PR Director.",
+          schools:
+            "Học viện Báo chí và Tuyên truyền, Đại học RMIT, Đại học KHXH&NV.",
+        },
+        {
+          id: 7,
+          title: "Nhà Tâm Lý Học Học Đường",
+          desc: "Lắng nghe, tư vấn tinh thần, giải quyết các khó khăn tâm lý, định hướng hành vi cho học sinh hoặc hỗ trợ phụ huynh thấu hiểu con cái.",
+          category: "Y tế & Sức khỏe",
+          categoryType: "social",
+          icon: "heart-handshake",
+          tags: ["helping", "speaking", "research"],
+          skills: [
+            "Lắng nghe thấu cảm",
+            "Kiến thức tâm lý học hành vi",
+            "Bảo mật thông tin khách hàng",
+          ],
+          majors: "Tâm lý học, Giáo dục đặc biệt",
+          salary: "10,000,000 - 20,000,000 VNĐ",
+          roadmap:
+            "Chuyên viên tâm lý trường học -> Trưởng phòng tham vấn -> Chuyên gia trị liệu độc lập.",
+          schools: "Đại học Sư phạm Hà Nội/TP.HCM, Đại học KHXH&NV.",
+        },
+        {
+          id: 8,
+          title: "Biên Tập Viên Video / Làm Phim (Video Editor)",
+          desc: "Chỉnh sửa hình ảnh thô, lồng ghép âm thanh, kỹ xảo để hoàn thiện các video clip, phim quảng cáo ngắn hoặc phim tài liệu.",
+          category: "Nghệ thuật & Sáng tạo",
+          categoryType: "creative",
+          icon: "film",
+          tags: ["camera", "art", "creative"],
+          skills: [
+            "Premiere, After Effects",
+            "Cảm thụ nhịp điệu & âm nhạc",
+            "Tư duy kể chuyện bằng hình ảnh",
+          ],
+          majors: "Công nghệ điện ảnh, Truyền thông đa phương tiện",
+          salary: "10,000,000 - 25,000,000 VNĐ",
+          roadmap:
+            "Editor tập sự -> Video Editor -> Post-Production Producer -> Film Director.",
+          schools: "Đại học Sân khấu Điện ảnh, Đại học FPT.",
+        },
+        {
+          id: 9,
+          title: "Chuyên Gia Công Nghệ Sinh Học",
+          desc: "Nghiên cứu tạo ra các giống cây trồng biến đổi gen kháng bệnh, chế tạo vacxin hoặc phát triển các sản phẩm sinh học bảo vệ môi trường sạch.",
+          category: "Khoa học & Công nghệ",
+          categoryType: "tech",
+          icon: "dna",
+          tags: ["research", "nature", "logical"],
+          skills: [
+            "Nghiên cứu phòng thí nghiệm",
+            "Phân tích vi sinh vật",
+            "Kiên nhẫn và tỉ mỉ",
+          ],
+          majors: "Công nghệ sinh học, Sinh học thực nghiệm",
+          salary: "11,000,000 - 25,000,000 VNĐ",
+          roadmap:
+            "Nghiên cứu viên dự án -> Trưởng nhóm Lab -> Giám đốc R&D Sinh học.",
+          schools:
+            "Đại học Khoa học Tự nhiên (ĐHQG), Học viện Nông nghiệp Việt Nam.",
+        },
+        {
+          id: 10,
+          title: "Huấn Luyện Viên Thể Thao / PT",
+          desc: "Thiết lập kế hoạch tập luyện, hướng dẫn động tác thể chất đúng kỹ thuật và tư vấn dinh dưỡng nâng cao sức khỏe cho học viên.",
+          category: "Y tế & Sức khỏe",
+          categoryType: "active",
+          icon: "trophy",
+          tags: ["sports", "helping", "speaking"],
+          skills: [
+            "Sức bền & Vận động tốt",
+            "Giao tiếp tạo động lực",
+            "Kiến thức giải phẫu cơ thể",
+          ],
+          majors: "Giáo dục thể chất, Quản lý thể dục thể thao",
+          salary: "12,000,000 - 30,000,000 VNĐ (Phụ thuộc số giờ dạy)",
+          roadmap:
+            "Personal Trainer -> Senior PT -> Quản lý phòng tập -> Chủ chuỗi thương hiệu thể hình.",
+          schools:
+            "Đại học Thể dục Thể thao Hà Nội / TP.HCM, Đại học Sư phạm Thể dục Thể thao.",
+        },
+      ];
+
+      // Mảng lưu trạng thái các sở thích đang được chọn
+      let selectedInterests = [];
+      let searchQuery = "";
+
+      // Khởi động khi tải xong trang
+      document.addEventListener("DOMContentLoaded", () => {
+        renderInterestTags();
+        renderCareers();
+        createAutoBubbles();
+        lucide.createIcons();
+
+        // Hiệu ứng click bong bóng mượt mà toàn trang
+        document.body.addEventListener("click", (e) => {
+          if (
+            e.target.closest("button") ||
+            e.target.closest("input") ||
+            e.target.closest("span")
+          )
+            return;
+          createClickBubble(e.clientX, e.clientY);
+        });
+      });
+
+      // Đổ danh sách các tag sở thích lên màn hình
+      function renderInterestTags() {
+        const container = document.getElementById("interest-tags-container");
+        container.innerHTML = "";
+
+        interestsList.forEach((interest) => {
+          const tagBtn = document.createElement("button");
+          tagBtn.type = "button";
+          tagBtn.id = `tag-${interest.id}`;
+          tagBtn.onclick = () => toggleInterest(interest.id);
+          tagBtn.className =
+            "px-4 py-2.5 rounded-full text-sm font-semibold border transition-all duration-300 flex items-center gap-2 " +
+            "bg-white hover:bg-sky-50 border-slate-200 text-slate-600 hover:border-sky-300 shadow-sm";
+          tagBtn.innerHTML = `${interest.label}`;
+          container.appendChild(tagBtn);
+        });
+      }
+
+      // Bật/tắt trạng thái chọn sở thích khi click vào tag
+      function toggleInterest(id) {
+        const index = selectedInterests.indexOf(id);
+        const tagBtn = document.getElementById(`tag-${id}`);
+
+        if (index > -1) {
+          // Đã chọn -> bỏ chọn
+          selectedInterests.splice(index, 1);
+          tagBtn.className =
+            "px-4 py-2.5 rounded-full text-sm font-semibold border transition-all duration-300 flex items-center gap-2 " +
+            "bg-white hover:bg-sky-50 border-slate-200 text-slate-600 hover:border-sky-300 shadow-sm";
+        } else {
+          // Chưa chọn -> bật chọn
+          selectedInterests.push(id);
+          tagBtn.className =
+            "px-4 py-2.5 rounded-full text-sm font-semibold border transition-all duration-300 flex items-center gap-2 " +
+            "bg-gradient-to-r from-sky-400 to-cyan-400 border-transparent text-white shadow-md scale-105";
+        }
+
+        // Cập nhật số lượng tag đã chọn ở badge
+        document.getElementById("selected-count-badge").textContent =
+          `Đã chọn: ${selectedInterests.length} sở thích`;
+
+        renderCareers();
+      }
+
+      // Đặt lại (reset) toàn bộ tag lựa chọn
+      function clearSelectedInterests() {
+        selectedInterests = [];
+        document.getElementById("selected-count-badge").textContent =
+          `Đã chọn: 0 sở thích`;
+
+        // Vẽ lại toàn bộ giao diện tag trở về mặc định
+        interestsList.forEach((interest) => {
+          const tagBtn = document.getElementById(`tag-${interest.id}`);
+          if (tagBtn) {
+            tagBtn.className =
+              "px-4 py-2.5 rounded-full text-sm font-semibold border transition-all duration-300 flex items-center gap-2 " +
+              "bg-white hover:bg-sky-50 border-slate-200 text-slate-600 hover:border-sky-300 shadow-sm";
+          }
+        });
+
+        renderCareers();
+      }
+
+      // Xử lý khi gõ tìm kiếm bằng chữ
+      function handleSearch() {
+        searchQuery = document
+          .getElementById("search-input")
+          .value.toLowerCase()
+          .trim();
+        renderCareers();
+      }
+
+      // Đổ danh sách ngành nghề và hiển thị Match Score động
+      function renderCareers() {
+        const grid = document.getElementById("careers-grid");
+        const emptyState = document.getElementById("empty-state");
+        grid.innerHTML = "";
+
+        let scoredCareers = careersDatabase.map((career) => {
+          // Tính toán Match Score bằng tỉ lệ trùng khớp giữa tag sở thích đã chọn & tag nghề nghiệp
+          let matchScore = 0;
+
+          if (selectedInterests.length > 0) {
+            const intersected = career.tags.filter((t) =>
+              selectedInterests.includes(t),
+            );
+            // Công thức tính điểm phần trăm: Tỷ lệ trùng khớp sở thích của nghề nghiệp
+            matchScore = Math.round(
+              (intersected.length / career.tags.length) * 100,
+            );
+          } else {
+            // Nếu không chọn sở thích nào thì mặc định hiển thị điểm trung bình dựa trên sự quan tâm chung
+            matchScore = 0;
+          }
+
+          return { ...career, matchScore };
+        });
+
+        // Lọc theo từ khóa tìm kiếm chữ
+        if (searchQuery !== "") {
+          scoredCareers = scoredCareers.filter(
+            (c) =>
+              c.title.toLowerCase().includes(searchQuery) ||
+              c.desc.toLowerCase().includes(searchQuery) ||
+              c.category.toLowerCase().includes(searchQuery),
+          );
+        }
+
+        // Nếu có bộ chọn sở thích, ưu tiên sắp xếp nghề có Match Score cao lên hàng đầu
+        if (selectedInterests.length > 0) {
+          scoredCareers.sort((a, b) => b.matchScore - a.matchScore);
+        }
+
+        // Hiển thị giao diện dựa trên kết quả lọc
+        if (scoredCareers.length === 0) {
+          emptyState.classList.remove("hidden");
+          grid.classList.add("hidden");
+        } else {
+          emptyState.classList.add("hidden");
+          grid.classList.remove("hidden");
+
+          scoredCareers.forEach((career) => {
+            const card = document.createElement("div");
+            card.className =
+              "glass-card rounded-3xl p-6 wave-hover transition-all flex flex-col justify-between group h-full z-10 relative border border-white/50 hover:-translate-y-2 hover:shadow-xl duration-300";
+
+            // Chuyển đổi màu sắc dựa theo Match Score
+            let scoreBadgeColor = "bg-slate-100 text-slate-500";
+            let glowBorder = "";
+            if (career.matchScore > 70) {
+              scoreBadgeColor =
+                "bg-gradient-to-r from-emerald-400 to-teal-400 text-white shadow-sm animate-pulse";
+              glowBorder = "border-emerald-300";
+            } else if (career.matchScore > 0) {
+              scoreBadgeColor = "bg-sky-100 text-sky-600";
+            }
+
+            // Đổ dữ liệu kỹ năng bổ sung
+            const skillsListHtml = career.skills
+              .map(
+                (s) =>
+                  `<span class="bg-slate-100 text-slate-600 text-[11px] px-2.5 py-1 rounded-full font-medium">${s}</span>`,
+              )
+              .join("");
+
+            card.innerHTML = `
+                        <div class="relative z-10">
+                            <!-- Header thẻ -->
+                            <div class="flex items-start justify-between mb-4">
+                                <div class="w-12 h-12 bg-sky-100 text-sky-500 rounded-2xl flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
+                                    <i data-lucide="${career.icon}" class="w-6 h-6"></i>
+                                </div>
+                                <div class="flex flex-col items-end gap-1.5">
+                                    <span class="px-2.5 py-1 text-[10px] font-bold rounded-full bg-cyan-50 text-cyan-600 border border-cyan-100">
+                                        ${career.category}
+                                    </span>
+                                    ${
+                                      selectedInterests.length > 0
+                                        ? `
+                                        <span class="px-2.5 py-1 text-[11px] font-black rounded-full ${scoreBadgeColor}">
+                                            Độ khớp: ${career.matchScore}%
+                                        </span>
+                                    `
+                                        : ""
+                                    }
+                                </div>
+                            </div>
+
+                            <!-- Tên & Mô tả -->
+                            <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-cyan-600 transition-colors">
+                                ${career.title}
+                            </h3>
+                            <p class="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-3">
+                                ${career.desc}
+                            </p>
+
+                            <!-- Kỹ năng chính -->
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                ${skillsListHtml}
+                            </div>
+                        </div>
+
+                        <!-- Footer thẻ -->
+                        <div class="flex items-center justify-between border-t border-slate-100/50 pt-4 mt-auto relative z-10">
+                            <span class="text-xs text-amber-500 font-bold flex items-center gap-1">
+                                <i data-lucide="wallet" class="w-4 h-4"></i> ${career.salary.split(" - ")[0]}
+                            </span>
+                            <button onclick="showCareerDetails(${career.id})" 
+                                    class="flex items-center gap-1 px-4 py-2 bg-sky-50 text-sky-600 hover:bg-sky-100 rounded-full text-xs font-bold transition">
+                                Chi tiết <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    `;
+            grid.appendChild(card);
+          });
+        }
+        lucide.createIcons();
+      }
+
+      // Mở Modal hiển thị toàn bộ lộ trình học tập, đào tạo & thăng tiến của nghề
+      function showCareerDetails(id) {
+        const career = careersDatabase.find((c) => c.id === id);
+        if (career) {
+          document.getElementById("modal-title").textContent = career.title;
+          document.getElementById("modal-category-badge").textContent =
+            career.category;
+          document.getElementById("modal-desc").textContent = career.desc;
+          document.getElementById("modal-salary").textContent = career.salary;
+          document.getElementById("modal-majors").textContent = career.majors;
+          document.getElementById("modal-roadmap").textContent = career.roadmap;
+          document.getElementById("modal-schools").textContent = career.schools;
+
+          toggleModal(true);
+        }
+      }
+
+      // Đóng/Mở Modal bằng CSS class
+      function toggleModal(show) {
+        const modal = document.getElementById("career-modal");
+        if (show) {
+          modal.classList.remove("hidden");
+        } else {
+          modal.classList.add("hidden");
+        }
+      }
+
+      // Tạo bong bóng bay tự động từ phía dưới màn hình
+      function createAutoBubbles() {
+        const container = document.getElementById("bubble-container");
+        setInterval(() => {
+          const bubble = document.createElement("div");
+          const size = Math.random() * 25 + 5; // Kích thước từ 5px đến 30px
+          bubble.className = "bubble";
+          bubble.style.width = `${size}px`;
+          bubble.style.height = `${size}px`;
+          bubble.style.left = `${Math.random() * 100}%`;
+
+          const duration = Math.random() * 4 + 4;
+          bubble.style.animationDuration = `${duration}s`;
+
+          container.appendChild(bubble);
+
+          setTimeout(() => {
+            bubble.remove();
+          }, duration * 1000);
+        }, 1200);
+      }
+
+      // Tạo hiệu ứng chùm bong bóng nhỏ tỏa ra khi bấm chuột
+      function createClickBubble(x, y) {
+        const container = document.getElementById("bubble-container");
+        const bubble = document.createElement("div");
+        const size = Math.random() * 15 + 5;
+
+        bubble.className =
+          "absolute rounded-full pointer-events-none bg-sky-200/50 border border-white/60 transition-all duration-1000 ease-out";
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+        bubble.style.left = `${x - size / 2}px`;
+        bubble.style.top = `${y - size / 2}px`;
+
+        container.appendChild(bubble);
+
+        requestAnimationFrame(() => {
+          const moveY = Math.random() * 80 + 40;
+          const moveX = (Math.random() - 0.5) * 60;
+          bubble.style.transform = `translate(${moveX}px, -${moveY}px) scale(1.5)`;
+          bubble.style.opacity = "0";
+        });
+
+        setTimeout(() => {
+          bubble.remove();
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
