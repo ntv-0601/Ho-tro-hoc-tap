@@ -6,17 +6,14 @@
     <title>Hệ Thống Tìm Trường THPT Thông Minh 2026</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <!-- Font Awesome Icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-
     <script>
       tailwind.config = {
         darkMode: "class",
@@ -45,7 +42,6 @@
     </script>
 
     <style>
-      /* CSS Wave Animation */
       .waves {
         position: relative;
         width: 100%;
@@ -87,8 +83,6 @@
           transform: translate3d(85px, 0, 0);
         }
       }
-
-      /* Glassmorphism */
       .glass-card {
         background: rgba(255, 255, 255, 0.85);
         backdrop-filter: blur(12px);
@@ -102,8 +96,6 @@
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.08);
       }
-
-      /* Bong bóng nước */
       .bubble {
         position: absolute;
         bottom: -20px;
@@ -134,8 +126,6 @@
           opacity: 0;
         }
       }
-
-      /* Custom Scrollbar */
       ::-webkit-scrollbar {
         width: 6px;
         height: 6px;
@@ -155,7 +145,6 @@
   <body
     class="bg-sky-50/40 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans min-h-screen flex flex-col relative transition-colors duration-300 overflow-x-hidden"
   >
-    <!-- Container hiệu ứng bong bóng nước -->
     <div
       id="bubble-container"
       class="absolute inset-0 pointer-events-none z-0 overflow-hidden"
@@ -189,8 +178,6 @@
     </div>
   </div>
 </div>
-
-        <!-- Tiêu đề chính -->
         <div class="text-center py-4">
           <div
             class="inline-flex items-center justify-center p-4 bg-white/15 backdrop-blur-md rounded-full mb-4 shadow-lg border border-white/20"
@@ -213,8 +200,6 @@
           </p>
         </div>
       </div>
-
-      <!-- SVG Gợn sóng chuyển động đẹp mắt -->
       <svg
         class="waves"
         xmlns="http://www.w3.org/2000/svg"
@@ -262,9 +247,7 @@
       class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full z-10"
     >
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <!-- Cột bên trái: Bộ lọc Tìm kiếm -->
         <aside class="lg:col-span-1 space-y-6">
-          <!-- Bộ lọc Miền (Bắc / Trung / Nam) -->
           <div
             class="glass-card rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800"
           >
@@ -312,8 +295,6 @@
               </button>
             </div>
           </div>
-
-          <!-- Bộ lọc Tỉnh thành theo khu vực đã chọn -->
           <div
             class="glass-card rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800"
           >
@@ -352,16 +333,12 @@
                 class="fa-solid fa-search absolute left-3 top-2.5 text-slate-400 text-[10px]"
               ></i>
             </div>
-            <!-- Danh sách checkbox tỉnh thành cuộn dọc -->
             <div
               id="province-list-container"
               class="max-h-64 overflow-y-auto space-y-1.5 pr-1"
             >
-              <!-- Sẽ sinh tự động từ JS dựa trên miền đã chọn -->
             </div>
           </div>
-
-          <!-- Bộ lọc Loại hình trường học -->
           <div
             class="glass-card rounded-2xl p-5 shadow-sm border border-slate-200 dark:border-slate-800"
           >
@@ -427,7 +404,6 @@
         </aside>
 
         <section class="lg:col-span-3 space-y-6">
-          <!-- Thanh công cụ tìm kiếm và thông tin bộ lọc -->
           <div
             class="glass-card rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row gap-4 items-center justify-between"
           >
@@ -443,7 +419,6 @@
                 class="fa-solid fa-magnifying-glass absolute left-4 top-4 text-slate-400"
               ></i>
             </div>
-            <!-- Trình sắp xếp -->
             <div
               class="flex items-center gap-2 w-full md:w-auto shrink-0 justify-end"
             >
@@ -464,8 +439,6 @@
               </select>
             </div>
           </div>
-
-          <!-- Thống kê kết quả -->
           <div class="flex justify-between items-center px-2">
             <p
               id="results-count"
@@ -483,13 +456,8 @@
               </button>
             </div>
           </div>
-
-          <!-- Grid hiển thị trường học -->
           <div id="schools-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Sẽ nạp động bằng JS -->
           </div>
-
-          <!-- Trạng thái trống (Không tìm thấy) -->
           <div
             id="empty-state"
             class="hidden flex flex-col items-center justify-center py-20 text-center glass-card rounded-3xl border border-slate-200 dark:border-slate-800"
@@ -512,9 +480,6 @@
         </section>
       </div>
     </main>
-
-
-    <!-- Hệ thống Toast thông báo (Thay thế alert) -->
     <div
       id="toast-container"
       class="fixed top-5 right-5 z-50 space-y-3 pointer-events-none"
@@ -2137,7 +2102,6 @@
   ]
 };
 
-      // Danh sách các Tỉnh thành ở các miền Trung & Nam hỗ trợ (Bản đồ chi tiết 2026)1
       const provinces = {
         Bac: [
           { id: "hanoi", name: "Hà Nội", count: 0 },
@@ -2181,7 +2145,6 @@
         ],
       };
 
-      // Các trường học được thiết lập dữ liệu thủ công chi tiết, tinh xảo bậc nhất
       const manualSchools = [
         // ================== MIỀN BẮC ==================
         
@@ -2190,10 +2153,7 @@
         // ================== MIỀN NAM ==================
       ];
 
-      // Khởi tạo cơ sở dữ liệu trường học toàn quốc
       const schoolsDatabase = [...manualSchools];
-
-      // Hàm chuẩn hóa loại bỏ dấu tiếng Việt để phục vụ tìm kiếm thông minh
       function removeVietnameseTones(str) {
         str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
         str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
@@ -2209,12 +2169,11 @@
         str = str.replace(/Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ/g, "U");
         str = str.replace(/Ỳ|Ý|Ỵ|Ỷ|Ỹ/g, "Y");
         str = str.replace(/Đ/g, "D");
-        str = str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, ""); // Dấu phụ
-        str = str.replace(/\u02C6|\u0306|\u031B/g, ""); // Dấu mũ
+        str = str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, "");
+        str = str.replace(/\u02C6|\u0306|\u031B/g, "");
         return str.trim();
       }
 
-      // Tạo ID duy nhất từ tên trường học
       function makeSlug(name) {
         return removeVietnameseTones(name)
           .toLowerCase()
@@ -2223,12 +2182,8 @@
           .trim();
       }
 
-      // Tự động phân tích tên và phân cấp thuộc tính cho các trường học
       function autoCompileDatabase() {
-        // Danh sách các ID đã thủ công để tránh ghi đè dữ liệu xuất sắc
         const manualIds = manualSchools.map((s) => s.id);
- 
-        // Map ánh xạ các key tỉnh từ rawSchoolData sang id chuẩn của tỉnh trong provinces
         const provinceMap = {
           "Hà Nội": "hanoi", "Bắc Ninh": "bacninh", "Cao Bằng": "caobang",
           "Hưng Yên": "hungyen", "Hải Phòng": "haiphong", "Lai Châu": "laichau",
@@ -2259,20 +2214,20 @@
           const regionId = regionMap[provName] || "Bac";  
           
            rawSchoolData[provName].forEach((item) => {
-            // Kiểm tra xem item là chuỗi (như cũ) hay là object chứa địa chỉ cụ thể (mới)
+
             const schoolName = typeof item === 'object' ? item.name : item;
             const customAddress = typeof item === 'object' ? item.address : null;
 
             const id = makeSlug(schoolName) + "-" + provId.substring(0, 3);
 
-            // Bỏ qua nếu đã cấu hình dữ liệu tinh xảo thủ công
+
             if (
                 manualIds.includes(id) ||
                 schoolsDatabase.some((s) => s.name === schoolName && s.province === provId)
                 ) {
                 return;
             }
-            // Tự động phân cấp loại hình trường dựa trên danh tính tiêu đề học thuật
+
             let type = "public";
             let icon = "fa-school";
             let tuition = 220000;
@@ -2311,7 +2266,6 @@
               facilities = "Hệ thống máy lạnh toàn diện, máy chiếu 4K, sân bóng rổ hiện đại và chương trình đào tạo liên kết nước ngoài.";
             }
 
-            // Tự tạo hotline, dùng địa chỉ cụ thể nếu có, nếu không thì sinh ngẫu nhiên
             const randomHotline = `022${Math.floor(2 + Math.random() * 8)}.${Math.floor(100 + Math.random() * 900)}.${Math.floor(1000 + Math.random() * 9000)}`;
             const address = customAddress ? customAddress : `Số ${Math.floor(5 + Math.random() * 120)}, Khu phố trung tâm, tỉnh ${provName}, Việt Nam.`;
 
@@ -2334,13 +2288,11 @@
           });
         });
 
-        // Cập nhật thống kê chính xác số lượng trường ở badge khu vực hiển thị
        document.getElementById("badge-count-bac").innerText = `${schoolsDatabase.filter((s) => s.region === "Bac").length} trường`;
         document.getElementById("badge-count-trung").innerText = `${schoolsDatabase.filter((s) => s.region === "Trung").length} trường`;
         document.getElementById("badge-count-nam").innerText = `${schoolsDatabase.filter((s) => s.region === "Nam").length} trường`;
       }
 
-      // Run auto compilation immediately
       autoCompileDatabase();
     </script>
 
@@ -2349,7 +2301,6 @@
       let selectedProvinces = [];
       let activeTheme = "light";
 
-      // Lấy theme ban đầu từ localStorage
       if (
         localStorage.getItem("theme") === "dark" ||
         (!("theme" in localStorage) &&
@@ -2362,7 +2313,6 @@
         activeTheme = "light";
       }
 
-      // Đổi chế độ Sáng/Tối
       function toggleDarkMode() {
         const html = document.documentElement;
         const themeIcon = document.getElementById("theme-icon");
@@ -2384,7 +2334,6 @@
         }
       }
 
-      // Cập nhật biểu tượng theme khi tải xong trang
       document.addEventListener("DOMContentLoaded", () => {
         const themeIcon = document.getElementById("theme-icon");
         if (document.documentElement.classList.contains("dark")) {
@@ -2393,11 +2342,8 @@
           themeIcon.className = "fa-solid fa-moon";
         }
 
-        // Khởi tạo bộ lọc ban đầu
         setRegion("Bac");
         createAutoBubbles();
-
-        // Hiệu ứng bong bóng click toàn thân
         document.body.addEventListener("click", (e) => {
           if (
             e.target.closest("button") ||
@@ -2411,7 +2357,6 @@
         });
       });
 
-      // Hệ thống Toast thông báo tùy chỉnh
       function showToast(message, type = "info") {
         const container = document.getElementById("toast-container");
         const toast = document.createElement("div");
@@ -2444,7 +2389,6 @@
         }, 3500);
       }
 
-      // Thiết lập Khu Vực (Miền)
       function setRegion(region) {
         activeRegion = region;
 
@@ -2465,12 +2409,11 @@
         else if (region === "Trung") btnTrung.className = activeClass;
         else if (region === "Nam") btnNam.className = activeClass;
 
-        // Đồng bộ bộ chọn tỉnh thành
         renderProvinceList();
-        selectAllProvinces(); // Mặc định hiển thị tất cả các tỉnh thành của miền đó
+        selectAllProvinces(); 
       }
 
-      // Tạo danh sách checkbox Tỉnh thành
+
       function renderProvinceList() {
         const container = document.getElementById("province-list-container");
         container.innerHTML = "";
@@ -2478,7 +2421,7 @@
         const provs = provinces[activeRegion];
 
         provs.forEach((prov) => {
-          // Đếm số trường thực tế dựa trên DB đã compile
+
           const count = schoolsDatabase.filter(
             (s) => s.region === activeRegion && s.province === prov.id,
           ).length;
@@ -2500,7 +2443,6 @@
         });
       }
 
-      // Lọc nhanh danh sách tỉnh thành bằng ô tìm kiếm nhỏ
       function filterProvinceList() {
         const query = removeVietnameseTones(
           document.getElementById("prov-search").value.toLowerCase().trim(),
@@ -2517,7 +2459,6 @@
         });
       }
 
-      // Tích chọn tất cả các tỉnh thành
       function selectAllProvinces() {
         selectedProvinces = provinces[activeRegion].map((p) => p.id);
         const checkboxes = document.querySelectorAll(".province-checkbox");
@@ -2525,7 +2466,6 @@
         filterSchools();
       }
 
-      // Hủy chọn tất cả các tỉnh thành
       function clearAllProvinces() {
         selectedProvinces = [];
         const checkboxes = document.querySelectorAll(".province-checkbox");
@@ -2533,7 +2473,6 @@
         filterSchools();
       }
 
-      // Bật/tắt một tỉnh thành riêng lẻ
       function toggleProvinceSelection(id) {
         const index = selectedProvinces.indexOf(id);
         if (index > -1) {
@@ -2544,7 +2483,6 @@
         filterSchools();
       }
 
-      // Khôi phục tất cả bộ lọc về trạng thái ban đầu
       function clearAllFilters() {
         document.getElementById("search-school").value = "";
         document.getElementById("type-specialized").checked = true;
@@ -2555,7 +2493,6 @@
         showToast("Đã khôi phục các bộ lọc về mặc định", "success");
       }
 
-      // Hàm chính lọc danh sách trường học
       function filterSchools() {
         const rawQuery = document
           .getElementById("search-school")
@@ -2569,22 +2506,17 @@
         const sortBy = document.getElementById("sort-order").value;
 
         let results = schoolsDatabase.filter((school) => {
-          // Kiểm tra vùng miền
           if (school.region !== activeRegion) return false;
-
-          // Kiểm tra tỉnh thành
           if (
             selectedProvinces.length > 0 &&
             !selectedProvinces.includes(school.province)
           )
             return false;
 
-          // Kiểm tra loại hình trường học
           if (school.type === "specialized" && !showSpecialized) return false;
           if (school.type === "public" && !showPublic) return false;
           if (school.type === "private" && !showPrivate) return false;
 
-          // Kiểm tra từ khóa tìm kiếm (tương hỗ tiếng việt có dấu và không dấu)
           if (query !== "") {
             const schoolNameNorm = removeVietnameseTones(
               school.name.toLowerCase(),
@@ -2603,7 +2535,6 @@
           return true;
         });
 
-        // Sắp xếp dữ liệu sau khi lọc
         if (sortBy === "tuition-low") {
           results.sort((a, b) => a.tuition - b.tuition);
         } else if (sortBy === "tuition-high") {
@@ -2619,7 +2550,6 @@
         renderSchoolsGrid(results);
       }
 
-      // Vẽ các thẻ Trường học lên mạng lưới hiển thị
       function renderSchoolsGrid(schools) {
         const grid = document.getElementById("schools-grid");
         const emptyState = document.getElementById("empty-state");
@@ -2641,7 +2571,6 @@
               "glass-card rounded-2xl p-5 shadow-sm hover:shadow-md transition-all border border-slate-200 dark:border-slate-800 flex flex-col justify-center group hover:-translate-y-0.5 relative duration-300 cursor-pointer";
             card.setAttribute("onclick", `openSchoolDetails('${school.id}')`);
 
-            // Trích xuất địa chỉ sạch từ trường thông tin liên lạc (bỏ qua phần số điện thoại)
             const cleanAddress = school.contact
               ? school.contact.split("\n")[0].replace(/^Địa chỉ:\s*/, "")
               : "Đang cập nhật địa chỉ...";
@@ -2663,7 +2592,6 @@
         }
       }
 
-      // Bật/tắt Modal thông tin trường học
       function toggleSchoolModal(show) {
         const modal = document.getElementById("school-modal");
         if (show) {
@@ -2675,7 +2603,6 @@
         }
       }
 
-      // Mở Modal xem thông tin đầy đủ trường học
       function openSchoolDetails(id) {
         const school = schoolsDatabase.find((s) => s.id === id);
         if (school) {
@@ -2691,11 +2618,9 @@
             school.facilities;
           document.getElementById("modal-contact").textContent = school.contact;
 
-          // Thêm icon đặc thù của hệ đào tạo vào header
           const iconContainer = document.getElementById("modal-icon-container");
           iconContainer.innerHTML = `<i class="fa-solid ${school.icon} text-2xl text-sky-200"></i>`;
 
-          // Badge hệ đào tạo
           const typeBadge = document.getElementById("modal-type-badge");
           if (school.type === "specialized") {
             typeBadge.textContent = "Trường Chuyên / Năng khiếu";
@@ -2711,7 +2636,7 @@
               "px-2 py-0.5 text-[9px] font-extrabold rounded-full bg-emerald-500/30 text-white uppercase";
           }
 
-          // Tag danh sách lớp chuyên / điểm nổi bật
+
           const tagContainer = document.getElementById(
             "modal-majors-container",
           );
@@ -2724,7 +2649,6 @@
             tagContainer.appendChild(span);
           });
 
-          // Phương thức xét tuyển
           const methodsList = document.getElementById("modal-methods-list");
           methodsList.innerHTML = "";
           school.methods.forEach((method) => {
@@ -2736,7 +2660,6 @@
         }
       }
 
-      // Tạo bong bóng tự động bay lơ lửng ngoài màn hình
       function createAutoBubbles() {
         const container = document.getElementById("bubble-container");
         setInterval(() => {
@@ -2758,7 +2681,6 @@
         }, 1200);
       }
 
-      // Tạo bong bóng nổ ra khi click chuột
       function createClickBubble(x, y) {
         const container = document.getElementById("bubble-container");
         const bubble = document.createElement("div");
