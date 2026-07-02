@@ -4,19 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Định Hướng Khối Học Cấp 3 Theo Sở Thích - Ocean Waves</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-      /* CSS Wave Animation */
       .waves {
         position: relative;
         width: 100%;
         height: 12vh;
         min-height: 80px;
         max-height: 120px;
-        margin-bottom: -1px; /* Sửa lỗi khoảng trắng nhỏ ở trình duyệt */
+        margin-bottom: -1px; 
       }
 
       .parallax > use {
@@ -51,8 +48,6 @@
           transform: translate3d(85px, 0, 0);
         }
       }
-
-      /* Thủy tinh mờ (Glassmorphism) */
       .glass-card {
         background: rgba(255, 255, 255, 0.75);
         backdrop-filter: blur(12px);
@@ -60,8 +55,6 @@
         border: 1px solid rgba(255, 255, 255, 0.4);
         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
       }
-
-      /* Bong bóng nước nổi lên */
       .bubble {
         position: absolute;
         bottom: -20px;
@@ -87,8 +80,6 @@
           opacity: 0;
         }
       }
-
-      /* Hiệu ứng trượt gợn sóng khi rê chuột */
       .wave-hover {
         position: relative;
         overflow: hidden;
@@ -110,8 +101,6 @@
       .wave-hover:hover::after {
         height: 100%;
       }
-
-      /* Tùy chỉnh thanh cuộn đẹp mắt */
       ::-webkit-scrollbar {
         width: 8px;
       }
@@ -130,13 +119,10 @@
   <body
     class="bg-slate-50 min-h-screen text-slate-800 font-sans flex flex-col relative overflow-x-hidden"
   >
-    <!-- Container hiệu ứng bong bóng nước -->
     <div
       id="bubble-container"
       class="absolute inset-0 pointer-events-none z-0 overflow-hidden"
     ></div>
-
-    <!-- Header & Hero Section -->
     <header
       class="relative bg-gradient-to-r from-sky-400 via-cyan-400 to-blue-500 text-white z-10"
     >
@@ -147,8 +133,6 @@
         >
           <i data-lucide="arrow-left" class="w-4 h-4"></i> Trang chủ
         </a>
-
-        <!-- Icon định hướng nổi bật -->
         <div
           class="inline-flex items-center justify-center p-4 bg-white/20 backdrop-blur-md rounded-full mb-4 shadow-lg animate-bounce"
         >
@@ -167,8 +151,6 @@
           chọn? Hãy tích chọn sở thích của bạn để tìm ra khối học lý tưởng nhất nhé!
         </p>
       </div>
-
-      <!-- SVG Gợn Sóng Chuyển Động -->
       <svg
         class="waves"
         xmlns="http://www.w3.org/2000/svg"
@@ -206,10 +188,7 @@
         </g>
       </svg>
     </header>
-
-    <!-- Main Content -->
     <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full z-10">
-      <!-- BƯỚC 1: Chọn thế mạnh & sở thích học tập -->
       <section
         class="glass-card rounded-3xl p-6 mb-10 border border-sky-100 shadow-md"
       >
@@ -226,13 +205,8 @@
           Hãy nhấp chọn những sở thích phản ánh chân thực nhất năng khiếu hoặc
           niềm đam mê của bạn ở cấp THCS:
         </p>
-
-        <!-- Danh sách các thẻ tag sở thích học tập -->
         <div class="flex flex-wrap gap-2.5" id="interest-tags-container">
-          <!-- Sẽ được sinh tự động bởi JS -->
         </div>
-
-        <!-- Nút chọn nhanh / xóa chọn -->
         <div
           class="flex items-center justify-between mt-4 pt-4 border-t border-slate-100"
         >
@@ -250,8 +224,6 @@
           </button>
         </div>
       </section>
-
-      <!-- BƯỚC 2: Kết quả Khối học gợi ý -->
       <section>
         <div
           class="flex flex-col lg:flex-row items-center justify-between gap-4 mb-6"
@@ -262,8 +234,6 @@
               Bước 2: Các khối học và Tổ hợp lớp 10 đề xuất
             </h2>
           </div>
-
-          <!-- Bộ lọc nhanh theo khối chính -->
           <div class="flex flex-wrap gap-2 justify-center" id="block-filters">
             <button
               onclick="filterBlock('all')"
@@ -302,7 +272,6 @@
             </button>
           </div>
 
-          <!-- Ô tìm kiếm khối học bằng chữ -->
           <div class="relative w-full lg:w-80">
             <input
               type="text"
@@ -317,16 +286,11 @@
             ></i>
           </div>
         </div>
-
-        <!-- Grid kết quả khối học -->
         <div
           id="careers-grid"
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          <!-- Sẽ được sinh tự động bởi JS -->
         </div>
-
-        <!-- Trạng thái trống (Không tìm thấy kết quả phù hợp) -->
         <div
           id="empty-state"
           class="hidden flex flex-col items-center justify-center py-16 text-center"
@@ -346,8 +310,6 @@
         </div>
       </section>
     </main>
-
-    <!-- Modal Chi Tiết Tổ Hợp Và Định Hướng Khối Học -->
     <div
       id="career-modal"
       class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-opacity"
@@ -355,7 +317,6 @@
       <div
         class="glass-card rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl border border-white/50 animate-in fade-in zoom-in-95 duration-200"
       >
-        <!-- Modal Header -->
         <div
           class="bg-gradient-to-r from-sky-400 to-cyan-500 p-6 text-white relative"
         >
@@ -377,8 +338,6 @@
             <i data-lucide="x" class="w-6 h-6"></i>
           </button>
         </div>
-
-        <!-- Modal Content -->
         <div class="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
           <div>
             <h4
@@ -447,8 +406,6 @@
             ></p>
           </div>
         </div>
-
-        <!-- Modal Footer -->
         <div class="p-4 bg-slate-50 border-t border-slate-100 flex justify-end">
           <button
             onclick="toggleModal(false)"
@@ -459,8 +416,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Footer gợn sóng -->
     <footer
       class="mt-auto bg-slate-100 border-t border-slate-200 py-6 text-center text-slate-500 text-sm z-10"
     >
@@ -469,9 +424,8 @@
       </p>
     </footer>
 
-    <!-- JS Logic -->
     <script>
-      // Danh mục các sở thích để học sinh lớp 9 chuẩn bị lên lớp 10 tích chọn
+
       const interestsList = [
         {
           id: "math",
@@ -529,10 +483,7 @@
           category: "humanities",
         },
       ];
-
-      // Cơ sở dữ liệu tất cả các khối tuyển sinh do người dùng cung cấp
       const careersDatabase = [
-        // --- KHỐI A ---
         {
           id: 1,
           title: "Khối A00 (Toán, Vật lí, Hóa học)",
@@ -822,8 +773,6 @@
           schools:
             "Không ngừng luyện tập kỹ năng diễn đạt văn chương dựa trên lập luận toán học chặt chẽ và số liệu minh chứng thực tế.",
         },
-
-        // --- KHỐI B ---
         {
           id: 17,
           title: "Khối B00 (Toán, Hóa học, Sinh học)",
@@ -936,8 +885,6 @@
           schools:
             "Sử dụng tiếng Anh thường xuyên để tra cứu thuật ngữ y sinh quốc tế trên Pubmed hoặc các tạp chí khoa học uy tín.",
         },
-
-        // --- KHỐI C ---
         {
           id: 23,
           title: "Khối C00 (Ngữ văn, Lịch sử, Địa lí)",
@@ -1108,7 +1055,6 @@
             "Kết hợp tư duy không gian của Địa lý với các tình huống xử lý quy định đất đai, pháp luật của GDCD.",
         },
 
-        // --- KHỐI D ---
         {
           id: 32,
           title: "Khối D01 (Toán, Ngữ văn, Tiếng Anh)",
@@ -1281,7 +1227,7 @@
           category: "Khối D",
           categoryType: "D",
           icon: "languages",
-          tags: ["english", "literature", "math"], // Sử dụng english thay cho ngoại ngữ chung
+          tags: ["english", "literature", "math"],
           skills: [
             "Thông dịch chuyên sâu",
             "Hiểu biết văn hóa bản địa",
@@ -1297,19 +1243,16 @@
         },
       ];
 
-      // Mảng lưu trạng thái các sở thích đang được chọn
       let selectedInterests = [];
       let searchQuery = "";
       let activeCategory = "all";
 
-      // Khởi động khi tải xong trang
       document.addEventListener("DOMContentLoaded", () => {
         renderInterestTags();
         renderCareers();
         createAutoBubbles();
         lucide.createIcons();
 
-        // Hiệu ứng click bong bóng mượt mà toàn trang
         document.body.addEventListener("click", (e) => {
           if (
             e.target.closest("button") ||
@@ -1321,8 +1264,6 @@
           createClickBubble(e.clientX, e.clientY);
         });
       });
-
-      // Đổ danh sách các tag sở thích lên màn hình
       function renderInterestTags() {
         const container = document.getElementById("interest-tags-container");
         container.innerHTML = "";
@@ -1339,40 +1280,31 @@
           container.appendChild(tagBtn);
         });
       }
-
-      // Bật/tắt trạng thái chọn sở thích khi click vào tag
       function toggleInterest(id) {
         const index = selectedInterests.indexOf(id);
         const tagBtn = document.getElementById(`tag-${id}`);
 
         if (index > -1) {
-          // Đã chọn -> bỏ chọn
           selectedInterests.splice(index, 1);
           tagBtn.className =
             "px-4 py-2.5 rounded-full text-sm font-semibold border transition-all duration-300 flex items-center gap-2 " +
             "bg-white hover:bg-sky-50 border-slate-200 text-slate-600 hover:border-sky-300 shadow-sm";
         } else {
-          // Chưa chọn -> bật chọn
+
           selectedInterests.push(id);
           tagBtn.className =
             "px-4 py-2.5 rounded-full text-sm font-semibold border transition-all duration-300 flex items-center gap-2 " +
             "bg-gradient-to-r from-sky-400 to-cyan-400 border-transparent text-white shadow-md scale-105";
         }
-
-        // Cập nhật số lượng tag đã chọn ở bộ đếm
         document.getElementById("selected-count-badge").textContent =
           `Đã chọn: ${selectedInterests.length} sở thích học tập`;
 
         renderCareers();
       }
-
-      // Đặt lại (reset) toàn bộ tag lựa chọn
       function clearSelectedInterests() {
         selectedInterests = [];
         document.getElementById("selected-count-badge").textContent =
           `Đã chọn: 0 sở thích học tập`;
-
-        // Vẽ lại toàn bộ giao diện tag trở về mặc định
         interestsList.forEach((interest) => {
           const tagBtn = document.getElementById(`tag-${interest.id}`);
           if (tagBtn) {
@@ -1384,8 +1316,6 @@
 
         renderCareers();
       }
-
-      // Xử lý khi chọn bộ lọc nhóm khối học A, B, C, D
       function filterBlock(block) {
         activeCategory = block;
         const filterBtns = ["all", "A", "B", "C", "D"];
@@ -1401,8 +1331,6 @@
         });
         renderCareers();
       }
-
-      // Xử lý khi gõ tìm kiếm bằng chữ
       function handleSearch() {
         searchQuery = document
           .getElementById("search-input")
@@ -1410,22 +1338,16 @@
           .trim();
         renderCareers();
       }
-
-      // Đổ danh sách khối học và hiển thị Match Score động
       function renderCareers() {
         const grid = document.getElementById("careers-grid");
         const emptyState = document.getElementById("empty-state");
         grid.innerHTML = "";
-
         let scoredCareers = careersDatabase.map((career) => {
-          // Tính toán Match Score bằng tỉ lệ trùng khớp giữa tag sở thích học sinh chọn & khối thi
           let matchScore = 0;
-
           if (selectedInterests.length > 0) {
             const intersected = career.tags.filter((t) =>
               selectedInterests.includes(t),
             );
-            // Công thức tính điểm phần trăm khớp khối học
             matchScore = Math.round(
               (intersected.length / career.tags.length) * 100,
             );
@@ -1435,15 +1357,11 @@
 
           return { ...career, matchScore };
         });
-
-        // Lọc theo bộ lọc khối A, B, C, D hiện tại
         if (activeCategory !== "all") {
           scoredCareers = scoredCareers.filter(
             (c) => c.categoryType === activeCategory,
           );
         }
-
-        // Lọc theo từ khóa tìm kiếm chữ
         if (searchQuery !== "") {
           scoredCareers = scoredCareers.filter(
             (c) =>
@@ -1453,13 +1371,10 @@
               c.salary.toLowerCase().includes(searchQuery),
           );
         }
-
-        // Nếu có bộ chọn sở thích, ưu tiên sắp xếp khối học có Match Score cao lên hàng đầu
         if (selectedInterests.length > 0) {
           scoredCareers.sort((a, b) => b.matchScore - a.matchScore);
         }
 
-        // Hiển thị giao diện dựa trên kết quả lọc
         if (scoredCareers.length === 0) {
           emptyState.classList.remove("hidden");
           grid.classList.add("hidden");
@@ -1472,7 +1387,6 @@
             card.className =
               "glass-card rounded-3xl p-6 wave-hover transition-all flex flex-col justify-between group h-full z-10 relative border border-white/50 hover:-translate-y-2 hover:shadow-xl duration-300";
 
-            // Chuyển đổi màu sắc dựa theo Match Score độ tương hợp khối học
             let scoreBadgeColor = "bg-slate-100 text-slate-500";
             if (career.matchScore > 50) {
               scoreBadgeColor =
@@ -1481,7 +1395,6 @@
               scoreBadgeColor = "bg-sky-100 text-sky-600";
             }
 
-            // Đổ dữ liệu các phẩm chất/kỹ năng cần có
             const skillsListHtml = career.skills
               .map(
                 (s) =>
@@ -1543,7 +1456,6 @@
         lucide.createIcons();
       }
 
-      // Mở Modal hiển thị toàn bộ lộ trình chọn môn, ngành nghề đích & lời khuyên
       function showCareerDetails(id) {
         const career = careersDatabase.find((c) => c.id === id);
         if (career) {
@@ -1560,7 +1472,6 @@
         }
       }
 
-      // Đóng/Mở Modal bằng CSS class
       function toggleModal(show) {
         const modal = document.getElementById("career-modal");
         if (show) {
@@ -1570,12 +1481,11 @@
         }
       }
 
-      // Tạo bong bóng bay tự động từ phía dưới màn hình
       function createAutoBubbles() {
         const container = document.getElementById("bubble-container");
         setInterval(() => {
           const bubble = document.createElement("div");
-          const size = Math.random() * 25 + 5; // Kích thước từ 5px đến 30px
+          const size = Math.random() * 25 + 5; 
           bubble.className = "bubble";
           bubble.style.width = `${size}px`;
           bubble.style.height = `${size}px`;
@@ -1592,7 +1502,6 @@
         }, 1200);
       }
 
-      // Tạo hiệu ứng chùm bong bóng nhỏ tỏa ra khi bấm chuột
       function createClickBubble(x, y) {
         const container = document.getElementById("bubble-container");
         const bubble = document.createElement("div");
