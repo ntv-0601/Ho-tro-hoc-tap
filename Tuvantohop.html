@@ -36,8 +36,6 @@
         overflow-x: hidden;
         position: relative;
       }
-
-      /* Custom scrollbar */
       ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
@@ -55,8 +53,6 @@
       ::-webkit-scrollbar-thumb:hover {
         background: rgba(14, 165, 233, 0.8);
       }
-
-      /* Glassmorphism styling thích ứng Sáng/Tối */
       .glass-card {
         background: rgba(255, 255, 255, 0.85);
         backdrop-filter: blur(12px);
@@ -99,8 +95,6 @@
         box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
         outline: none;
       }
-
-      /* Animated Wave effect */
       .wave-container {
         position: absolute;
         bottom: 0;
@@ -121,8 +115,6 @@
         min-height: 100px;
         max-height: 150px;
       }
-
-      /* Parallax Wave Animation Colors */
       .parallax > use {
         animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
       }
@@ -165,8 +157,6 @@
         0% { transform: translate3d(-90px, 0, 0); }
         100% { transform: translate3d(85px, 0, 0); }
       }
-
-      /* Rising Bubbles Background */
       .bubble {
         position: absolute;
         bottom: -20px;
@@ -187,8 +177,6 @@
         90% { opacity: 0.8; }
         100% { bottom: 110vh; transform: translateX(100px) scale(1.5); opacity: 0; }
       }
-
-      /* Styled buttons */
       .btn-gradient-cyan {
         background: linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #0e7490 100%);
         box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
@@ -232,8 +220,6 @@
         box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
         filter: brightness(1.1);
       }
-      
-      /* Animation for report items */
       .fade-in-up {
         animation: fadeInUp 0.5s ease-out forwards;
         opacity: 0;
@@ -255,7 +241,6 @@
       <div class="bubble" style="left: 90%; width: 25px; height: 25px; animation-duration: 10s; animation-delay: 2s;"></div>
     </div>
 
-    <!-- MAIN WRAPPER CONTAINER -->
     <div class="container mx-auto px-4 pt-12 pb-8 max-w-6xl relative z-10 flex-grow">
       
       <header class="text-center mb-8 pt-4">
@@ -278,8 +263,6 @@
           Phân tích năng lực học tập THCS thông minh để đề xuất tổ hợp môn Trung học phổ thông tối ưu nhất cho học sinh.
         </p>
       </header>
-
-      <!-- MAIN CONTENT GRID -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         <div class="lg:col-span-7 glass-card p-5 md:p-6 rounded-2xl shadow-lg">
@@ -363,18 +346,12 @@
             </table>
           </div>
         </div>
-
-        <!-- COLUMN 2: TOOLS, EXCEL ACTIONS & ANALYSIS RESULTS (lg:span-5) -->
         <div class="lg:col-span-5 flex flex-col gap-6">
-          
-          <!-- Tool/File Controller Glassmorphic Panel -->
           <div class="glass-card p-5 md:p-6 rounded-2xl shadow-lg">
             <h2 class="text-lg font-bold text-sky-600 dark:text-cyan-300 flex items-center gap-2 mb-4 border-b border-slate-200 dark:border-slate-700/60 pb-3">
               <i class="fa-solid fa-sliders text-sky-500 dark:text-cyan-400"></i> Điều Khiển & Nhập Liệu
             </h2>
-
             <div class="space-y-4">
-              <!-- Upload Excel Section -->
               <div class="flex flex-col gap-2 p-4 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200 dark:border-slate-800">
                 <span class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Tải lên bảng điểm từ file</span>
                 <div class="flex items-center gap-2 w-full">
@@ -384,8 +361,6 @@
                   <span id="fileName" class="text-xs text-slate-500 dark:text-slate-400 truncate italic">Chưa chọn file nào</span>
                 </div>
               </div>
-
-              <!-- Primary Action Grid -->
               <div class="grid grid-cols-2 gap-3">
                 <button type="button" id="mau2" class="btn-gradient-cyan text-white py-3 px-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2">
                   <i class="fa-solid fa-cloud-arrow-up"></i> Đọc File
@@ -394,7 +369,6 @@
                   <i class="fa-solid fa-download"></i> Tải Mẫu
                 </a>
               </div>
-
               <div class="grid grid-cols-2 gap-3">
                 <button type="button" id="tuvan" class="btn-gradient-blue text-white py-3 px-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2">
                   <i class="fa-solid fa-wand-magic-sparkles"></i> Tư Vấn Ngay
@@ -405,18 +379,14 @@
               </div>
             </div>
           </div>
-
-          <!-- Analysis Output Panel (THIS IS THE REDESIGNED PART) -->
           <div class="glass-card p-0 rounded-2xl flex-grow flex flex-col min-h-[450px] shadow-lg overflow-hidden border border-sky-100 dark:border-cyan-900/50">
             <div class="bg-gradient-to-r from-sky-100 to-blue-50 dark:from-slate-800 dark:to-slate-900 p-4 border-b border-sky-200 dark:border-slate-700/80">
                 <h2 class="text-lg font-bold text-sky-700 dark:text-cyan-300 flex items-center gap-2">
                 <i class="fa-solid fa-brain text-sky-500 dark:text-cyan-400"></i> Báo Cáo Tư Vấn Định Hướng
                 </h2>
             </div>
-            
             <div class="result-container flex-grow relative bg-white/40 dark:bg-slate-950/40 flex flex-col p-5">
               <div id="kqtuvan" class="result-box text-slate-700 dark:text-slate-200 text-sm leading-relaxed overflow-y-auto max-h-[500px] w-full pr-2">
-                <!-- Trạng thái trống mặc định -->
                 <div class="flex flex-col items-center justify-center text-center h-full min-h-[300px] text-slate-500">
                   <div class="w-20 h-20 bg-sky-100 dark:bg-cyan-950/50 rounded-full flex items-center justify-center mb-4">
                     <i class="fa-solid fa-clipboard-list text-4xl text-sky-400 dark:text-cyan-500/70 animate-pulse"></i>
@@ -443,7 +413,6 @@
       </div>
     </div>
 
-    <!-- WAVE ANIMATION FOOTER -->
     <div class="wave-container">
       <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
         <defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" /></defs>
@@ -462,17 +431,14 @@
       </div>
     </footer>
 
-    <!-- HIDDEN EXCEL FILE INPUT -->
     <input type="file" id="excelFile" class="hidden" accept=".xls,.xlsx,.csv" />
 
-    <!-- CUSTOM TOAST CONTAINER -->
     <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
     <script>
       let selectedFile;
       let abilityChart = null;
 
-      // Dark / Light Mode Toggle logic
       function toggleDarkMode() {
         const html = document.documentElement;
         const themeIcon = document.getElementById("theme-icon");
@@ -508,7 +474,6 @@
         }
       });
 
-      // Custom Floating Toast Notification System
       function showToast(message, type = "info") {
         const container = document.getElementById("toast-container");
         const toast = document.createElement("div");
@@ -578,7 +543,6 @@
             });
             showToast(`Đọc file thành công! Đã điền ${filledFields} trường điểm học tập.`, "success");
             
-            // Tự động nhấn nút tư vấn sau khi đọc xong
             setTimeout(() => { document.getElementById("tuvan").click(); }, 500);
 
           } catch (error) {
@@ -633,7 +597,6 @@
       }
 
       document.getElementById("tuvan").onclick = function () {
-        // Lấy dữ liệu
         const getVal = (id) => parseFloat(document.getElementById(id).value) || 0;
         let van6 = getVal("van6"), van7 = getVal("van7"), van8 = getVal("van8"), van9 = getVal("van9");
         let toan6 = getVal("toan6"), toan7 = getVal("toan7"), toan8 = getVal("toan8"), toan9 = getVal("toan9");
@@ -681,14 +644,12 @@
           { name: "KHTN", score: tbKHTN, icon: "fa-atom", color: "text-rose-500" },
           { name: "Công nghệ", score: tbCN, icon: "fa-gears", color: "text-yellow-500" },
           { name: "Tin học", score: tbTH, icon: "fa-laptop-code", color: "text-sky-500" }
-        ].filter(s => s.score > 0); // Chỉ lấy môn có điểm
+        ].filter(s => s.score > 0); 
 
-        // Sắp xếp để lấy môn cao nhất và thấp nhất
         let sortedForStrengths = [...subjectsScores].sort((a, b) => b.score - a.score);
         let bestSubject = sortedForStrengths[0];
         let weakSubject = sortedForStrengths[sortedForStrengths.length - 1];
 
-        // Hàm helper chọn màu cho điểm
         const getScoreColorClass = (score) => {
             if(score >= 8.0) return "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800";
             if(score >= 6.5) return "bg-sky-100 text-sky-700 dark:bg-sky-900/40 dark:text-sky-300 border-sky-200 dark:border-sky-800";
@@ -699,7 +660,6 @@
         let highScoringSubjects = subjectsScores.filter(s => s.score >= 6.5);
         let outputHTML = `<div class="space-y-6 fade-in-up">`;
 
-        // 1. Thẻ tổng quan điểm số (Header Card)
         outputHTML += `
             <div class="relative overflow-hidden bg-gradient-to-br from-sky-500 to-blue-600 rounded-2xl p-5 shadow-lg text-white flex items-center justify-between">
                 <div class="z-10">
@@ -723,9 +683,7 @@
             </div>
         `;
 
-        // 2. Phân tích định hướng (Logic chính)
         if (highScoringSubjects.length < 2) {
-            // HƯỚNG NGHIỆP NGHỀ (Nếu điểm thấp)
             let topSubject = sortedForStrengths[0];
             let secondSubject = sortedForStrengths[1] || topSubject;
             let recommendedVocations = [];
@@ -774,7 +732,6 @@
                 </div>
             `;
         } else {
-            // TƯ VẤN TỔ HỢP MÔN THPT (Nếu điểm khá/giỏi)
             const toHop = [
                 { name: "A00", desc: "Toán, Vật lý, Hóa học", subjects: ["Toán", "KHTN"], weights: [0.6, 0.4], majors: "CNTT, Kỹ thuật, Điện tử, Kinh tế, Logistics", icon: "fa-microchip" },
                 { name: "B00", desc: "Toán, Hóa học, Sinh học", subjects: ["Toán", "KHTN"], weights: [0.5, 0.5], majors: "Y Dược, Công nghệ sinh học, Nông lâm, Môi trường", icon: "fa-staff-snake" },
@@ -782,14 +739,12 @@
                 { name: "D01", desc: "Toán, Ngữ văn, Tiếng Anh", subjects: ["Toán", "Ngữ văn", "Ngoại ngữ"], weights: [0.35, 0.3, 0.35], majors: "Ngoại ngữ, Truyền thông, Kinh tế, Luật, Du lịch", icon: "fa-language" },
                 { name: "C00", desc: "Ngữ văn, Lịch sử, Địa lý", subjects: ["Ngữ văn", "Lịch sử - Địa lý"], weights: [0.5, 0.5], majors: "Luật, Sư phạm, Báo chí, Tâm lý học, Xã hội học", icon: "fa-scale-balanced" },
             ];
-
-            // Hàm tính điểm tích hợp, trả về điểm trung bình trọng số
             const calcScore = (comb) => {
                 let score = 0;
                 let valid = true;
                 comb.subjects.forEach((subjName, idx) => {
                     let s = subjectsScores.find(s => s.name === subjName);
-                    if(!s || s.score < 6.0) valid = false; // Phải có nền tảng cơ bản
+                    if(!s || s.score < 6.0) valid = false;
                     if(s) score += s.score * comb.weights[idx];
                 });
                 return valid ? score : 0;
@@ -811,7 +766,6 @@
                         <p class="text-sm text-rose-700 dark:text-rose-300">Điểm số các môn cốt lõi chưa đủ ổn định để đề xuất tổ hợp chuyên sâu. Hãy tập trung cải thiện đều các môn nhé!</p>
                     </div>`;
             } else {
-                // Hiển thị lựa chọn số 1
                 let topChoice = diemToHop[0];
                 outputHTML += `
                     <div class="relative bg-white dark:bg-slate-800 border border-sky-200 dark:border-slate-700 shadow-md rounded-xl p-5 overflow-hidden transition hover:shadow-lg">
@@ -842,8 +796,6 @@
                         </div>
                     </div>
                 `;
-
-                // Hiển thị lựa chọn số 2 (Nếu có)
                 if (diemToHop.length > 1) {
                     let secondChoice = diemToHop[1];
                     outputHTML += `
@@ -865,7 +817,6 @@
             outputHTML += `</div>`;
         }
 
-        // 3. Bảng điểm chi tiết (Được thiết kế lại dạng Pill/Tags)
         outputHTML += `
             <div class="pt-2">
                 <h3 class="text-sm font-bold text-slate-800 dark:text-white uppercase tracking-wider mb-3 flex items-center gap-2">
@@ -891,14 +842,11 @@
             <div class="text-xs text-slate-500 dark:text-slate-400 italic text-center mt-4 bg-slate-50 dark:bg-slate-900/30 p-3 rounded-lg">
                 💡 Lưu ý: Phân tích dựa trên thuật toán tính điểm trọng số. Vui lòng kết hợp với sở thích cá nhân để có quyết định tốt nhất!
             </div>
-        </div>`; // End of main space-y-6 container
-
-        // Hiển thị kết quả
+        </div>`; 
         resultBox.innerHTML = outputHTML;
         showToast("Đã phân tích xong! Vui lòng xem báo cáo bên dưới.", "success");
       };
 
-      // Xử lý nút Xóa
       document.getElementById("xoa").onclick = function () {
         document.querySelectorAll(".glass-input").forEach(input => input.value = "");
         
@@ -919,8 +867,6 @@
 
         showToast("Đã xóa toàn bộ điểm số hiện có.", "info");
       };
-
-      // Khởi tạo ban đầu
       window.onload = function () {
         const initialSubjects = ["Ngữ văn", "Toán", "Ngoại ngữ", "KHTN", "LSDL", "Công nghệ", "Tin học"];
         updateAbilityChart(initialSubjects, [0, 0, 0, 0, 0, 0, 0]);
